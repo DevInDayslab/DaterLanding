@@ -118,9 +118,7 @@ export default function Header() {
       className="fixed top-0 z-[101] w-full transition-[background-color,box-shadow] duration-300 ease-out"
       style={{
         backgroundColor: menuMounted ? '#ffffff' : isOverlay ? 'transparent' : theme.bg,
-        boxShadow: isOverlay
-          ? '0 4px 24px rgba(0, 0, 0, 0.18)'
-          : '0 1px 0 rgba(0, 0, 0, 0.06)',
+        boxShadow: isOverlay ? 'none' : '0 1px 0 rgba(0, 0, 0, 0.06)',
       }}
     >
       <div className="flex items-center justify-between py-2.5 pl-6 pr-6 md:pl-8 md:pr-12">
