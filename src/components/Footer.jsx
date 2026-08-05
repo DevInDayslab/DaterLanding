@@ -1,13 +1,14 @@
 import { Link } from 'react-router-dom'
 import badgeAppStore from '../assets/badges/app-store.png'
 import badgeGooglePlay from '../assets/badges/google-play.png'
-import qrCode from '../assets/footer/qr-code.svg'
 import phonesMockup from '../assets/footer/phones-mockup.png'
 import iconFacebook from '../assets/footer/facebook.png'
 import iconInstagram from '../assets/footer/instagram.png'
 import iconLinkedin from '../assets/footer/linkedin.png'
 import iconX from '../assets/footer/x.png'
 import iconYoutube from '../assets/footer/youtube.png'
+import DownloadButton from './DownloadButton'
+import qrCode from '../assets/footer/qr-code.svg'
 
 const COMPANY_LINKS = [
   { label: 'About us', to: '/about' },
@@ -37,7 +38,7 @@ const FOOTER_SHELL = 'mx-auto w-full max-w-[1440px] px-6 md:px-8'
 
 function FooterColumn({ title, links }) {
   return (
-    <div className="min-w-[140px]">
+    <div className="mb-6 min-w-[140px] md:mb-0">
       <p className="mb-4 font-google-sans-flex text-[16px] font-normal text-[#929292]">{title}</p>
       {links.map((item) =>
         item.external ? (
@@ -66,55 +67,74 @@ function FooterColumn({ title, links }) {
 
 function GetTheAppBanner() {
   return (
-    <section className="relative flex min-h-[clamp(260px,24vw,340px)] w-full items-center overflow-hidden rounded-[clamp(28px,3vw,40px)] bg-accent-pink-soft px-[clamp(28px,4vw,48px)] py-[clamp(24px,2.5vw,36px)]">
-      <div className="pointer-events-none absolute inset-0 z-0 flex items-center justify-center">
-        <img
-          src={phonesMockup}
-          alt=""
-          aria-hidden="true"
-          className="h-[clamp(240px,26vw,320px)] w-auto max-w-[58%] object-contain"
-        />
-      </div>
-
-      <div className="relative z-10 w-[min(100%,280px)] shrink-0">
-        <h2 className="font-google-sans-flex text-[clamp(30px,3vw,38px)] font-semibold leading-tight text-[#000000]">
+    <>
+      {/* Mobile — full-bleed, left-aligned copy */}
+      <section className="flex w-full flex-col items-start overflow-hidden bg-accent-lime px-6 pb-10 pt-10 md:hidden">
+        <h2 className="text-left font-google-sans-flex text-[32px] font-semibold leading-tight text-[#000000]">
           Get the app
         </h2>
-        <p className="mt-0.5 font-google-sans-flex text-[clamp(16px,1.6vw,20px)] font-normal leading-snug text-[#000000]">
-          Scan QR code to get start
+        <p className="mt-1 text-left font-google-sans-flex text-[18px] font-normal text-[#000000]">
+          Find your next date
         </p>
-        <div className="mt-[clamp(12px,1.6vw,20px)] inline-block rounded-xl bg-white p-2.5 shadow-sm">
-          <img
-            src={qrCode}
-            alt="Scan to download DATER"
-            className="h-[clamp(100px,10vw,128px)] w-[clamp(100px,10vw,128px)]"
-          />
-        </div>
-      </div>
+        <DownloadButton variant="footer" className="mt-6" />
+        <img
+          src={phonesMockup}
+          alt="DATER app on mobile phones"
+          className="mt-8 h-auto w-full max-w-[400px] scale-105 self-center object-contain"
+        />
+      </section>
 
-      <span className="sr-only">DATER app on mobile phones</span>
-    </section>
+      {/* Desktop */}
+      <div className={`${FOOTER_SHELL} hidden pb-14 pt-6 md:block`}>
+        <section className="relative flex min-h-[clamp(260px,24vw,340px)] w-full items-center overflow-hidden rounded-[clamp(28px,3vw,40px)] bg-accent-pink-soft px-[clamp(28px,4vw,48px)] py-[clamp(24px,2.5vw,36px)]">
+          <div className="pointer-events-none absolute inset-0 z-0 flex items-center justify-center">
+            <img
+              src={phonesMockup}
+              alt=""
+              aria-hidden="true"
+              className="h-[clamp(240px,26vw,320px)] w-auto max-w-[58%] object-contain"
+            />
+          </div>
+
+          <div className="relative z-10 w-[min(100%,280px)] shrink-0">
+            <h2 className="font-google-sans-flex text-[clamp(30px,3vw,38px)] font-semibold leading-tight text-[#000000]">
+              Get the app
+            </h2>
+            <p className="mt-0.5 font-google-sans-flex text-[clamp(16px,1.6vw,20px)] font-normal leading-snug text-[#000000]">
+              Scan QR code to get start
+            </p>
+            <div className="mt-[clamp(12px,1.6vw,20px)] inline-block rounded-xl bg-white p-2.5 shadow-sm">
+              <img
+                src={qrCode}
+                alt="Scan to download DATER"
+                className="h-[clamp(100px,10vw,128px)] w-[clamp(100px,10vw,128px)]"
+              />
+            </div>
+          </div>
+
+          <span className="sr-only">DATER app on mobile phones</span>
+        </section>
+      </div>
+    </>
   )
 }
 
 export default function Footer() {
   return (
     <footer className="bg-white">
-      <div className={`${FOOTER_SHELL} pb-14 pt-6`}>
-        <GetTheAppBanner />
-      </div>
+      <GetTheAppBanner />
 
       <div className="border-t border-gray-200">
         <div className={`${FOOTER_SHELL} pb-10 pt-14`}>
-          <div className="flex items-start justify-between gap-12">
-            <div>
-              <div className="flex gap-20">
+          <div className="flex flex-col justify-between gap-12 md:flex-row md:gap-0">
+            <div className="flex flex-col gap-0 md:gap-0">
+              <div className="flex flex-col md:flex-row md:gap-20">
                 <FooterColumn title="Company" links={COMPANY_LINKS} />
                 <FooterColumn title="Users" links={USERS_LINKS} />
                 <FooterColumn title="Legal" links={LEGAL_LINKS} />
               </div>
 
-              <div className="mt-8 flex items-center gap-4">
+              <div className="mt-8 hidden flex-col gap-4 md:flex md:flex-row md:items-center">
                 <a href="#" aria-label="Download on the App Store">
                   <img
                     src={badgeAppStore}
@@ -137,9 +157,8 @@ export default function Footer() {
               </div>
             </div>
 
-            {/* Social block: “Follow us” centered above icon row */}
-            <div className="ml-auto shrink-0">
-              <div className="inline-flex flex-col items-center">
+            <div className="shrink-0 text-center md:ml-auto md:text-right">
+              <div className="inline-flex flex-col items-center md:items-end">
                 <p className="mb-4 font-google-sans-flex text-[16px] font-normal text-[#929292]">
                   Follow us
                 </p>
@@ -165,9 +184,31 @@ export default function Footer() {
             </div>
           </div>
 
-          <p className="mt-16 text-center font-google-sans-flex text-[14px] text-[#484848]">
+          <p className="mt-12 text-center font-google-sans-flex text-[14px] text-[#484848] md:mt-16">
             © 2026 Dater | All rights reserved
           </p>
+
+          <div className="mt-8 flex flex-row items-center justify-center gap-4 border-t border-gray-200 pt-8 md:hidden">
+            <a href="#" aria-label="Download on the App Store">
+              <img
+                src={badgeAppStore}
+                alt="Download on the App Store"
+                className="h-10 w-auto"
+              />
+            </a>
+            <a
+              href="https://play.google.com/store/apps/details?id=com.daterplat.app"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Get it on Google Play"
+            >
+              <img
+                src={badgeGooglePlay}
+                alt="Get it on Google Play"
+                className="h-10 w-auto"
+              />
+            </a>
+          </div>
         </div>
       </div>
     </footer>

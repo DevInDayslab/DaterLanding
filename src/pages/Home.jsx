@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { API } from '../constants/api'
+import DownloadButton from '../components/DownloadButton'
 import heroImage from '../assets/hero/hero.jpg'
 import imgPrivacyMode from '../assets/features/privacy-mode.png'
 import imgVerifiedProfiles from '../assets/features/verified-profiles.png'
@@ -95,22 +96,15 @@ function HeroSection() {
       style={{ backgroundImage: `url(${heroImage})` }}
     >
       <div className="relative z-10 flex flex-col items-center px-8 text-center">
-        <h1 className="font-google-sans-flex text-[44px] font-semibold uppercase text-white">
+        <h1 className="font-google-sans-flex text-[32px] font-semibold uppercase text-white md:text-[44px]">
           FASTEST WAY TO DATE
         </h1>
-        <p className="mt-0.5 font-google-sans-flex text-[26px] font-light text-white">
+        <p className="mt-0.5 font-google-sans-flex text-[20px] font-light text-white md:text-[26px]">
           Modern dating made simple.
         </p>
 
-        <div className="mt-8 flex flex-col items-center">
-          <div className="rounded-xl bg-white p-4">
-            <img
-              src="/qr-placeholder.png"
-              alt="Scan to download DATER"
-              className="h-28 w-28 object-contain"
-            />
-          </div>
-          <p className="mt-3 text-sm text-white">Scan to download</p>
+        <div className="mt-8 flex w-full max-w-sm flex-col items-center md:max-w-none">
+          <DownloadButton variant="hero" />
         </div>
       </div>
     </section>
@@ -130,7 +124,7 @@ function FeaturesSection() {
         </p>
       </div>
 
-      <div className="mt-16 grid grid-cols-1 gap-8 md:grid-cols-3">
+      <div className="mt-16 grid grid-cols-1 gap-6 md:grid-cols-3">
         {FEATURES.map((feature) => (
           <article
             key={feature.title}
@@ -159,7 +153,7 @@ function FeaturesSection() {
 
 function BlogSkeleton() {
   return (
-    <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
+    <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
       {[0, 1, 2].map((i) => (
         <div key={i} className="overflow-hidden rounded-[24px] bg-white shadow-sm">
           <div className="h-[200px] w-full animate-pulse bg-black/10" />
@@ -229,7 +223,7 @@ function BuzzSection() {
       )}
 
       {!loading && !error && (
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
           {blogs.map((blog) => (
             <a
               key={blog.id}
