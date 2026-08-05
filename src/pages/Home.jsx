@@ -129,13 +129,13 @@ function FeaturesSection() {
         <h2 className="mx-auto max-w-[23.75rem] text-center font-google-sans-flex text-[34px] font-semibold uppercase leading-tight text-text-primary">
           ENHANCE YOUR DATING EXPERIENCE
         </h2>
-        <p className="mx-auto mt-4 max-w-[35rem] text-center font-google-sans-flex text-[16px] font-light leading-normal text-text-muted">
+        <p className="mx-auto mt-4 max-w-[35rem] text-center font-google-sans-flex text-[17px] font-light leading-normal text-text-muted">
           From verified profiles to smart visibility tools, everything is crafted to help you connect
           with confidence and spark something real.
         </p>
       </div>
 
-      <div className="mt-16 grid grid-cols-1 gap-6 md:grid-cols-3">
+      <div className="mx-auto mt-16 grid max-w-[1098px] grid-cols-1 gap-6 md:grid-cols-3">
         {FEATURES.map((feature) => (
           <article
             key={feature.title}
