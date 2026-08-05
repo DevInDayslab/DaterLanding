@@ -71,7 +71,7 @@ function hexToRgba(hex, alpha) {
 function resolveHeaderBackground(theme, { isOverlay, menuMounted }) {
   if (menuMounted) return '#ffffff'
   if (isOverlay) return 'transparent'
-  if (theme.bg?.startsWith('#')) return hexToRgba(theme.bg, 0.9)
+  if (theme.bg?.startsWith('#')) return hexToRgba(theme.bg, 0.7)
   return theme.bg
 }
 
@@ -130,13 +130,18 @@ export default function Header() {
     }
   }, [menuMounted])
 
+  const isSolidGlass = !isOverlay && !menuMounted
+
   return (
     <header
       ref={headerRef}
-      className="fixed top-0 z-[101] w-full transition-[background-color,box-shadow] duration-300 ease-out"
+      className={`fixed top-0 z-[101] w-full transition-[background-color,backdrop-filter] duration-300 ease-out ${
+        isSolidGlass ? 'backdrop-blur-xl backdrop-saturate-150' : ''
+      }`}
       style={{
         backgroundColor: resolveHeaderBackground(theme, { isOverlay, menuMounted }),
         boxShadow: 'none',
+        WebkitBackdropFilter: isSolidGlass ? 'blur(24px) saturate(150%)' : 'none',
       }}
     >
       <div className="flex items-center justify-between py-2.5 pl-6 pr-6 md:pl-8 md:pr-12">
