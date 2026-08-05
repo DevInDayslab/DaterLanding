@@ -135,7 +135,7 @@ function FeaturesSection() {
         </p>
       </div>
 
-      <div className="mx-auto mt-16 grid max-w-[1098px] grid-cols-1 gap-6 md:grid-cols-3">
+      <div className="mx-auto mt-16 grid max-w-[1114px] grid-cols-1 gap-8 md:grid-cols-3">
         {FEATURES.map((feature) => (
           <article
             key={feature.title}
@@ -148,7 +148,7 @@ function FeaturesSection() {
                 className="h-full max-w-full object-contain object-top"
               />
             </div>
-            <h3 className="mb-1 shrink-0 font-google-sans-flex text-[20px] font-medium text-text-primary">
+            <h3 className="mb-1 shrink-0 font-google-sans-flex text-[19px] font-medium text-text-primary">
               {feature.title}
             </h3>
             <p className="shrink-0 font-google-sans-flex text-[14px] font-normal text-text-primary">
