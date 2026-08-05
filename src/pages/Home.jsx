@@ -114,7 +114,7 @@ function HeroSection() {
 
 function FeaturesSection() {
   return (
-    <section id="the-app" data-header-surface="solid" data-header-bg="#ffffff" className="bg-white px-8 pb-24 pt-12 md:px-16">
+    <section id="the-app" data-header-surface="solid" data-header-bg="#ffffff" className="scroll-mt-[72px] bg-white px-8 pb-24 pt-12 md:px-16">
       <div className="mx-auto flex w-full flex-col items-center">
         <h2 className="mx-auto max-w-md text-center font-google-sans-flex text-[40px] font-semibold uppercase leading-tight text-text-primary">
           ENHANCE YOUR DATING EXPERIENCE

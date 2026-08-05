@@ -12,7 +12,7 @@ import headerLogoWhite from '../assets/logoWhite.png'
 import { useHeaderTheme } from '../hooks/useHeaderTheme'
 
 const NAV_LINKS = [
-  { label: 'The App', to: '/#the-app' },
+  { label: 'The App', to: '/' },
   { label: 'The Buzz', href: 'https://dater-buzz.com', external: true },
   { label: 'About', to: '/about' },
   { label: 'Contact', to: '/contact' },
@@ -37,7 +37,7 @@ function MenuIcon() {
       strokeWidth="2"
       aria-hidden="true"
     >
-      <path d="M4 7h16M4 12h16M4 17h16" strokeLinecap="round" />
+      <path d="M4 8h16M4 16h16" strokeLinecap="round" />
     </svg>
   )
 }
@@ -82,6 +82,13 @@ export default function Header() {
     window.setTimeout(() => setMenuMounted(false), 300)
   }
 
+  const handleNavClick = (to) => {
+    closeMenu()
+    if (to === '/') {
+      window.scrollTo({ top: 0, left: 0, behavior: 'auto' })
+    }
+  }
+
   useEffect(() => {
     const updateHeaderHeight = () => {
       if (headerRef.current) {
@@ -117,7 +124,11 @@ export default function Header() {
       }}
     >
       <div className="flex items-center justify-between py-2.5 pl-6 pr-6 md:pl-8 md:pr-12">
-        <Link to="/" className="inline-flex items-center" onClick={closeMenu}>
+        <Link
+          to="/"
+          className="inline-flex items-center"
+          onClick={() => handleNavClick('/')}
+        >
           <img src={logoSrc} alt="DATER" className="h-11 w-auto md:h-12" />
         </Link>
 
@@ -134,7 +145,12 @@ export default function Header() {
                 {item.label}
               </a>
             ) : (
-              <Link key={item.label} to={item.to} className={navClass}>
+              <Link
+                key={item.label}
+                to={item.to}
+                className={navClass}
+                onClick={() => handleNavClick(item.to)}
+              >
                 {item.label}
               </Link>
             ),
@@ -184,7 +200,7 @@ export default function Header() {
                     key={item.label}
                     to={item.to}
                     className="font-google-sans-flex text-[20px] font-semibold text-[#322745] transition-opacity hover:opacity-80"
-                    onClick={closeMenu}
+                    onClick={() => handleNavClick(item.to)}
                   >
                     {item.label}
                   </Link>
