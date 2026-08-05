@@ -186,6 +186,7 @@ export default function Contact() {
     <main className="w-full">
       <PageHero title="Contact us" />
 
+      <div data-header-surface="solid" data-header-bg="#ffffff" className="w-full">
       {/* Intro */}
       <div className="mt-16 px-8 text-center">
         <h2 className="mx-auto font-google-sans-flex text-[32px] font-bold text-text-primary">
@@ -337,6 +338,7 @@ export default function Contact() {
             </button>
           </form>
         </div>
+      </div>
       </div>
     </main>
   )

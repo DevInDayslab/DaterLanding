@@ -3,6 +3,7 @@ import gradientBg from '../assets/hero_gradient.png'
 export default function PageHero({ title }) {
   return (
     <section
+      data-header-surface="overlay"
       className="flex w-full items-center justify-center bg-cover bg-center py-24 md:py-32"
       style={{ backgroundImage: `url(${gradientBg})` }}
     >

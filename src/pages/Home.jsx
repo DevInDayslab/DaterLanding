@@ -92,7 +92,8 @@ async function fetchFeaturedImage(mediaId) {
 function HeroSection() {
   return (
     <section
-      className="relative flex min-h-[80vh] w-full items-center justify-center bg-cover bg-center"
+      data-header-surface="overlay"
+      className="relative flex min-h-[100svh] w-full items-center justify-center bg-cover bg-center"
       style={{ backgroundImage: `url(${heroImage})` }}
     >
       <div className="relative z-10 flex flex-col items-center px-8 text-center">
@@ -113,7 +114,7 @@ function HeroSection() {
 
 function FeaturesSection() {
   return (
-    <section id="the-app" className="bg-white px-8 pb-24 pt-12 md:px-16">
+    <section id="the-app" data-header-surface="solid" data-header-bg="#ffffff" className="bg-white px-8 pb-24 pt-12 md:px-16">
       <div className="mx-auto flex w-full flex-col items-center">
         <h2 className="mx-auto max-w-md text-center font-google-sans-flex text-[40px] font-semibold uppercase leading-tight text-text-primary">
           ENHANCE YOUR DATING EXPERIENCE
@@ -209,7 +210,7 @@ function BuzzSection() {
   }, [])
 
   return (
-    <section id="the-buzz" className="bg-accent-lavender py-14 px-8 md:px-16">
+    <section id="the-buzz" data-header-surface="solid" data-header-bg="#EDE8FF" className="bg-accent-lavender py-14 px-8 md:px-16">
       <div className="mx-auto mb-16 flex w-full flex-col items-center">
         <h2 className="mx-auto max-w-lg text-center font-google-sans-flex text-[40px] font-semibold uppercase leading-tight text-text-primary">
           READ TRENDING BLOGS ABOUT DATING

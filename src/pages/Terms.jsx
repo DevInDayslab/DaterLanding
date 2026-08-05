@@ -181,7 +181,7 @@ export default function Terms() {
     <main className="w-full">
       <PageHero title="Terms & conditions" />
 
-      <div className="mx-auto max-w-4xl px-8 py-16">
+      <div data-header-surface="solid" data-header-bg="#ffffff" className="mx-auto max-w-4xl px-8 py-16">
         <h2 className="mb-2 font-google-sans-flex text-[28px] font-bold text-text-primary">Terms of use</h2>
         <span className="mb-8 block font-google-sans-flex text-[16px] text-text-muted">
           Updated on 25 Oct, 2024

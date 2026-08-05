@@ -35,7 +35,7 @@ export default function FAQs() {
     <main className="w-full">
       <PageHero title="FAQs" />
 
-      <div className="mx-auto max-w-4xl px-8 pb-24">
+      <div data-header-surface="solid" data-header-bg="#ffffff" className="mx-auto max-w-4xl px-8 pb-24">
         <h2 className="mt-16 font-google-sans-flex text-[32px] font-bold text-text-primary">
           Have questions about Dater?
         </h2>

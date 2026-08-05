@@ -8,7 +8,10 @@ const BODY_COPY =
 
 function AboutHero() {
   return (
-    <section className="relative flex min-h-[75vh] w-full items-center justify-center overflow-hidden">
+    <section
+      data-header-surface="overlay"
+      className="relative flex min-h-[75vh] w-full items-center justify-center overflow-hidden"
+    >
       <img
         src={heroImage}
         alt=""
@@ -29,7 +32,7 @@ function AboutHero() {
 
 function ContentSections() {
   return (
-    <div className="mx-auto max-w-7xl space-y-32 px-8 py-24 md:px-16">
+    <div data-header-surface="solid" data-header-bg="#ffffff" className="mx-auto max-w-7xl space-y-32 px-8 py-24 md:px-16">
       {/* Section A — Why We Built This */}
       <section className="grid grid-cols-1 items-center gap-12 md:grid-cols-2 md:gap-x-28">
         <div className="mx-auto w-full max-w-md text-center">

@@ -8,6 +8,8 @@ import iconLinkedin from '../assets/footer/linkedin.png'
 import iconX from '../assets/footer/x.png'
 import iconYoutube from '../assets/footer/youtube.png'
 import headerLogo from '../assets/logo/header-logo.png'
+import headerLogoWhite from '../assets/logoWhite.png'
+import { useHeaderTheme } from '../hooks/useHeaderTheme'
 
 const NAV_LINKS = [
   { label: 'The App', to: '/#the-app' },
@@ -24,12 +26,6 @@ const SOCIAL_LINKS = [
   { label: 'X', href: 'https://x.com/dater_social', src: iconX },
   { label: 'YouTube', href: 'https://www.youtube.com/@Dater_social', src: iconYoutube },
 ]
-
-const navClass =
-  'font-google-sans-flex text-[16px] font-medium text-[#322745] transition-opacity hover:opacity-80'
-
-const mobileNavClass =
-  'font-google-sans-flex text-[20px] font-semibold text-[#322745] transition-opacity hover:opacity-80'
 
 function MenuIcon() {
   return (
@@ -66,6 +62,13 @@ export default function Header() {
   const [headerHeight, setHeaderHeight] = useState(56)
   const [menuMounted, setMenuMounted] = useState(false)
   const [menuActive, setMenuActive] = useState(false)
+  const theme = useHeaderTheme(headerRef)
+
+  const isOverlay = theme.mode === 'overlay' && !menuMounted
+  const logoSrc = isOverlay ? headerLogoWhite : headerLogo
+  const navClass = isOverlay
+    ? 'font-google-sans-flex text-[16px] font-medium text-white transition-opacity hover:opacity-80'
+    : 'font-google-sans-flex text-[16px] font-medium text-[#322745] transition-opacity hover:opacity-80'
 
   const openMenu = () => {
     setMenuMounted(true)
@@ -103,10 +106,19 @@ export default function Header() {
   }, [menuMounted])
 
   return (
-    <header ref={headerRef} className="sticky top-0 z-[101] w-full bg-white md:relative">
+    <header
+      ref={headerRef}
+      className="fixed top-0 z-[101] w-full transition-[background-color,box-shadow] duration-300 ease-out"
+      style={{
+        backgroundColor: menuMounted ? '#ffffff' : isOverlay ? 'transparent' : theme.bg,
+        boxShadow: isOverlay
+          ? '0 4px 24px rgba(0, 0, 0, 0.18)'
+          : '0 1px 0 rgba(0, 0, 0, 0.06)',
+      }}
+    >
       <div className="flex items-center justify-between py-2.5 pl-6 pr-6 md:pl-8 md:pr-12">
         <Link to="/" className="inline-flex items-center" onClick={closeMenu}>
-          <img src={headerLogo} alt="DATER" className="h-11 w-auto md:h-12" />
+          <img src={logoSrc} alt="DATER" className="h-11 w-auto md:h-12" />
         </Link>
 
         <nav className="hidden items-center gap-8 md:flex">
@@ -131,7 +143,7 @@ export default function Header() {
 
         <button
           type="button"
-          className="block text-text-primary md:hidden"
+          className={`block md:hidden ${isOverlay ? 'text-white' : 'text-text-primary'}`}
           aria-label={menuMounted ? 'Close menu' : 'Open menu'}
           aria-expanded={menuMounted}
           onClick={menuMounted ? closeMenu : openMenu}
@@ -154,73 +166,73 @@ export default function Header() {
             className="flex flex-col"
             style={{ minHeight: `calc(100dvh - ${headerHeight}px)` }}
           >
-          <nav className="flex flex-col items-center gap-8 px-6 pt-8">
-            {NAV_LINKS.map((item) =>
-              item.external ? (
+            <nav className="flex flex-col items-center gap-8 px-6 pt-8">
+              {NAV_LINKS.map((item) =>
+                item.external ? (
+                  <a
+                    key={item.label}
+                    href={item.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-google-sans-flex text-[20px] font-semibold text-[#322745] transition-opacity hover:opacity-80"
+                    onClick={closeMenu}
+                  >
+                    {item.label}
+                  </a>
+                ) : (
+                  <Link
+                    key={item.label}
+                    to={item.to}
+                    className="font-google-sans-flex text-[20px] font-semibold text-[#322745] transition-opacity hover:opacity-80"
+                    onClick={closeMenu}
+                  >
+                    {item.label}
+                  </Link>
+                ),
+              )}
+            </nav>
+
+            <div className="mt-28 px-6 pb-6">
+              <p className="mb-4 text-center font-google-sans-flex text-[16px] font-normal text-[#929292]">
+                Follow us
+              </p>
+              <div className="flex items-center justify-center gap-2.5">
+                {SOCIAL_LINKS.map(({ label, href, src }) => (
+                  <a
+                    key={label}
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={label}
+                    className="transition-opacity hover:opacity-80"
+                  >
+                    <img src={src} alt="" className="h-7 w-7 rounded-full object-cover" />
+                  </a>
+                ))}
+              </div>
+
+              <div className="mt-6 flex flex-row items-center justify-center gap-4 border-t border-gray-200 pt-6">
+                <a href="#" aria-label="Download on the App Store">
+                  <img
+                    src={badgeAppStore}
+                    alt="Download on the App Store"
+                    className="h-10 w-auto"
+                  />
+                </a>
                 <a
-                  key={item.label}
-                  href={item.href}
+                  href="https://play.google.com/store/apps/details?id=com.daterplat.app"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={mobileNavClass}
-                  onClick={closeMenu}
+                  aria-label="Get it on Google Play"
                 >
-                  {item.label}
+                  <img
+                    src={badgeGooglePlay}
+                    alt="Get it on Google Play"
+                    className="h-10 w-auto"
+                  />
                 </a>
-              ) : (
-                <Link
-                  key={item.label}
-                  to={item.to}
-                  className={mobileNavClass}
-                  onClick={closeMenu}
-                >
-                  {item.label}
-                </Link>
-              ),
-            )}
-          </nav>
-
-          <div className="mt-28 px-6 pb-6">
-            <p className="mb-4 text-center font-google-sans-flex text-[16px] font-normal text-[#929292]">
-              Follow us
-            </p>
-            <div className="flex items-center justify-center gap-2.5">
-              {SOCIAL_LINKS.map(({ label, href, src }) => (
-                <a
-                  key={label}
-                  href={href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={label}
-                  className="transition-opacity hover:opacity-80"
-                >
-                  <img src={src} alt="" className="h-7 w-7 rounded-full object-cover" />
-                </a>
-              ))}
+              </div>
             </div>
-
-            <div className="mt-6 flex flex-row items-center justify-center gap-4 border-t border-gray-200 pt-6">
-              <a href="#" aria-label="Download on the App Store">
-                <img
-                  src={badgeAppStore}
-                  alt="Download on the App Store"
-                  className="h-10 w-auto"
-                />
-              </a>
-              <a
-                href="https://play.google.com/store/apps/details?id=com.daterplat.app"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Get it on Google Play"
-              >
-                <img
-                  src={badgeGooglePlay}
-                  alt="Get it on Google Play"
-                  className="h-10 w-auto"
-                />
-              </a>
-            </div>
-          </div>
           </div>
         </div>
       )}
