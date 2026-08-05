@@ -107,10 +107,10 @@ function HeroSection() {
       </picture>
 
       <div className="relative z-10 flex flex-col items-center px-8 text-center">
-        <h1 className="font-google-sans-flex text-[28px] font-semibold italic text-white md:text-[40px]">
+        <h1 className="font-google-sans-flex text-[26px] font-semibold italic text-white md:text-[38px]">
           Built for better dating
         </h1>
-        <p className="mt-0.5 font-google-sans-flex text-[16px] font-light text-white md:text-[22px]">
+        <p className="mt-0.5 font-google-sans-flex text-[14px] font-light text-white md:text-[20px]">
           Modern dating made simple.
         </p>
 
