@@ -16,7 +16,7 @@ const COMPANY_LINKS = [
 
 const USERS_LINKS = [
   { label: 'FAQs', to: '/faqs' },
-  { label: 'The Buzz', to: '/#the-buzz' },
+  { label: 'The Buzz', href: 'https://dater-buzz.com', external: true },
 ]
 
 const LEGAL_LINKS = [
@@ -39,15 +39,27 @@ function FooterColumn({ title, links }) {
   return (
     <div className="min-w-[140px]">
       <p className="mb-4 font-poppins text-[16px] font-normal text-[#929292]">{title}</p>
-      {links.map(({ label, to }) => (
-        <Link
-          key={label}
-          to={to}
-          className="mb-3 block font-poppins text-[17px] font-medium text-[#000000] hover:underline"
-        >
-          {label}
-        </Link>
-      ))}
+      {links.map((item) =>
+        item.external ? (
+          <a
+            key={item.label}
+            href={item.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mb-3 block font-poppins text-[17px] font-medium text-[#000000] hover:underline"
+          >
+            {item.label}
+          </a>
+        ) : (
+          <Link
+            key={item.label}
+            to={item.to}
+            className="mb-3 block font-poppins text-[17px] font-medium text-[#000000] hover:underline"
+          >
+            {item.label}
+          </Link>
+        ),
+      )}
     </div>
   )
 }
