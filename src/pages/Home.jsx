@@ -102,13 +102,15 @@ function HeroSection() {
           Modern dating made simple.
         </p>
 
-        <div className="mt-8 flex flex-col items-center rounded-xl bg-white p-4">
-          <img
-            src="/qr-placeholder.png"
-            alt="Scan to download DATER"
-            className="h-28 w-28 object-contain"
-          />
-          <p className="mt-2 text-sm text-gray-600">Scan to download</p>
+        <div className="mt-8 flex flex-col items-center">
+          <div className="rounded-xl bg-white p-4">
+            <img
+              src="/qr-placeholder.png"
+              alt="Scan to download DATER"
+              className="h-28 w-28 object-contain"
+            />
+          </div>
+          <p className="mt-3 text-sm text-white">Scan to download</p>
         </div>
       </div>
     </section>
@@ -117,32 +119,37 @@ function HeroSection() {
 
 function FeaturesSection() {
   return (
-    <section id="the-app" className="bg-white py-24 px-8 md:px-16">
-      <h2 className="text-center font-poppins text-[40px] font-semibold uppercase text-text-primary">
-        ENHANCE YOUR DATING EXPERIENCE
-      </h2>
-      <p className="mx-auto mt-4 max-w-4xl text-center font-poppins text-[22px] font-light text-text-muted">
-        From verified profiles to smart visibility tools, everything is crafted to help you connect
-        with confidence and spark something real.
-      </p>
+    <section id="the-app" className="bg-white px-8 pb-24 pt-12 md:px-16">
+      <div className="mx-auto flex w-full flex-col items-center">
+        <h2 className="mx-auto max-w-md text-center font-poppins text-[40px] font-semibold uppercase leading-tight text-text-primary">
+          ENHANCE YOUR DATING EXPERIENCE
+        </h2>
+        <p className="mx-auto mt-4 max-w-3xl text-center font-poppins text-[22px] font-light leading-normal text-text-muted">
+          From verified profiles to smart visibility tools, everything is crafted to help you connect
+          with confidence and spark something real.
+        </p>
+      </div>
 
       <div className="mt-16 grid grid-cols-1 gap-8 md:grid-cols-3">
         {FEATURES.map((feature) => (
           <article
             key={feature.title}
-            className={`${feature.color} flex h-[400px] flex-col overflow-hidden rounded-[32px] p-8`}
+            className={`${feature.color} flex h-[440px] flex-col overflow-hidden rounded-[32px] p-8`}
           >
-            <div className="mb-6 flex h-48 w-full items-center justify-center overflow-hidden rounded-xl">
+            <div className="mb-6 flex h-56 w-full shrink-0 items-start justify-center overflow-hidden">
               <img
                 src={feature.image}
                 alt=""
-                className="h-full w-full object-contain object-center"
+                className="h-full max-w-full object-contain object-top"
               />
             </div>
-            <h3 className="mb-2 font-poppins text-[22px] font-medium text-text-primary">
+            <h3 className="mb-2 shrink-0 font-poppins text-[22px] font-medium text-text-primary">
               {feature.title}
             </h3>
-            <p className="font-poppins text-[16px] font-normal text-text-primary">{feature.desc}</p>
+            <p className="shrink-0 font-poppins text-[16px] font-normal text-text-primary">
+              {feature.desc}
+            </p>
+            <div className="flex-1" aria-hidden="true" />
           </article>
         ))}
       </div>
@@ -208,8 +215,8 @@ function BuzzSection() {
   }, [])
 
   return (
-    <section id="the-buzz" className="bg-accent-lavender py-24 px-8 md:px-16">
-      <h2 className="mb-16 text-center font-poppins text-[40px] font-semibold uppercase text-text-primary">
+    <section id="the-buzz" className="bg-accent-lavender py-14 px-8 md:px-16">
+      <h2 className="mb-10 text-center font-poppins text-[40px] font-semibold uppercase text-text-primary">
         READ TRENDING BLOGS ABOUT DATING
       </h2>
 
@@ -232,14 +239,14 @@ function BuzzSection() {
               <img
                 src={blog.image || '/qr-placeholder.png'}
                 alt=""
-                className="h-[200px] w-full object-cover"
+                className="h-[180px] w-full object-cover"
               />
-              <div className="p-6">
+              <div className="p-5">
                 <h3
-                  className="line-clamp-2 font-poppins text-[24px] font-normal text-text-primary"
+                  className="line-clamp-2 font-poppins text-[20px] font-normal text-text-primary"
                   dangerouslySetInnerHTML={{ __html: blog.title }}
                 />
-                <time className="mt-4 block font-poppins text-[16px] font-normal text-text-muted">
+                <time className="mt-6 block font-poppins text-[14px] font-normal text-text-muted">
                   {blog.date}
                 </time>
               </div>
@@ -248,7 +255,7 @@ function BuzzSection() {
         </div>
       )}
 
-      <div className="mt-10 flex justify-end">
+      <div className="mt-8 flex justify-end">
         <a
           href="https://dater-buzz.com"
           target="_blank"

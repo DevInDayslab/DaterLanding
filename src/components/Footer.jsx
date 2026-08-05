@@ -68,7 +68,7 @@ function GetTheAppBanner() {
         <h2 className="font-poppins text-[clamp(30px,3vw,38px)] font-semibold leading-tight text-[#000000]">
           Get the app
         </h2>
-        <p className="mt-1.5 font-poppins text-[clamp(16px,1.6vw,20px)] font-normal leading-snug text-[#000000]">
+        <p className="mt-0.5 font-poppins text-[clamp(16px,1.6vw,20px)] font-normal leading-snug text-[#000000]">
           Scan QR code to get start
         </p>
         <div className="mt-[clamp(12px,1.6vw,20px)] inline-block rounded-xl bg-white p-2.5 shadow-sm">

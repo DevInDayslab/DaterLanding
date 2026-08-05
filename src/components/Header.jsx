@@ -14,7 +14,7 @@ export default function Header() {
     <header className="w-full bg-white py-4 pl-6 pr-12 md:pl-8">
       <div className="flex items-center justify-between">
         <Link to="/" className="inline-flex items-center">
-          <img src={headerLogo} alt="DATER" className="h-8 w-auto md:h-9" />
+          <img src={headerLogo} alt="DATER" className="h-11 w-auto md:h-12" />
         </Link>
 
         <nav className="flex items-center gap-8">
@@ -22,7 +22,7 @@ export default function Header() {
             <Link
               key={label}
               to={to}
-              className="font-poppins text-[18px] font-medium text-[#322745] transition-opacity hover:opacity-80"
+              className="font-poppins text-[16px] font-medium text-[#322745] transition-opacity hover:opacity-80"
             >
               {label}
             </Link>
