@@ -71,7 +71,7 @@ function hexToRgba(hex, alpha) {
 function resolveHeaderBackground(theme, { isOverlay, menuMounted }) {
   if (menuMounted) return '#ffffff'
   if (isOverlay) return 'transparent'
-  if (theme.bg?.startsWith('#')) return hexToRgba(theme.bg, 0.7)
+  if (theme.bg?.startsWith('#')) return hexToRgba(theme.bg, 0.5)
   return theme.bg
 }
 
