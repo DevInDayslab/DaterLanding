@@ -8,7 +8,7 @@ export default function DownloadButton({ label = TEXT.downloadCta, onClick, clas
     <button
       type="button"
       onClick={onClick}
-      className={`rounded-full bg-white px-6 py-3 font-poppins text-footer-link text-text-primary md:text-footer-link-md ${className}`}
+      className={`rounded-full bg-white px-6 py-3 font-google-sans-flex text-footer-link text-text-primary md:text-footer-link-md ${className}`}
     >
       {label}
     </button>

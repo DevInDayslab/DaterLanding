@@ -16,10 +16,10 @@ function AboutHero() {
         className="absolute inset-0 h-full w-full object-cover object-center"
       />
       <div className="relative z-10 px-8 py-20">
-        <h1 className="mx-auto max-w-4xl text-center font-poppins text-[44px] font-semibold leading-tight text-white">
+        <h1 className="mx-auto max-w-4xl text-center font-google-sans-flex text-[44px] font-semibold leading-tight text-white">
           Redefining The Way People Connect
         </h1>
-        <p className="mx-auto mt-0.5 max-w-2xl text-center font-poppins text-[26px] font-light leading-normal text-white">
+        <p className="mx-auto mt-0.5 max-w-2xl text-center font-google-sans-flex text-[26px] font-light leading-normal text-white">
           We&apos;re building a safe and meaningful way to meet genuine people.
         </p>
       </div>
@@ -33,10 +33,10 @@ function ContentSections() {
       {/* Section A — Why We Built This */}
       <section className="grid grid-cols-1 items-center gap-12 md:grid-cols-2 md:gap-x-28">
         <div className="mx-auto w-full max-w-md text-center">
-          <h2 className="mb-1.5 font-poppins text-[38px] font-semibold text-text-primary">
+          <h2 className="mb-1.5 font-google-sans-flex text-[38px] font-semibold text-text-primary">
             Why We Built This
           </h2>
-          <p className="font-poppins text-[20px] font-light leading-[32px] text-text-muted">
+          <p className="font-google-sans-flex text-[20px] font-light leading-[32px] text-text-muted">
             {BODY_COPY}
           </p>
         </div>
@@ -55,10 +55,10 @@ function ContentSections() {
           className="order-1 mx-auto h-auto w-full max-w-[480px] rounded-[32px] object-cover"
         />
         <div className="order-2 mx-auto mt-0 w-full max-w-md text-center">
-          <h2 className="mb-1.5 font-poppins text-[38px] font-semibold text-text-primary">
+          <h2 className="mb-1.5 font-google-sans-flex text-[38px] font-semibold text-text-primary">
             Our Mission
           </h2>
-          <p className="font-poppins text-[20px] font-light leading-[32px] text-text-muted">
+          <p className="font-google-sans-flex text-[20px] font-light leading-[32px] text-text-muted">
             {BODY_COPY}
           </p>
         </div>
@@ -67,10 +67,10 @@ function ContentSections() {
       {/* Section C — Your Safety Matters */}
       <section className="grid grid-cols-1 items-center gap-12 md:grid-cols-2 md:gap-x-28">
         <div className="mx-auto w-full max-w-md text-center">
-          <h2 className="mb-1.5 font-poppins text-[38px] font-semibold text-text-primary">
+          <h2 className="mb-1.5 font-google-sans-flex text-[38px] font-semibold text-text-primary">
             Your Safety Matters
           </h2>
-          <p className="font-poppins text-[20px] font-light leading-[32px] text-text-muted">
+          <p className="font-google-sans-flex text-[20px] font-light leading-[32px] text-text-muted">
             {BODY_COPY}
           </p>
         </div>

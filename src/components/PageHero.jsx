@@ -7,7 +7,7 @@ export default function PageHero({ title }) {
       style={{ backgroundImage: `url(${gradientBg})` }}
     >
       <div className="bg-white px-12 py-4 shadow-sm">
-        <h1 className="font-poppins text-[32px] font-bold text-text-primary md:text-[40px]">
+        <h1 className="font-google-sans-flex text-[32px] font-bold text-text-primary md:text-[40px]">
           {title}
         </h1>
       </div>

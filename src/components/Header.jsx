@@ -10,7 +10,7 @@ const NAV_LINKS = [
 ]
 
 const navClass =
-  'font-poppins text-[16px] font-medium text-[#322745] transition-opacity hover:opacity-80'
+  'font-google-sans-flex text-[16px] font-medium text-[#322745] transition-opacity hover:opacity-80'
 
 export default function Header() {
   return (

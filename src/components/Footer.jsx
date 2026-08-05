@@ -38,7 +38,7 @@ const FOOTER_SHELL = 'mx-auto w-full max-w-[1440px] px-6 md:px-8'
 function FooterColumn({ title, links }) {
   return (
     <div className="min-w-[140px]">
-      <p className="mb-4 font-poppins text-[16px] font-normal text-[#929292]">{title}</p>
+      <p className="mb-4 font-google-sans-flex text-[16px] font-normal text-[#929292]">{title}</p>
       {links.map((item) =>
         item.external ? (
           <a
@@ -46,7 +46,7 @@ function FooterColumn({ title, links }) {
             href={item.href}
             target="_blank"
             rel="noopener noreferrer"
-            className="mb-3 block font-poppins text-[17px] font-medium text-[#000000] hover:underline"
+            className="mb-3 block font-google-sans-flex text-[17px] font-medium text-[#000000] hover:underline"
           >
             {item.label}
           </a>
@@ -54,7 +54,7 @@ function FooterColumn({ title, links }) {
           <Link
             key={item.label}
             to={item.to}
-            className="mb-3 block font-poppins text-[17px] font-medium text-[#000000] hover:underline"
+            className="mb-3 block font-google-sans-flex text-[17px] font-medium text-[#000000] hover:underline"
           >
             {item.label}
           </Link>
@@ -77,10 +77,10 @@ function GetTheAppBanner() {
       </div>
 
       <div className="relative z-10 w-[min(100%,280px)] shrink-0">
-        <h2 className="font-poppins text-[clamp(30px,3vw,38px)] font-semibold leading-tight text-[#000000]">
+        <h2 className="font-google-sans-flex text-[clamp(30px,3vw,38px)] font-semibold leading-tight text-[#000000]">
           Get the app
         </h2>
-        <p className="mt-0.5 font-poppins text-[clamp(16px,1.6vw,20px)] font-normal leading-snug text-[#000000]">
+        <p className="mt-0.5 font-google-sans-flex text-[clamp(16px,1.6vw,20px)] font-normal leading-snug text-[#000000]">
           Scan QR code to get start
         </p>
         <div className="mt-[clamp(12px,1.6vw,20px)] inline-block rounded-xl bg-white p-2.5 shadow-sm">
@@ -135,7 +135,7 @@ export default function Footer() {
             {/* Social block: “Follow us” centered above icon row */}
             <div className="ml-auto shrink-0">
               <div className="inline-flex flex-col items-center">
-                <p className="mb-4 font-poppins text-[16px] font-normal text-[#929292]">
+                <p className="mb-4 font-google-sans-flex text-[16px] font-normal text-[#929292]">
                   Follow us
                 </p>
                 <div className="flex items-center gap-2.5">
@@ -158,7 +158,7 @@ export default function Footer() {
             </div>
           </div>
 
-          <p className="mt-16 text-center font-poppins text-[14px] text-[#484848]">
+          <p className="mt-16 text-center font-google-sans-flex text-[14px] text-[#484848]">
             © 2026 Dater | All rights reserved
           </p>
         </div>

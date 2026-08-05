@@ -95,10 +95,10 @@ function HeroSection() {
       style={{ backgroundImage: `url(${heroImage})` }}
     >
       <div className="relative z-10 flex flex-col items-center px-8 text-center">
-        <h1 className="font-poppins text-[44px] font-semibold uppercase text-white">
+        <h1 className="font-google-sans-flex text-[44px] font-semibold uppercase text-white">
           FASTEST WAY TO DATE
         </h1>
-        <p className="mt-0.5 font-poppins text-[26px] font-light text-white">
+        <p className="mt-0.5 font-google-sans-flex text-[26px] font-light text-white">
           Modern dating made simple.
         </p>
 
@@ -121,10 +121,10 @@ function FeaturesSection() {
   return (
     <section id="the-app" className="bg-white px-8 pb-24 pt-12 md:px-16">
       <div className="mx-auto flex w-full flex-col items-center">
-        <h2 className="mx-auto max-w-md text-center font-poppins text-[40px] font-semibold uppercase leading-tight text-text-primary">
+        <h2 className="mx-auto max-w-md text-center font-google-sans-flex text-[40px] font-semibold uppercase leading-tight text-text-primary">
           ENHANCE YOUR DATING EXPERIENCE
         </h2>
-        <p className="mx-auto mt-4 max-w-3xl text-center font-poppins text-[22px] font-light leading-normal text-text-muted">
+        <p className="mx-auto mt-4 max-w-3xl text-center font-google-sans-flex text-[22px] font-light leading-normal text-text-muted">
           From verified profiles to smart visibility tools, everything is crafted to help you connect
           with confidence and spark something real.
         </p>
@@ -143,10 +143,10 @@ function FeaturesSection() {
                 className="h-full max-w-full object-contain object-top"
               />
             </div>
-            <h3 className="mb-2 shrink-0 font-poppins text-[22px] font-medium text-text-primary">
+            <h3 className="mb-2 shrink-0 font-google-sans-flex text-[22px] font-medium text-text-primary">
               {feature.title}
             </h3>
-            <p className="shrink-0 font-poppins text-[16px] font-normal text-text-primary">
+            <p className="shrink-0 font-google-sans-flex text-[16px] font-normal text-text-primary">
               {feature.desc}
             </p>
             <div className="flex-1" aria-hidden="true" />
@@ -217,7 +217,7 @@ function BuzzSection() {
   return (
     <section id="the-buzz" className="bg-accent-lavender py-14 px-8 md:px-16">
       <div className="mx-auto mb-16 flex w-full flex-col items-center">
-        <h2 className="mx-auto max-w-lg text-center font-poppins text-[40px] font-semibold uppercase leading-tight text-text-primary">
+        <h2 className="mx-auto max-w-lg text-center font-google-sans-flex text-[40px] font-semibold uppercase leading-tight text-text-primary">
           READ TRENDING BLOGS ABOUT DATING
         </h2>
       </div>
@@ -225,7 +225,7 @@ function BuzzSection() {
       {loading && <BlogSkeleton />}
 
       {!loading && error && (
-        <p className="text-center font-poppins text-[16px] text-text-muted">{error}</p>
+        <p className="text-center font-google-sans-flex text-[16px] text-text-muted">{error}</p>
       )}
 
       {!loading && !error && (
@@ -245,10 +245,10 @@ function BuzzSection() {
               />
               <div className="p-5">
                 <h3
-                  className="line-clamp-2 font-poppins text-[20px] font-normal text-text-primary"
+                  className="line-clamp-2 font-google-sans-flex text-[20px] font-normal text-text-primary"
                   dangerouslySetInnerHTML={{ __html: blog.title }}
                 />
-                <time className="mt-6 block font-poppins text-[14px] font-normal text-text-muted">
+                <time className="mt-6 block font-google-sans-flex text-[14px] font-normal text-text-muted">
                   {blog.date}
                 </time>
               </div>
@@ -262,7 +262,7 @@ function BuzzSection() {
           href="https://dater-buzz.com"
           target="_blank"
           rel="noopener noreferrer"
-          className="font-poppins text-[16px] font-medium text-text-primary hover:underline"
+          className="font-google-sans-flex text-[16px] font-medium text-text-primary hover:underline"
         >
           Read More...
         </a>

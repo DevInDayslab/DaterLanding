@@ -180,16 +180,16 @@ const SECTIONS = [
 function LegalSection({ section }) {
   return (
     <div>
-      <h2 className="mb-4 mt-8 font-poppins text-[24px] font-bold text-text-primary">
+      <h2 className="mb-4 mt-8 font-google-sans-flex text-[24px] font-bold text-text-primary">
         {section.title}
       </h2>
       {section.paragraphs?.map((p, i) => (
-        <p key={i} className="mb-4 font-poppins text-[16px] leading-relaxed text-text-muted">
+        <p key={i} className="mb-4 font-google-sans-flex text-[16px] leading-relaxed text-text-muted">
           {p}
         </p>
       ))}
       {section.list && (
-        <ul className="mb-4 list-disc space-y-2 pl-6 font-poppins text-[16px] leading-relaxed text-text-muted">
+        <ul className="mb-4 list-disc space-y-2 pl-6 font-google-sans-flex text-[16px] leading-relaxed text-text-muted">
           {section.list.map((item) => (
             <li key={item}>{item}</li>
           ))}
@@ -197,7 +197,7 @@ function LegalSection({ section }) {
       )}
       {section.afterList &&
         section.afterList.split('\n\n').map((p, i) => (
-          <p key={`after-${i}`} className="mb-4 font-poppins text-[16px] leading-relaxed text-text-muted">
+          <p key={`after-${i}`} className="mb-4 font-google-sans-flex text-[16px] leading-relaxed text-text-muted">
             {p}
           </p>
         ))}
@@ -211,8 +211,8 @@ export default function PrivacyPolicy() {
       <PageHero title="Privacy policy" />
 
       <div className="mx-auto max-w-4xl px-8 py-16">
-        <h2 className="mb-2 font-poppins text-[28px] font-bold text-text-primary">Privacy policy</h2>
-        <span className="mb-8 block font-poppins text-[16px] text-text-muted">
+        <h2 className="mb-2 font-google-sans-flex text-[28px] font-bold text-text-primary">Privacy policy</h2>
+        <span className="mb-8 block font-google-sans-flex text-[16px] text-text-muted">
           Updated on 25 Oct, 2024
         </span>
 

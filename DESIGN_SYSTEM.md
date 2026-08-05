@@ -39,15 +39,15 @@ Constants mirror: `src/constants/colors.js`.
 
 ## Font family
 
-**Poppins** — primary UI font. Weights loaded: **300, 400, 500, 600, 700**.
+**Google Sans Flex** — primary UI font. Weights loaded: **300, 400, 500, 600, 700**.
 
-- Tailwind: `font-poppins`
+- Tailwind: `font-google-sans-flex`
 - Loaded via Google Fonts in `index.html`
 - Apply on `body` by default (`index.css`)
 
 ---
 
-## Desktop (PC) Typography — Poppins
+## Desktop (PC) Typography — Google Sans Flex
 
 Use these as the `md:` (and up) targets.
 
@@ -110,7 +110,7 @@ If a one-off size is needed, use an explicit arbitrary class that matches this d
 
 1. **Zero hardcoded inline typography** — Do not use `style={{ fontSize, fontWeight, lineHeight, color }}` for type. Use Tailwind custom utilities or documented arbitrary classes from this file.
 2. **Colors from tokens** — Prefer `text-text-*`, `bg-accent-*`, etc. Avoid raw hex in components except when extending `tailwind.config.js` / `constants/colors.js`.
-3. **Poppins everywhere** — Use `font-poppins` (already on `body`); do not introduce alternate UI fonts without updating this doc.
+3. **Google Sans Flex everywhere** — Use `font-google-sans-flex` (already on `body`); do not introduce alternate UI fonts without updating this doc.
 4. **Update this file first** — Any new type scale, color, or layout rule must be added here and mirrored in `tailwind.config.js` before use in components.
 5. **Constants** — Shared hex maps and WP URL placeholders live under `src/constants/`.
 
@@ -119,7 +119,7 @@ If a one-off size is needed, use an explicit arbitrary class that matches this d
 ## Example usage
 
 ```jsx
-<h1 className="font-poppins uppercase text-hero-title md:text-hero-title-md text-text-primary">
+<h1 className="font-google-sans-flex uppercase text-hero-title md:text-hero-title-md text-text-primary">
   YOUR PET PREFERS US OVER OTHER APPS
 </h1>
 

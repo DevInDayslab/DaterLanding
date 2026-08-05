@@ -4,7 +4,7 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        poppins: ['Poppins', 'sans-serif'],
+        'google-sans-flex': ['"Google Sans Flex"', 'sans-serif'],
         'league-gothic': ['"League Gothic"', 'sans-serif'],
       },
       colors: {

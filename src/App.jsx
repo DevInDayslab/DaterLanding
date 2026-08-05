@@ -5,7 +5,7 @@ import ScrollToTop from './components/ScrollToTop'
 
 export default function App() {
   return (
-    <div className="flex min-h-svh flex-col font-poppins">
+    <div className="flex min-h-svh flex-col font-google-sans-flex">
       <ScrollToTop />
       <Header />
       <div className="flex-1">

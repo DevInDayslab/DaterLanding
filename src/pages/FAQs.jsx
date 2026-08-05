@@ -36,10 +36,10 @@ export default function FAQs() {
       <PageHero title="FAQs" />
 
       <div className="mx-auto max-w-4xl px-8 pb-24">
-        <h2 className="mt-16 font-poppins text-[32px] font-bold text-text-primary">
+        <h2 className="mt-16 font-google-sans-flex text-[32px] font-bold text-text-primary">
           Have questions about Dater?
         </h2>
-        <p className="mt-2 font-poppins text-[18px] text-text-muted">
+        <p className="mt-2 font-google-sans-flex text-[18px] text-text-muted">
           You can find all the answers you need right here!
         </p>
 
@@ -51,21 +51,21 @@ export default function FAQs() {
                 onClick={() => setOpen(open === i ? null : i)}
                 className="flex w-full items-center justify-between py-6 text-left"
               >
-                <span className="font-poppins text-[18px] font-medium text-text-primary">
+                <span className="font-google-sans-flex text-[18px] font-medium text-text-primary">
                   {item.q}
                 </span>
-                <span className="ml-4 shrink-0 font-poppins text-[24px] font-light text-text-muted">
+                <span className="ml-4 shrink-0 font-google-sans-flex text-[24px] font-light text-text-muted">
                   {open === i ? '−' : '+'}
                 </span>
               </button>
               {open === i && (
-                <p className="pb-6 font-poppins text-[16px] text-text-muted">{item.a}</p>
+                <p className="pb-6 font-google-sans-flex text-[16px] text-text-muted">{item.a}</p>
               )}
             </div>
           ))}
         </div>
 
-        <p className="mt-12 font-poppins text-[16px] text-text-muted">
+        <p className="mt-12 font-google-sans-flex text-[16px] text-text-muted">
           Need more help?{' '}
           <a href="/contact" className="font-semibold text-text-primary underline">
             Contact us
