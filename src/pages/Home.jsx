@@ -94,7 +94,7 @@ function HeroSection() {
   return (
     <section
       data-header-surface="overlay"
-      className="relative flex min-h-[100svh] w-full items-center justify-center overflow-hidden md:min-h-[93.2vh] md:max-h-[1012px]"
+      className="relative flex min-h-[100svh] w-full items-center justify-center overflow-hidden md:min-h-[93.1vh] md:max-h-[1011px]"
     >
       <picture className="absolute inset-0">
         <source media="(min-width: 768px)" srcSet={heroDesktop} type="image/webp" />
