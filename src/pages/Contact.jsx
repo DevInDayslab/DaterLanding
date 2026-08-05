@@ -1,5 +1,6 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import PageHero from '../components/PageHero'
+import { API } from '../constants/api'
 
 const CONTACT_ITEMS = [
   {
@@ -38,8 +39,132 @@ const CONTACT_ITEMS = [
   },
 ]
 
+const MAX_ATTACHMENT_BYTES = 10 * 1024 * 1024
+const EMPTY_FORM = {
+  name: '',
+  email: '',
+  mobile: '',
+  description: '',
+}
+
 export default function Contact() {
+  const fileInputRef = useRef(null)
+  const [formData, setFormData] = useState(EMPTY_FORM)
+  const [attachment, setAttachment] = useState(null)
   const [descLen, setDescLen] = useState(0)
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [successMessage, setSuccessMessage] = useState('')
+  const [errorMessage, setErrorMessage] = useState('')
+
+  function handleFieldChange(event) {
+    const { name, value } = event.target
+    if (name === 'description') {
+      setDescLen(value.length)
+    }
+    setFormData((prev) => ({ ...prev, [name]: value }))
+  }
+
+  function handleAttachmentChange(event) {
+    const file = event.target.files?.[0] ?? null
+    setErrorMessage('')
+
+    if (!file) {
+      setAttachment(null)
+      return
+    }
+
+    if (file.size > MAX_ATTACHMENT_BYTES) {
+      setAttachment(null)
+      event.target.value = ''
+      setErrorMessage('Attachment must be 10 MB or smaller.')
+      return
+    }
+
+    setAttachment(file)
+  }
+
+  async function uploadAttachment(file) {
+    const presignRes = await fetch(API.landingContactPresignUrl(), {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ contentType: file.type }),
+    })
+
+    if (presignRes.status === 429) {
+      throw new Error('Too many requests. Please try again tomorrow.')
+    }
+
+    const presignBody = await presignRes.json()
+    if (!presignRes.ok || !presignBody.success) {
+      throw new Error(presignBody.message || 'Failed to prepare attachment upload.')
+    }
+
+    const { uploadUrl, publicUrl, s3Key, contentType } = presignBody.data
+
+    const uploadRes = await fetch(uploadUrl, {
+      method: 'PUT',
+      headers: { 'Content-Type': contentType },
+      body: file,
+    })
+
+    if (!uploadRes.ok) {
+      throw new Error('Failed to upload attachment.')
+    }
+
+    return { attachmentUrl: publicUrl, attachmentS3Key: s3Key }
+  }
+
+  async function handleSubmit(event) {
+    event.preventDefault()
+    setIsSubmitting(true)
+    setSuccessMessage('')
+    setErrorMessage('')
+
+    try {
+      let attachmentPayload = {}
+
+      if (attachment) {
+        attachmentPayload = await uploadAttachment(attachment)
+      }
+
+      const res = await fetch(API.landingContactUrl(), {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          ...formData,
+          ...attachmentPayload,
+        }),
+      })
+
+      if (res.status === 429) {
+        throw new Error('Too many requests. Please try again tomorrow.')
+      }
+
+      const body = await res.json()
+
+      if (!res.ok || !body.success) {
+        throw new Error(body.message || body.error || 'Unable to submit request.')
+      }
+
+      setFormData(EMPTY_FORM)
+      setAttachment(null)
+      setDescLen(0)
+      if (fileInputRef.current) {
+        fileInputRef.current.value = ''
+      }
+      setSuccessMessage(body.message || 'Your request has been submitted.')
+    } catch (err) {
+      setErrorMessage(err.message || 'Unable to submit request.')
+    } finally {
+      setIsSubmitting(false)
+    }
+  }
 
   return (
     <main className="w-full">
@@ -83,15 +208,32 @@ export default function Contact() {
           <h3 className="mb-8 font-google-sans-flex text-[24px] font-bold text-text-primary">
             Submit a request
           </h3>
-          <form onSubmit={(e) => e.preventDefault()}>
+
+          {successMessage && (
+            <p className="mb-6 rounded-lg border border-green-200 bg-green-50 px-4 py-3 font-google-sans-flex text-[15px] text-green-800">
+              {successMessage}
+            </p>
+          )}
+
+          {errorMessage && (
+            <p className="mb-6 rounded-lg border border-red-200 bg-red-50 px-4 py-3 font-google-sans-flex text-[15px] text-red-800">
+              {errorMessage}
+            </p>
+          )}
+
+          <form onSubmit={handleSubmit}>
             {/* Name */}
             <label className="mb-1 block font-google-sans-flex text-[15px] text-text-primary">
               Your name<span className="text-red-500">*</span>
             </label>
             <input
               type="text"
+              name="name"
+              value={formData.name}
+              onChange={handleFieldChange}
               required
-              className="mb-6 w-full border border-gray-300 px-3 py-3 font-google-sans-flex text-[15px] focus:border-black focus:outline-none"
+              disabled={isSubmitting}
+              className="mb-6 w-full border border-gray-300 px-3 py-3 font-google-sans-flex text-[15px] focus:border-black focus:outline-none disabled:opacity-60"
             />
 
             {/* Email */}
@@ -100,8 +242,12 @@ export default function Contact() {
             </label>
             <input
               type="email"
+              name="email"
+              value={formData.email}
+              onChange={handleFieldChange}
               required
-              className="mb-6 w-full border border-gray-300 px-3 py-3 font-google-sans-flex text-[15px] focus:border-black focus:outline-none"
+              disabled={isSubmitting}
+              className="mb-6 w-full border border-gray-300 px-3 py-3 font-google-sans-flex text-[15px] focus:border-black focus:outline-none disabled:opacity-60"
             />
 
             {/* Mobile */}
@@ -110,8 +256,12 @@ export default function Contact() {
             </label>
             <input
               type="tel"
+              name="mobile"
+              value={formData.mobile}
+              onChange={handleFieldChange}
               required
-              className="mb-6 w-full border border-gray-300 px-3 py-3 font-google-sans-flex text-[15px] focus:border-black focus:outline-none"
+              disabled={isSubmitting}
+              className="mb-6 w-full border border-gray-300 px-3 py-3 font-google-sans-flex text-[15px] focus:border-black focus:outline-none disabled:opacity-60"
             />
 
             {/* Description */}
@@ -119,11 +269,14 @@ export default function Contact() {
               Description<span className="text-red-500">*</span>
             </label>
             <textarea
+              name="description"
+              value={formData.description}
+              onChange={handleFieldChange}
               required
               maxLength={2000}
               rows={6}
-              onChange={(e) => setDescLen(e.target.value.length)}
-              className="mb-1 w-full resize-y border border-gray-300 p-4 font-google-sans-flex text-[15px] focus:border-black focus:outline-none"
+              disabled={isSubmitting}
+              className="mb-1 w-full resize-y border border-gray-300 p-4 font-google-sans-flex text-[15px] focus:border-black focus:outline-none disabled:opacity-60"
             />
             <p className="mb-6 text-right font-google-sans-flex text-[13px] text-text-muted">
               {descLen} / 2000
@@ -134,19 +287,37 @@ export default function Contact() {
               Attachment{' '}
               <span className="text-text-muted">(optional)</span>
             </label>
+            <input
+              ref={fileInputRef}
+              type="file"
+              accept="image/*,.pdf"
+              onChange={handleAttachmentChange}
+              disabled={isSubmitting}
+              className="hidden"
+              id="contact-attachment"
+            />
             <button
               type="button"
-              className="mb-6 w-full rounded-lg border border-gray-300 py-3 font-google-sans-flex text-[15px] text-[#5E9CFE] hover:bg-gray-50"
+              onClick={() => fileInputRef.current?.click()}
+              disabled={isSubmitting}
+              className="mb-2 w-full rounded-lg border border-gray-300 py-3 font-google-sans-flex text-[15px] text-[#5E9CFE] hover:bg-gray-50 disabled:opacity-60"
             >
-              Add file or screenshot &nbsp;(Max. 10mb)
+              {attachment ? attachment.name : 'Add file or screenshot (Max. 10mb)'}
             </button>
+            {attachment && (
+              <p className="mb-6 font-google-sans-flex text-[13px] text-text-muted">
+                Selected: {attachment.name}
+              </p>
+            )}
+            {!attachment && <div className="mb-6" />}
 
             {/* Submit */}
             <button
               type="submit"
-              className="w-full rounded-full bg-black py-4 font-google-sans-flex text-[18px] font-semibold text-white transition-opacity hover:opacity-80"
+              disabled={isSubmitting}
+              className="w-full rounded-full bg-black py-4 font-google-sans-flex text-[18px] font-semibold text-white transition-opacity hover:opacity-80 disabled:cursor-not-allowed disabled:opacity-60"
             >
-              Submit
+              {isSubmitting ? 'Submitting...' : 'Submit'}
             </button>
           </form>
         </div>
