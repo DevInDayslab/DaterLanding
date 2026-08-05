@@ -1,0 +1,50 @@
+/** @type {import('tailwindcss').Config} */
+export default {
+  content: ['./index.html', './src/**/*.{js,jsx,ts,tsx}'],
+  theme: {
+    extend: {
+      fontFamily: {
+        poppins: ['Poppins', 'sans-serif'],
+        'league-gothic': ['"League Gothic"', 'sans-serif'],
+      },
+      colors: {
+        'accent-lime': '#DAEF68',
+        'accent-blue': '#5E9CFE',
+        'accent-orange': '#FE8E59',
+        'accent-periwinkle': '#8F9BFE',
+        'accent-yellow': '#FBFE54',
+        'accent-pink': '#FDB2EE',
+        'accent-lavender': '#EDE8FF',
+        'accent-pink-soft': '#F3B6EC',
+        'text-primary': '#000000',
+        'text-muted': '#565656',
+        'text-muted-alt': '#484848',
+        'hero-overlay': 'rgba(0, 0, 0, 0.45)',
+      },
+      fontSize: {
+        /* Mobile-first defaults — pair with md: overrides from DESIGN_SYSTEM.md */
+        'hero-title': ['28px', { lineHeight: '1.15', fontWeight: '600' }],
+        'hero-title-md': ['44px', { lineHeight: '1.15', fontWeight: '600' }],
+        'hero-subtitle': ['18px', { lineHeight: '1.3', fontWeight: '300' }],
+        'hero-subtitle-md': ['26px', { lineHeight: '1.3', fontWeight: '300' }],
+        'section-heading': ['28px', { lineHeight: '34px', fontWeight: '600' }],
+        'section-heading-md': ['40px', { lineHeight: '46px', fontWeight: '600' }],
+        'body-lg': ['16px', { lineHeight: '24px', fontWeight: '300' }],
+        'body-lg-md': ['22px', { lineHeight: '34px', fontWeight: '300' }],
+        'body-lg-regular': ['16px', { lineHeight: '24px', fontWeight: '400' }],
+        'body-lg-regular-md': ['22px', { lineHeight: '34px', fontWeight: '400' }],
+        'blog-card-title': ['20px', { lineHeight: '26px', fontWeight: '400' }],
+        'blog-card-title-md': ['24px', { lineHeight: '30px', fontWeight: '400' }],
+        'feature-card-title': ['18px', { lineHeight: '22px', fontWeight: '500' }],
+        'feature-card-title-md': ['22px', { lineHeight: '26px', fontWeight: '500' }],
+        'feature-card-body': ['14px', { lineHeight: '18px', fontWeight: '400' }],
+        'feature-card-body-md': ['16px', { lineHeight: '20px', fontWeight: '400' }],
+        'footer-link': ['16px', { lineHeight: '1.4', fontWeight: '500' }],
+        'footer-link-md': ['18px', { lineHeight: '1.4', fontWeight: '500' }],
+        'qr-subtext': ['16px', { lineHeight: '1.4', fontWeight: '400' }],
+        'qr-subtext-md': ['22px', { lineHeight: '1.4', fontWeight: '400' }],
+      },
+    },
+  },
+  plugins: [],
+}

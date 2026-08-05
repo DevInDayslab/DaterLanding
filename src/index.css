@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply m-0 min-h-svh bg-white font-poppins text-text-primary antialiased;
+  }
+
+  #root {
+    @apply min-h-svh w-full;
+  }
+}
