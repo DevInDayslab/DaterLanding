@@ -135,7 +135,7 @@ function FeaturesSection() {
         </p>
       </div>
 
-      <div className="mx-auto mt-16 grid max-w-[1114px] grid-cols-1 gap-8 md:grid-cols-3">
+      <div className="mx-auto mt-16 grid max-w-[1114px] grid-cols-1 gap-x-8 gap-y-6 md:grid-cols-3">
         {FEATURES.map((feature) => (
           <article
             key={feature.title}
