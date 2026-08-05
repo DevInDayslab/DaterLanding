@@ -216,9 +216,11 @@ function BuzzSection() {
 
   return (
     <section id="the-buzz" className="bg-accent-lavender py-14 px-8 md:px-16">
-      <h2 className="mb-10 text-center font-poppins text-[40px] font-semibold uppercase text-text-primary">
-        READ TRENDING BLOGS ABOUT DATING
-      </h2>
+      <div className="mx-auto mb-16 flex w-full flex-col items-center">
+        <h2 className="mx-auto max-w-lg text-center font-poppins text-[40px] font-semibold uppercase leading-tight text-text-primary">
+          READ TRENDING BLOGS ABOUT DATING
+        </h2>
+      </div>
 
       {loading && <BlogSkeleton />}
 
