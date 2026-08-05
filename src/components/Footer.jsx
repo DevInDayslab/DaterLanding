@@ -25,11 +25,11 @@ const LEGAL_LINKS = [
 ]
 
 const SOCIAL_LINKS = [
-  { label: 'Facebook', href: '#', src: iconFacebook },
-  { label: 'Instagram', href: '#', src: iconInstagram },
-  { label: 'LinkedIn', href: '#', src: iconLinkedin },
-  { label: 'X', href: '#', src: iconX },
-  { label: 'YouTube', href: '#', src: iconYoutube },
+  { label: 'Facebook', href: 'https://www.facebook.com/daterapp/', src: iconFacebook },
+  { label: 'Instagram', href: 'https://www.instagram.com/dater_social', src: iconInstagram },
+  { label: 'LinkedIn', href: 'https://www.linkedin.com/company/dater/', src: iconLinkedin },
+  { label: 'X', href: 'https://x.com/dater_social', src: iconX },
+  { label: 'YouTube', href: 'https://www.youtube.com/@Dater_social', src: iconYoutube },
 ]
 
 /** Shared shell so pink card left edge matches Company column left edge */
@@ -122,7 +122,12 @@ export default function Footer() {
                     className="h-10 w-auto"
                   />
                 </a>
-                <a href="#" aria-label="Get it on Google Play">
+                <a
+                  href="https://play.google.com/store/apps/details?id=com.daterplat.app"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Get it on Google Play"
+                >
                   <img
                     src={badgeGooglePlay}
                     alt="Get it on Google Play"
@@ -143,6 +148,8 @@ export default function Footer() {
                     <a
                       key={label}
                       href={href}
+                      target="_blank"
+                      rel="noopener noreferrer"
                       aria-label={label}
                       className="transition-opacity hover:opacity-80"
                     >
