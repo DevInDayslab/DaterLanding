@@ -103,9 +103,19 @@ export default function Contact() {
       throw new Error('Too many requests. Please try again tomorrow.')
     }
 
+    if ([502, 503, 504].includes(presignRes.status)) {
+      throw new Error(
+        'Our servers are temporarily unavailable. Please try again in a few minutes or email us directly.'
+      )
+    }
+
     const presignBody = await readJsonResponse(presignRes)
     if (!presignRes.ok || !presignBody.success) {
-      throw new Error(presignBody.message || 'Failed to prepare attachment upload.')
+      throw new Error(
+        presignBody.message ||
+          presignBody.error ||
+          `Failed to prepare attachment upload (${presignRes.status}).`
+      )
     }
 
     const { uploadUrl, publicUrl, s3Key, contentType: signedContentType } = presignBody.data

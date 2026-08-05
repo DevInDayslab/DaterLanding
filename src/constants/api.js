@@ -1,10 +1,15 @@
 /** WordPress / CMS API */
 const WP_ORIGIN = 'https://dater-buzz.com'
 
+const DEFAULT_PROD_API_BASE = 'https://api.dater.social'
+
 function resolveApiBase() {
   const configured = import.meta.env.VITE_API_BASE_URL?.trim()
   if (configured) {
     return configured.replace(/\/$/, '')
+  }
+  if (import.meta.env.PROD) {
+    return DEFAULT_PROD_API_BASE
   }
   return ''
 }

@@ -24,6 +24,12 @@ export function inferAttachmentContentType(file) {
 export async function readJsonResponse(response) {
   const text = await response.text()
 
+  if ([502, 503, 504].includes(response.status)) {
+    throw new Error(
+      'Our servers are temporarily unavailable. Please try again in a few minutes or email us directly.'
+    )
+  }
+
   if (!text) {
     if (!response.ok) {
       throw new Error(
