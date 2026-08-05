@@ -1,6 +1,7 @@
 import { useRef, useState } from 'react'
 import PageHero from '../components/PageHero'
 import { API } from '../constants/api'
+import { inferAttachmentContentType, readJsonResponse } from '../lib/contactApi'
 
 const CONTACT_ITEMS = [
   {
@@ -84,29 +85,34 @@ export default function Contact() {
   }
 
   async function uploadAttachment(file) {
+    const contentType = inferAttachmentContentType(file)
+    if (!contentType) {
+      throw new Error('Unsupported attachment type. Please upload an image or PDF.')
+    }
+
     const presignRes = await fetch(API.landingContactPresignUrl(), {
       method: 'POST',
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ contentType: file.type }),
+      body: JSON.stringify({ contentType, fileName: file.name }),
     })
 
     if (presignRes.status === 429) {
       throw new Error('Too many requests. Please try again tomorrow.')
     }
 
-    const presignBody = await presignRes.json()
+    const presignBody = await readJsonResponse(presignRes)
     if (!presignRes.ok || !presignBody.success) {
       throw new Error(presignBody.message || 'Failed to prepare attachment upload.')
     }
 
-    const { uploadUrl, publicUrl, s3Key, contentType } = presignBody.data
+    const { uploadUrl, publicUrl, s3Key, contentType: signedContentType } = presignBody.data
 
     const uploadRes = await fetch(uploadUrl, {
       method: 'PUT',
-      headers: { 'Content-Type': contentType },
+      headers: { 'Content-Type': signedContentType || contentType },
       body: file,
     })
 
@@ -146,7 +152,7 @@ export default function Contact() {
         throw new Error('Too many requests. Please try again tomorrow.')
       }
 
-      const body = await res.json()
+      const body = await readJsonResponse(res)
 
       if (!res.ok || !body.success) {
         throw new Error(body.message || body.error || 'Unable to submit request.')
