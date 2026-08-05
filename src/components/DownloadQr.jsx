@@ -1,20 +1,20 @@
-import QRCode from 'react-qr-code'
-import { DOWNLOAD_PAGE_URL } from '../constants/stores'
+import qrCodeImage from '../assets/qr_code.png'
 
 export default function DownloadQr({
   className = '',
-  size = 112,
+  size = 128,
   showLabel = true,
   labelClassName = 'mt-2 text-sm text-gray-600',
 }) {
   return (
     <div className={`flex flex-col items-center ${className}`}>
-      <QRCode
-        value={DOWNLOAD_PAGE_URL}
-        size={size}
-        bgColor="#FFFFFF"
-        fgColor="#000000"
-        aria-label="Scan to download DATER"
+      <img
+        src={qrCodeImage}
+        alt="Scan to download DATER"
+        width={size}
+        height={size}
+        className="block shrink-0"
+        style={{ width: size, height: size }}
       />
       {showLabel && <span className={labelClassName}>Scan to download</span>}
     </div>

@@ -26,8 +26,8 @@ function PlayStoreIcon() {
 function DesktopQr({ className = '', labelClassName = 'mt-3 text-sm text-gray-600' }) {
   return (
     <div className={`flex flex-col items-center ${className}`}>
-      <div className="rounded-xl bg-white p-4">
-        <DownloadQr showLabel={false} />
+      <div className="rounded-xl bg-white p-3">
+        <DownloadQr size={168} showLabel={false} />
       </div>
       <span className={labelClassName}>Scan to download</span>
     </div>
