@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { API } from '../constants/api'
 import DownloadButton from '../components/DownloadButton'
 import heroImage from '../assets/hero/hero.jpg'
+import heroDesktop from '../assets/hero/desktop-hero.webp'
 import imgPrivacyMode from '../assets/features/privacy-mode.png'
 import imgVerifiedProfiles from '../assets/features/verified-profiles.png'
 import imgAdvancedFilters from '../assets/features/advanced-filters.png'
@@ -93,9 +94,18 @@ function HeroSection() {
   return (
     <section
       data-header-surface="overlay"
-      className="relative flex min-h-[100svh] w-full items-center justify-center bg-cover bg-center"
-      style={{ backgroundImage: `url(${heroImage})` }}
+      className="relative flex min-h-[100svh] w-full items-center justify-center overflow-hidden"
     >
+      <picture className="absolute inset-0">
+        <source media="(min-width: 768px)" srcSet={heroDesktop} type="image/webp" />
+        <img
+          src={heroImage}
+          alt=""
+          className="h-full w-full object-cover object-center"
+          fetchPriority="high"
+        />
+      </picture>
+
       <div className="relative z-10 flex flex-col items-center px-8 text-center">
         <h1 className="font-google-sans-flex text-[32px] font-semibold uppercase text-white md:text-[44px]">
           FASTEST WAY TO DATE
