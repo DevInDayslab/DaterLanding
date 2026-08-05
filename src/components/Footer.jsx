@@ -69,7 +69,11 @@ function GetTheAppBanner() {
   return (
     <>
       {/* Mobile — full-bleed, left-aligned copy */}
-      <section className="flex w-full flex-col items-start overflow-hidden bg-accent-lime px-6 pb-10 pt-10 md:hidden">
+      <section
+        data-header-surface="solid"
+        data-header-bg="#DAEF68"
+        className="flex w-full flex-col items-start overflow-hidden bg-accent-lime px-6 pb-10 pt-10 md:hidden"
+      >
         <h2 className="text-left font-google-sans-flex text-[32px] font-semibold leading-tight text-[#000000]">
           Get the app
         </h2>
@@ -85,8 +89,16 @@ function GetTheAppBanner() {
       </section>
 
       {/* Desktop */}
-      <div className={`${FOOTER_SHELL} hidden pb-14 pt-6 md:block`}>
-        <section className="relative flex min-h-[clamp(260px,24vw,340px)] w-full items-center overflow-hidden rounded-[clamp(28px,3vw,40px)] bg-accent-pink-soft px-[clamp(28px,4vw,48px)] py-[clamp(24px,2.5vw,36px)]">
+      <div
+        data-header-surface="solid"
+        data-header-bg="#ffffff"
+        className={`${FOOTER_SHELL} hidden pb-14 pt-6 md:block`}
+      >
+        <section
+          data-header-surface="solid"
+          data-header-bg="#F3B6EC"
+          className="relative flex min-h-[clamp(260px,24vw,340px)] w-full items-center overflow-hidden rounded-[clamp(28px,3vw,40px)] bg-accent-pink-soft px-[clamp(28px,4vw,48px)] py-[clamp(24px,2.5vw,36px)]"
+        >
           <div className="pointer-events-none absolute inset-0 z-0 flex items-center justify-center">
             <img
               src={phonesMockup}
@@ -120,7 +132,11 @@ export default function Footer() {
     <footer className="bg-white">
       <GetTheAppBanner />
 
-      <div className="border-t border-gray-200">
+      <div
+        data-header-surface="solid"
+        data-header-bg="#ffffff"
+        className="border-t border-gray-200"
+      >
         <div className={`${FOOTER_SHELL} pb-10 pt-14`}>
           <div className="flex flex-col justify-between gap-12 md:flex-row md:gap-0">
             <div className="flex flex-col gap-0 md:gap-0">

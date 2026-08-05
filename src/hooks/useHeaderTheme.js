@@ -6,30 +6,37 @@ const DEFAULT_THEME = {
   bg: '#ffffff',
 }
 
+function themeFromSection(section) {
+  if (!section) return DEFAULT_THEME
+
+  return {
+    mode: section.dataset.headerSurface || 'solid',
+    bg: section.dataset.headerBg || '#ffffff',
+  }
+}
+
 function resolveHeaderTheme(headerHeight) {
   const sections = document.querySelectorAll('[data-header-surface]')
   if (!sections.length) return DEFAULT_THEME
 
   const probeY = Math.max(headerHeight - 1, 1)
-  let matched = null
+  const probeX = Math.min(window.innerWidth / 2, window.innerWidth - 1)
+  const elementAtProbe = document.elementFromPoint(probeX, probeY)
+  const closestSurface = elementAtProbe?.closest('[data-header-surface]')
+
+  if (closestSurface) {
+    return themeFromSection(closestSurface)
+  }
 
   for (const section of sections) {
     const rect = section.getBoundingClientRect()
     if (rect.top <= probeY && rect.bottom > probeY) {
-      matched = section
-      break
+      return themeFromSection(section)
     }
   }
 
-  if (!matched) {
-    matched = window.scrollY < 80 ? sections[0] : sections[sections.length - 1]
-  }
-
-  const mode = matched.dataset.headerSurface || 'solid'
-  return {
-    mode,
-    bg: matched.dataset.headerBg || '#ffffff',
-  }
+  const fallback = window.scrollY < 80 ? sections[0] : sections[sections.length - 1]
+  return themeFromSection(fallback)
 }
 
 export function useHeaderTheme(headerRef) {

@@ -57,6 +57,24 @@ function CloseIcon() {
   )
 }
 
+function hexToRgba(hex, alpha) {
+  const normalized = String(hex || '').replace('#', '')
+  if (normalized.length !== 6) return hex
+
+  const r = Number.parseInt(normalized.slice(0, 2), 16)
+  const g = Number.parseInt(normalized.slice(2, 4), 16)
+  const b = Number.parseInt(normalized.slice(4, 6), 16)
+
+  return `rgba(${r}, ${g}, ${b}, ${alpha})`
+}
+
+function resolveHeaderBackground(theme, { isOverlay, menuMounted }) {
+  if (menuMounted) return '#ffffff'
+  if (isOverlay) return 'transparent'
+  if (theme.bg?.startsWith('#')) return hexToRgba(theme.bg, 0.9)
+  return theme.bg
+}
+
 export default function Header() {
   const headerRef = useRef(null)
   const [headerHeight, setHeaderHeight] = useState(56)
@@ -117,7 +135,7 @@ export default function Header() {
       ref={headerRef}
       className="fixed top-0 z-[101] w-full transition-[background-color,box-shadow] duration-300 ease-out"
       style={{
-        backgroundColor: menuMounted ? '#ffffff' : isOverlay ? 'transparent' : theme.bg,
+        backgroundColor: resolveHeaderBackground(theme, { isOverlay, menuMounted }),
         boxShadow: 'none',
       }}
     >
