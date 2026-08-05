@@ -1,6 +1,6 @@
 import downloadAndroid from '../assets/download_android.png'
 import downloadIos from '../assets/download_ios.png'
-import qrCode from '../assets/footer/qr-code.svg'
+import DownloadQr from './DownloadQr'
 import { STORE_LINKS } from '../constants/stores'
 import { usePlatform } from '../hooks/usePlatform'
 
@@ -23,13 +23,13 @@ function PlayStoreIcon() {
   )
 }
 
-function DesktopQr({ className = '' }) {
+function DesktopQr({ className = '', labelClassName = 'mt-3 text-sm text-gray-600' }) {
   return (
-    <div
-      className={`flex w-[160px] flex-col items-center rounded-xl bg-white p-4 ${className}`}
-    >
-      <img src={qrCode} alt="Scan to download DATER" className="h-28 w-28 object-contain" />
-      <span className="mt-2 text-sm text-gray-600">Scan to download</span>
+    <div className={`flex flex-col items-center ${className}`}>
+      <div className="rounded-xl bg-white p-4">
+        <DownloadQr showLabel={false} />
+      </div>
+      <span className={labelClassName}>Scan to download</span>
     </div>
   )
 }
@@ -100,7 +100,14 @@ export default function DownloadButton({ variant = 'default', className = '' }) 
   const platform = usePlatform()
 
   if (platform === 'desktop') {
-    return <DesktopQr className={className} />
+    return (
+      <DesktopQr
+        className={className}
+        labelClassName={
+          variant === 'hero' ? 'mt-3 text-sm text-white' : 'mt-3 text-sm text-gray-600'
+        }
+      />
+    )
   }
 
   if (variant === 'hero') {

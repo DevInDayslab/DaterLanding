@@ -8,7 +8,7 @@ import iconLinkedin from '../assets/footer/linkedin.png'
 import iconX from '../assets/footer/x.png'
 import iconYoutube from '../assets/footer/youtube.png'
 import DownloadButton from './DownloadButton'
-import qrCode from '../assets/footer/qr-code.svg'
+import DownloadQr from './DownloadQr'
 
 const COMPANY_LINKS = [
   { label: 'About us', to: '/about' },
@@ -104,11 +104,7 @@ function GetTheAppBanner() {
               Scan QR code to get start
             </p>
             <div className="mt-[clamp(12px,1.6vw,20px)] inline-block rounded-xl bg-white p-2.5 shadow-sm">
-              <img
-                src={qrCode}
-                alt="Scan to download DATER"
-                className="h-[clamp(100px,10vw,128px)] w-[clamp(100px,10vw,128px)]"
-              />
+              <DownloadQr size={128} showLabel={false} />
             </div>
           </div>
 

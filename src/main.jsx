@@ -9,11 +9,13 @@ import Contact from './pages/Contact.jsx'
 import FAQs from './pages/FAQs.jsx'
 import PrivacyPolicy from './pages/PrivacyPolicy.jsx'
 import Terms from './pages/Terms.jsx'
+import DownloadRedirect from './pages/DownloadRedirect.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <BrowserRouter>
       <Routes>
+        <Route path="/download" element={<DownloadRedirect />} />
         <Route path="/" element={<App />}>
           <Route index element={<Home />} />
           <Route path="about" element={<About />} />
