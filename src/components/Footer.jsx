@@ -113,7 +113,7 @@ function GetTheAppBanner() {
               Get the app
             </h2>
             <p className="mt-0.5 font-google-sans-flex text-[clamp(14px,1.4vw,18px)] font-normal leading-snug text-[#000000]">
-              Scan QR code to get start
+              Scan the QR code to get started
             </p>
             <div className="mt-[clamp(12px,1.6vw,20px)] inline-block rounded-xl bg-white p-2.5 shadow-sm">
               <DownloadQr size={144} showLabel={false} />
