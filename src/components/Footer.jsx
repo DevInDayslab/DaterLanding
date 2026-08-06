@@ -2,11 +2,11 @@ import { Link } from 'react-router-dom'
 import badgeAppStore from '../assets/badges/app-store.png'
 import badgeGooglePlay from '../assets/badges/google-play.png'
 import phonesMockup from '../assets/footer/phones-mockup.png'
-import iconFacebook from '../assets/footer/facebook.png'
-import iconInstagram from '../assets/footer/instagram.png'
-import iconLinkedin from '../assets/footer/linkedin.png'
-import iconX from '../assets/footer/x.png'
-import iconYoutube from '../assets/footer/youtube.png'
+import iconFacebook from '../assets/facebook.svg'
+import iconInstagram from '../assets/instagram.svg'
+import iconLinkedin from '../assets/linkedin.svg'
+import iconX from '../assets/twitter_x.svg'
+import iconYoutube from '../assets/youtube.svg'
 import DownloadButton from './DownloadButton'
 import DownloadQr from './DownloadQr'
 
@@ -39,7 +39,7 @@ const FOOTER_SHELL = 'mx-auto w-full max-w-[1440px] px-6 md:px-8'
 function FooterColumn({ title, links }) {
   return (
     <div className="mb-6 min-w-[140px] md:mb-0">
-      <p className="mb-4 font-google-sans-flex text-[16px] font-normal text-[#929292]">{title}</p>
+      <p className="mb-4 font-google-sans-flex text-[14px] font-normal text-[#929292]">{title}</p>
       {links.map((item) =>
         item.external ? (
           <a
@@ -47,7 +47,7 @@ function FooterColumn({ title, links }) {
             href={item.href}
             target="_blank"
             rel="noopener noreferrer"
-            className="mb-3 block font-google-sans-flex text-[17px] font-medium text-[#000000] hover:underline"
+            className="mb-1.5 block font-google-sans-flex text-[15px] font-medium text-[#000000] hover:underline"
           >
             {item.label}
           </a>
@@ -55,7 +55,7 @@ function FooterColumn({ title, links }) {
           <Link
             key={item.label}
             to={item.to}
-            className="mb-3 block font-google-sans-flex text-[17px] font-medium text-[#000000] hover:underline"
+            className="mb-1.5 block font-google-sans-flex text-[15px] font-medium text-[#000000] hover:underline"
           >
             {item.label}
           </Link>
@@ -169,9 +169,9 @@ export default function Footer() {
               </div>
             </div>
 
-            <div className="shrink-0 text-center md:ml-auto md:text-right">
-              <div className="inline-flex flex-col items-center md:items-end">
-                <p className="mb-4 font-google-sans-flex text-[16px] font-normal text-[#929292]">
+            <div className="shrink-0 md:ml-auto">
+              <div className="inline-flex flex-col items-center">
+                <p className="mb-4 w-full text-center font-google-sans-flex text-[14px] font-normal text-[#929292]">
                   Follow us
                 </p>
                 <div className="flex items-center gap-2.5">
@@ -187,7 +187,7 @@ export default function Footer() {
                       <img
                         src={src}
                         alt=""
-                        className="h-7 w-7 rounded-full object-cover"
+                        className="h-7 w-7 object-contain"
                       />
                     </a>
                   ))}
@@ -198,6 +198,16 @@ export default function Footer() {
 
           <p className="mt-12 text-center font-google-sans-flex text-[14px] text-[#484848] md:mt-16">
             © 2026 Dater | All rights reserved
+          </p>
+          <p className="mt-2 text-center font-google-sans-flex text-[14px] text-[#929292]">
+            <a
+              href="https://www.devindays.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="transition-opacity hover:opacity-80 hover:underline"
+            >
+              Powered by DevInDays
+            </a>
           </p>
 
           <div className="mt-8 flex flex-row items-center justify-center gap-4 border-t border-gray-200 pt-8 md:hidden">
