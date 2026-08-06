@@ -152,7 +152,7 @@ const SECTIONS = [
 function LegalSection({ section }) {
   return (
     <div>
-      <h2 className="mb-4 mt-8 font-google-sans-flex text-[22px] font-bold text-text-primary">
+      <h2 className="mb-4 mt-8 font-google-sans-flex text-[20px] font-bold text-text-primary">
         {section.title}
       </h2>
       {section.paragraphs?.map((p, i) => (
@@ -206,7 +206,7 @@ export default function Terms() {
           <LegalSection key={section.title} section={section} />
         ))}
 
-        <h2 className="mb-4 mt-8 font-google-sans-flex text-[22px] font-bold text-text-primary">
+        <h2 className="mb-4 mt-8 font-google-sans-flex text-[20px] font-bold text-text-primary">
           Contact Us
         </h2>
         <p className="mb-4 font-google-sans-flex text-[15px] leading-relaxed text-text-muted">
