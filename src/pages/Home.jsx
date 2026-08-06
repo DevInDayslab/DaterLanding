@@ -194,9 +194,9 @@ function BuzzSection() {
           signal: controller.signal,
           headers: { Accept: 'application/json' },
         })
-        if (!res.ok) throw new Error(`Failed to load posts (${res.status})`)
+        if (!res.ok) throw new Error('Loading failed')
         const data = await res.json()
-        if (!Array.isArray(data)) throw new Error('Invalid posts response')
+        if (!Array.isArray(data)) throw new Error('Loading failed')
 
         const mapped = await Promise.all(
           data.map(async (post) => {
@@ -207,7 +207,7 @@ function BuzzSection() {
         setBlogs(mapped)
       } catch (err) {
         if (err.name === 'AbortError') return
-        setError(err.message || 'Unable to load blogs')
+        setError('Loading failed')
         setBlogs([])
       } finally {
         setLoading(false)
