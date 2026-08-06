@@ -139,7 +139,7 @@ function FeaturesSection() {
         {FEATURES.map((feature) => (
           <article
             key={feature.title}
-            className={`${feature.color} flex h-[380px] flex-col overflow-hidden rounded-[32px] p-6`}
+            className={`${feature.color} flex h-[350px] flex-col overflow-hidden rounded-[32px] p-6`}
           >
             <div className="mb-2 flex h-48 w-full shrink-0 items-start justify-center overflow-hidden">
               <img
@@ -154,7 +154,6 @@ function FeaturesSection() {
             <p className="shrink-0 font-google-sans-flex text-[14px] font-normal text-text-primary">
               {feature.desc}
             </p>
-            <div className="flex-1" aria-hidden="true" />
           </article>
         ))}
       </div>
