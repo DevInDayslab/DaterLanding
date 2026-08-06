@@ -41,6 +41,11 @@ const CONTACT_ITEMS = [
 ]
 
 const MAX_ATTACHMENT_BYTES = 10 * 1024 * 1024
+const MAX_NAME_LENGTH = 30
+const MAX_EMAIL_LENGTH = 254
+const MOBILE_DIGITS = 10
+// Frontend-only email check: local@domain.tld (TLD at least 2 letters)
+const EMAIL_REGEX = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
 const EMPTY_FORM = {
   name: '',
   email: '',
@@ -53,8 +58,24 @@ const INPUT_BASE_CLASS =
 
 function isFieldInvalid(name, value) {
   const trimmed = value.trim()
-  if (!trimmed) return true
-  if (name === 'email' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(trimmed)) return true
+
+  if (name === 'name') {
+    return !trimmed || trimmed.length > MAX_NAME_LENGTH
+  }
+
+  if (name === 'email') {
+    const email = trimmed.toLowerCase()
+    return !email || email.length > MAX_EMAIL_LENGTH || !EMAIL_REGEX.test(email)
+  }
+
+  if (name === 'mobile') {
+    return !/^\d{10}$/.test(value)
+  }
+
+  if (name === 'description') {
+    return !trimmed
+  }
+
   return false
 }
 
@@ -77,10 +98,19 @@ export default function Contact() {
 
   function handleFieldChange(event) {
     const { name, value } = event.target
-    if (name === 'description') {
+    let nextValue = value
+
+    if (name === 'name') {
+      nextValue = value.slice(0, MAX_NAME_LENGTH)
+    } else if (name === 'mobile') {
+      nextValue = value.replace(/\D/g, '').slice(0, MOBILE_DIGITS)
+    } else if (name === 'email') {
+      nextValue = value.trimStart().slice(0, MAX_EMAIL_LENGTH)
+    } else if (name === 'description') {
       setDescLen(value.length)
     }
-    setFormData((prev) => ({ ...prev, [name]: value }))
+
+    setFormData((prev) => ({ ...prev, [name]: nextValue }))
   }
 
   function handleAttachmentChange(event) {
@@ -250,7 +280,7 @@ export default function Contact() {
 
         {/* Right: form */}
         <div className="md:ml-4">
-          <h3 className="mb-8 font-google-sans-flex text-[24px] font-bold text-text-primary">
+          <h3 className="mb-8 font-google-sans-flex text-[22px] font-bold text-text-primary">
             Submit a request
           </h3>
 
@@ -276,6 +306,7 @@ export default function Contact() {
               name="name"
               value={formData.name}
               onChange={handleFieldChange}
+              maxLength={MAX_NAME_LENGTH}
               disabled={isSubmitting}
               className={`mb-6 ${INPUT_BASE_CLASS} ${fieldBorderClass(showFieldErrors, 'name', formData.name)}`}
             />
@@ -289,6 +320,7 @@ export default function Contact() {
               name="email"
               value={formData.email}
               onChange={handleFieldChange}
+              maxLength={MAX_EMAIL_LENGTH}
               disabled={isSubmitting}
               className={`mb-6 ${INPUT_BASE_CLASS} ${fieldBorderClass(showFieldErrors, 'email', formData.email)}`}
             />
@@ -302,6 +334,8 @@ export default function Contact() {
               name="mobile"
               value={formData.mobile}
               onChange={handleFieldChange}
+              inputMode="numeric"
+              maxLength={MOBILE_DIGITS}
               disabled={isSubmitting}
               className={`mb-6 ${INPUT_BASE_CLASS} ${fieldBorderClass(showFieldErrors, 'mobile', formData.mobile)}`}
             />
@@ -345,7 +379,7 @@ export default function Contact() {
               type="button"
               onClick={() => fileInputRef.current?.click()}
               disabled={isSubmitting}
-              className="mb-2 w-full rounded-lg border border-gray-300 py-3 font-google-sans-flex text-[15px] text-[#5E9CFE] hover:bg-gray-50 disabled:opacity-60"
+              className="mb-2 w-full rounded-lg border border-gray-300 py-3 font-google-sans-flex text-[13px] text-[#5E9CFE] hover:bg-gray-50 disabled:opacity-60"
             >
               {attachment ? attachment.name : 'Add file or screenshot (Max. 10mb)'}
             </button>
