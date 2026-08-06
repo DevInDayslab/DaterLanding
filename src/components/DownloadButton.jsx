@@ -1,11 +1,14 @@
-import downloadAndroid from '../assets/download_android.png'
-import downloadIos from '../assets/download_ios.png'
+import iconApple from '../assets/apple_black.svg'
+import iconAndroid from '../assets/android.svg'
 import DownloadQr from './DownloadQr'
 import { STORE_LINKS } from '../constants/stores'
 import { usePlatform } from '../hooks/usePlatform'
 
 const pillClass =
   'flex w-full items-center justify-center gap-3 rounded-full bg-black px-8 py-4 font-google-sans-flex text-[18px] font-semibold text-white md:w-auto'
+
+const heroDownloadPillClass =
+  'inline-flex items-center justify-center gap-1.5 rounded-full bg-white/65 px-5 py-2.5 font-google-sans-flex text-[12px] font-medium leading-none text-black backdrop-blur-sm'
 
 function AppleIcon() {
   return (
@@ -79,15 +82,25 @@ function FooterDownloadButton({ platform }) {
   )
 }
 
-function HeroImageButton({ platform }) {
+function HeroDownloadPill({ platform }) {
   const isIos = platform === 'ios'
   const href = isIos ? STORE_LINKS.ios : STORE_LINKS.android
-  const src = isIos ? downloadIos : downloadAndroid
+  const icon = isIos ? iconApple : iconAndroid
+  const iconClass = isIos ? 'h-[16px] w-[16px]' : 'h-[20px] w-[20px]'
   const label = isIos ? 'Download on the App Store' : 'Get it on Google Play'
 
   return (
-    <a href={href} target="_blank" rel="noopener noreferrer" aria-label={label}>
-      <img src={src} alt={label} className="h-12 w-auto" />
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className={heroDownloadPillClass}
+      aria-label={label}
+    >
+      <span className="flex shrink-0 items-center justify-center leading-none">
+        <img src={icon} alt="" className={`block ${iconClass}`} aria-hidden="true" />
+      </span>
+      <span className="leading-none">Download now</span>
     </a>
   )
 }
@@ -113,7 +126,7 @@ export default function DownloadButton({ variant = 'default', className = '' }) 
   if (variant === 'hero') {
     return (
       <div className={className}>
-        <HeroImageButton platform={platform} />
+        <HeroDownloadPill platform={platform} />
       </div>
     )
   }
