@@ -3,8 +3,17 @@ import imgWhyWeBuilt from '../assets/about/why-we-built.png'
 import imgMission from '../assets/about/mission.png'
 import imgSafety from '../assets/about/safety.png'
 
-const BODY_COPY =
-  'Dating started feeling complicated — endless swipes, slow replies, and too many fake profiles. So we created a platform focused on faster connections, genuine people, and conversations that truly matter.'
+const SECTION_COPY = {
+  whyWeBuilt:
+    'Modern dating should feel exciting, not exhausting. We built Dater to create a safer, more genuine way for people to connect—where privacy comes first, real profiles matter, and meaningful conversations begin naturally.',
+  mission:
+    'To redefine online dating by creating a platform where genuine connections happen naturally, privacy is respected, and every interaction feels safe, meaningful, and authentic.',
+  safety:
+    "Your safety is at the heart of everything we do. From verified profiles and privacy controls to thoughtful safety features, we're committed to helping you connect with confidence.",
+}
+
+const SECTION_BODY_CLASS =
+  'font-google-sans-flex text-[15px] font-normal leading-normal text-text-muted'
 
 function AboutHero() {
   return (
@@ -22,7 +31,7 @@ function AboutHero() {
         <h1 className="mx-auto max-w-4xl text-center font-google-sans-flex text-[40px] font-semibold leading-tight text-white [text-shadow:0_2px_8px_rgba(0,0,0,0.35)]">
           Redefining The Way People Connect
         </h1>
-        <p className="mx-auto mt-0.5 max-w-2xl text-center font-google-sans-flex text-[22px] font-light leading-normal text-white [text-shadow:0_2px_8px_rgba(0,0,0,0.35)]">
+        <p className="mx-auto mt-0.5 max-w-[27.5rem] text-center font-google-sans-flex text-[22px] font-light leading-normal text-white [text-shadow:0_2px_8px_rgba(0,0,0,0.35)]">
           We&apos;re building a safe and meaningful way to meet genuine people.
         </p>
       </div>
@@ -36,12 +45,10 @@ function ContentSections() {
       {/* Section A — Why We Built This */}
       <section className="grid grid-cols-1 items-center gap-12 md:grid-cols-2 md:gap-x-28">
         <div className="mx-auto w-full max-w-md text-center">
-          <h2 className="mb-1.5 font-google-sans-flex text-[34px] font-semibold text-text-primary">
+          <h2 className="mb-1.5 font-google-sans-flex text-[32px] font-semibold text-text-primary">
             Why We Built This
           </h2>
-          <p className="font-google-sans-flex text-[16px] font-light leading-[32px] text-text-muted">
-            {BODY_COPY}
-          </p>
+          <p className={SECTION_BODY_CLASS}>{SECTION_COPY.whyWeBuilt}</p>
         </div>
         <img
           src={imgWhyWeBuilt}
@@ -58,24 +65,20 @@ function ContentSections() {
           className="order-1 mx-auto h-auto w-full max-w-[480px] rounded-[32px] object-cover"
         />
         <div className="order-2 mx-auto mt-0 w-full max-w-md text-center">
-          <h2 className="mb-1.5 font-google-sans-flex text-[34px] font-semibold text-text-primary">
+          <h2 className="mb-1.5 font-google-sans-flex text-[32px] font-semibold text-text-primary">
             Our Mission
           </h2>
-          <p className="font-google-sans-flex text-[16px] font-light leading-[32px] text-text-muted">
-            {BODY_COPY}
-          </p>
+          <p className={SECTION_BODY_CLASS}>{SECTION_COPY.mission}</p>
         </div>
       </section>
 
       {/* Section C — Your Safety Matters */}
       <section className="grid grid-cols-1 items-center gap-12 md:grid-cols-2 md:gap-x-28">
         <div className="mx-auto w-full max-w-md text-center">
-          <h2 className="mb-1.5 font-google-sans-flex text-[34px] font-semibold text-text-primary">
+          <h2 className="mb-1.5 font-google-sans-flex text-[32px] font-semibold text-text-primary">
             Your Safety Matters
           </h2>
-          <p className="font-google-sans-flex text-[16px] font-light leading-[32px] text-text-muted">
-            {BODY_COPY}
-          </p>
+          <p className={SECTION_BODY_CLASS}>{SECTION_COPY.safety}</p>
         </div>
         <img
           src={imgSafety}
