@@ -13,7 +13,7 @@ const SECTION_COPY = {
 }
 
 const SECTION_BODY_CLASS =
-  'font-google-sans-flex text-[16px] font-normal leading-snug text-text-muted'
+  'font-google-sans-flex text-[17px] font-normal leading-snug text-text-muted'
 
 function AboutHero() {
   return (
@@ -31,7 +31,7 @@ function AboutHero() {
         <h1 className="mx-auto max-w-4xl text-center font-google-sans-flex text-[40px] font-semibold leading-tight text-white [text-shadow:0_2px_8px_rgba(0,0,0,0.35)]">
           Redefining The Way People Connect
         </h1>
-        <p className="mx-auto mt-0.5 max-w-[27.5rem] text-center font-google-sans-flex text-[22px] font-light leading-normal text-white [text-shadow:0_2px_8px_rgba(0,0,0,0.35)]">
+        <p className="mx-auto mt-2 max-w-[27.5rem] text-center font-google-sans-flex text-[22px] font-light leading-snug text-white [text-shadow:0_2px_8px_rgba(0,0,0,0.35)]">
           We&apos;re building a safe and meaningful way to meet genuine people.
         </p>
       </div>
