@@ -31,7 +31,7 @@ function MenuIcon() {
   return (
     <svg
       viewBox="0 0 24 24"
-      className="h-6 w-6"
+      className="h-7 w-7"
       fill="none"
       stroke="currentColor"
       strokeWidth="2"
@@ -46,7 +46,7 @@ function CloseIcon() {
   return (
     <svg
       viewBox="0 0 24 24"
-      className="h-6 w-6"
+      className="h-7 w-7"
       fill="none"
       stroke="currentColor"
       strokeWidth="2"
@@ -146,13 +146,13 @@ export default function Header() {
         WebkitBackdropFilter: isSolidGlass ? 'blur(24px) saturate(150%)' : 'none',
       }}
     >
-      <div className="flex items-center justify-between py-2.5 pl-4 pr-6 md:pl-8 md:pr-12">
+      <div className="flex items-center justify-between py-2.5 pl-3 pr-6 md:pl-8 md:pr-12">
         <Link
           to="/"
           className="inline-flex items-center"
           onClick={() => handleNavClick('/')}
         >
-          <img src={logoSrc} alt="DATER" className="h-10 w-auto md:h-12" />
+          <img src={logoSrc} alt="DATER" className="h-9 w-auto md:h-12" />
         </Link>
 
         <nav className="hidden items-center gap-8 md:flex">
