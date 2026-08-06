@@ -8,8 +8,7 @@ export default function PageHero({
 }) {
   return (
     <section
-      data-header-surface="solid"
-      data-header-bg="#ffffff"
+      data-header-surface="overlay-dark"
       className={`flex w-full items-center justify-center bg-cover bg-center ${sectionClassName}`}
       style={{ backgroundImage: `url(${gradientBg})` }}
     >

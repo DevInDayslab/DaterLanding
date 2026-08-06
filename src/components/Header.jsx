@@ -68,9 +68,9 @@ function hexToRgba(hex, alpha) {
   return `rgba(${r}, ${g}, ${b}, ${alpha})`
 }
 
-function resolveHeaderBackground(theme, { isOverlay, menuMounted }) {
+function resolveHeaderBackground(theme, { isTransparent, menuMounted }) {
   if (menuMounted) return '#ffffff'
-  if (isOverlay) return 'transparent'
+  if (isTransparent) return 'transparent'
   if (theme.bg?.startsWith('#')) return hexToRgba(theme.bg, 0.5)
   return theme.bg
 }
@@ -82,9 +82,11 @@ export default function Header() {
   const [menuActive, setMenuActive] = useState(false)
   const theme = useHeaderTheme(headerRef)
 
-  const isOverlay = theme.mode === 'overlay' && !menuMounted
-  const logoSrc = isOverlay ? headerLogoWhite : headerLogo
-  const navClass = isOverlay
+  const isTransparentHeader =
+    (theme.mode === 'overlay' || theme.mode === 'overlay-dark') && !menuMounted
+  const isLightOnTransparent = theme.mode === 'overlay' && !menuMounted
+  const logoSrc = isLightOnTransparent ? headerLogoWhite : headerLogo
+  const navClass = isLightOnTransparent
     ? 'font-google-sans-flex text-[16px] font-medium text-white transition-opacity hover:opacity-80'
     : 'font-google-sans-flex text-[16px] font-medium text-[#322745] transition-opacity hover:opacity-80'
 
@@ -130,7 +132,7 @@ export default function Header() {
     }
   }, [menuMounted])
 
-  const isSolidGlass = !isOverlay && !menuMounted
+  const isSolidGlass = !isTransparentHeader && !menuMounted
 
   return (
     <header
@@ -139,7 +141,7 @@ export default function Header() {
         isSolidGlass ? 'backdrop-blur-xl backdrop-saturate-150' : ''
       }`}
       style={{
-        backgroundColor: resolveHeaderBackground(theme, { isOverlay, menuMounted }),
+        backgroundColor: resolveHeaderBackground(theme, { isTransparent: isTransparentHeader, menuMounted }),
         boxShadow: 'none',
         WebkitBackdropFilter: isSolidGlass ? 'blur(24px) saturate(150%)' : 'none',
       }}
@@ -180,7 +182,7 @@ export default function Header() {
 
         <button
           type="button"
-          className={`block md:hidden ${isOverlay ? 'text-white' : 'text-text-primary'}`}
+          className={`block md:hidden ${isLightOnTransparent ? 'text-white' : 'text-text-primary'}`}
           aria-label={menuMounted ? 'Close menu' : 'Open menu'}
           aria-expanded={menuMounted}
           onClick={menuMounted ? closeMenu : openMenu}
