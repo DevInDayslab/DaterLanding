@@ -140,7 +140,7 @@ export default function Footer() {
         <div className={`${FOOTER_SHELL} pb-10 pt-14`}>
           <div className="flex flex-col justify-between gap-12 md:flex-row md:gap-0">
             <div className="flex flex-col gap-0 md:gap-0">
-              <div className="flex flex-col md:flex-row md:gap-14">
+              <div className="flex flex-col md:flex-row md:gap-8">
                 <FooterColumn title="Company" links={COMPANY_LINKS} />
                 <FooterColumn title="Users" links={USERS_LINKS} />
                 <FooterColumn title="Legal" links={LEGAL_LINKS} />
