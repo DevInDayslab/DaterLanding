@@ -166,7 +166,7 @@ function BlogSkeleton() {
     <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
       {[0, 1, 2].map((i) => (
         <div key={i} className="overflow-hidden rounded-[24px] bg-white shadow-sm">
-          <div className="h-[200px] w-full animate-pulse bg-black/10" />
+          <div className="aspect-video w-full animate-pulse bg-black/10" />
           <div className="space-y-3 p-6">
             <div className="h-6 w-full animate-pulse rounded bg-black/10" />
             <div className="h-6 w-2/3 animate-pulse rounded bg-black/10" />
@@ -221,7 +221,7 @@ function BuzzSection() {
   return (
     <section id="the-buzz" data-header-surface="solid" data-header-bg="#EDE8FF" className="bg-accent-lavender py-14 px-8 md:px-16">
       <div className="mx-auto mb-16 flex w-full flex-col items-center">
-        <h2 className="mx-auto max-w-lg text-center font-google-sans-flex text-[40px] font-semibold uppercase leading-tight text-text-primary">
+        <h2 className="mx-auto max-w-lg text-center font-google-sans-flex text-[34px] font-semibold uppercase leading-tight text-text-primary">
           READ TRENDING BLOGS ABOUT DATING
         </h2>
       </div>
@@ -245,11 +245,11 @@ function BuzzSection() {
               <img
                 src={blog.image || '/qr-placeholder.png'}
                 alt=""
-                className="h-[180px] w-full object-cover"
+                className="aspect-video w-full object-cover"
               />
               <div className="p-5">
                 <h3
-                  className="line-clamp-2 font-google-sans-flex text-[20px] font-normal text-text-primary"
+                  className="line-clamp-2 font-google-sans-flex text-[19px] font-normal text-text-primary"
                   dangerouslySetInnerHTML={{ __html: blog.title }}
                 />
                 <time className="mt-6 block font-google-sans-flex text-[14px] font-normal text-text-muted">
@@ -261,12 +261,12 @@ function BuzzSection() {
         </div>
       )}
 
-      <div className="mt-8 flex justify-end">
+      <div className="mt-4 flex justify-end">
         <a
           href="https://dater-buzz.com"
           target="_blank"
           rel="noopener noreferrer"
-          className="font-google-sans-flex text-[16px] font-medium text-text-primary hover:underline"
+          className="font-google-sans-flex text-[16px] font-normal text-text-primary underline hover:opacity-80"
         >
           Read More...
         </a>
