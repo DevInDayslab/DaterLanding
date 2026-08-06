@@ -8,7 +8,7 @@ const pillClass =
   'flex w-full items-center justify-center gap-3 rounded-full bg-black px-8 py-4 font-google-sans-flex text-[18px] font-semibold text-white md:w-auto'
 
 const heroDownloadPillClass =
-  'inline-flex items-center justify-center gap-1.5 rounded-full bg-white/80 px-5 py-3.5 font-google-sans-flex text-[12px] font-medium leading-none text-black backdrop-blur-sm'
+  'inline-flex items-center justify-center gap-1.5 rounded-full bg-white/80 px-5 py-3.5 font-google-sans-flex text-[13px] font-medium leading-none text-black backdrop-blur-sm'
 
 function AppleIcon() {
   return (
