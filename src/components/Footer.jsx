@@ -97,7 +97,7 @@ function GetTheAppBanner() {
         <section
           data-header-surface="solid"
           data-header-bg="#F3B6EC"
-          className="relative flex min-h-[clamp(260px,24vw,340px)] w-full items-center overflow-hidden rounded-[clamp(28px,3vw,40px)] bg-accent-pink-soft px-[clamp(28px,4vw,48px)] py-[clamp(24px,2.5vw,36px)]"
+          className="relative flex min-h-[clamp(280px,25vw,370px)] w-full items-center overflow-hidden rounded-[clamp(28px,3vw,40px)] bg-accent-pink-soft px-[clamp(28px,4vw,48px)] py-[clamp(24px,2.5vw,36px)]"
         >
           <div className="pointer-events-none absolute inset-0 z-0 flex items-center justify-center">
             <img
@@ -109,10 +109,10 @@ function GetTheAppBanner() {
           </div>
 
           <div className="relative z-10 w-[min(100%,280px)] shrink-0">
-            <h2 className="font-google-sans-flex text-[clamp(30px,3vw,38px)] font-semibold leading-tight text-[#000000]">
+            <h2 className="font-google-sans-flex text-[clamp(28px,2.8vw,36px)] font-semibold leading-tight text-[#000000]">
               Get the app
             </h2>
-            <p className="mt-0.5 font-google-sans-flex text-[clamp(16px,1.6vw,20px)] font-normal leading-snug text-[#000000]">
+            <p className="mt-0.5 font-google-sans-flex text-[clamp(14px,1.4vw,18px)] font-normal leading-snug text-[#000000]">
               Scan QR code to get start
             </p>
             <div className="mt-[clamp(12px,1.6vw,20px)] inline-block rounded-xl bg-white p-2.5 shadow-sm">
