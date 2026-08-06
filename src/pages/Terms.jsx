@@ -152,23 +152,23 @@ const SECTIONS = [
 function LegalSection({ section }) {
   return (
     <div>
-      <h2 className="mb-4 mt-8 font-google-sans-flex text-[24px] font-bold text-text-primary">
+      <h2 className="mb-4 mt-8 font-google-sans-flex text-[22px] font-bold text-text-primary">
         {section.title}
       </h2>
       {section.paragraphs?.map((p, i) => (
-        <p key={i} className="mb-4 font-google-sans-flex text-[16px] leading-relaxed text-text-muted">
+        <p key={i} className="mb-4 font-google-sans-flex text-[15px] leading-relaxed text-text-muted">
           {p}
         </p>
       ))}
       {section.list && (
-        <ul className="mb-4 list-disc space-y-2 pl-6 font-google-sans-flex text-[16px] leading-relaxed text-text-muted">
+        <ul className="mb-4 list-disc space-y-2 pl-6 font-google-sans-flex text-[15px] leading-relaxed text-text-muted">
           {section.list.map((item) => (
             <li key={item}>{item}</li>
           ))}
         </ul>
       )}
       {section.afterList && (
-        <p className="mb-4 font-google-sans-flex text-[16px] leading-relaxed text-text-muted">
+        <p className="mb-4 font-google-sans-flex text-[15px] leading-relaxed text-text-muted">
           {section.afterList}
         </p>
       )}
@@ -181,19 +181,19 @@ export default function Terms() {
     <main className="w-full">
       <PageHero title="Terms & conditions" />
 
-      <div data-header-surface="solid" data-header-bg="#ffffff" className="mx-auto max-w-4xl px-8 py-16">
-        <h2 className="mb-2 font-google-sans-flex text-[28px] font-bold text-text-primary">Terms of use</h2>
-        <span className="mb-8 block font-google-sans-flex text-[16px] text-text-muted">
+      <div data-header-surface="solid" data-header-bg="#ffffff" className="mx-auto max-w-6xl px-2 py-16">
+        <h2 className="mb-2 font-google-sans-flex text-[26px] font-bold text-text-primary">Terms of use</h2>
+        <span className="mb-8 block font-google-sans-flex text-[15px] text-text-muted">
           Updated on 25 Oct, 2024
         </span>
 
-        <p className="mb-4 font-google-sans-flex text-[16px] leading-relaxed text-text-muted">
+        <p className="mb-4 font-google-sans-flex text-[15px] leading-relaxed text-text-muted">
           These Terms of Use apply for accessing and using the Dater website (www.dater.social) and
           the Dater mobile application (both iOS app and Android app) offered by Datify Network
           Pvt. Ltd. (hereafter referred as &quot;We&quot; or &quot;Us&quot; or &quot;Our&quot; or
           &quot;App&quot; or &quot;Dater&quot;).
         </p>
-        <p className="mb-6 font-google-sans-flex text-[16px] leading-relaxed text-text-muted">
+        <p className="mb-6 font-google-sans-flex text-[15px] leading-relaxed text-text-muted">
           Please take a few moments to read these Terms before using the App or our services,
           because once you access, view or use the App, you are going to be legally bound by these
           Terms (so probably best to read them first!). They cover important information about your
@@ -206,10 +206,10 @@ export default function Terms() {
           <LegalSection key={section.title} section={section} />
         ))}
 
-        <h2 className="mb-4 mt-8 font-google-sans-flex text-[24px] font-bold text-text-primary">
+        <h2 className="mb-4 mt-8 font-google-sans-flex text-[22px] font-bold text-text-primary">
           Contact Us
         </h2>
-        <p className="mb-4 font-google-sans-flex text-[16px] leading-relaxed text-text-muted">
+        <p className="mb-4 font-google-sans-flex text-[15px] leading-relaxed text-text-muted">
           If you have any questions regarding these Terms of Use, or if you would like to report any
           violations, please contact us at{' '}
           <a href="mailto:contact@dater.social" className="underline">
@@ -219,7 +219,7 @@ export default function Terms() {
           and effectively. We appreciate your engagement and commitment to ensuring a safe and
           enjoyable experience on our platform.
         </p>
-        <p className="mb-6 font-google-sans-flex text-[16px] leading-relaxed text-text-muted">
+        <p className="mb-6 font-google-sans-flex text-[15px] leading-relaxed text-text-muted">
           Thank you for choosing Dater. We sincerely hope you have a positive and enriching
           experience on our platform. Your satisfaction is our top priority, and we are dedicated to
           continually improving our services for all users. Your contributions help us grow and
