@@ -7,8 +7,8 @@ import iconInstagram from '../assets/footer/instagram.png'
 import iconLinkedin from '../assets/footer/linkedin.png'
 import iconX from '../assets/footer/x.png'
 import iconYoutube from '../assets/footer/youtube.png'
-import headerLogo from '../assets/logo/header-logo.png'
-import headerLogoWhite from '../assets/logoWhite.png'
+import headerLogo from '../assets/logo/header-logo.webp'
+import headerLogoWhite from '../assets/logoWhite.webp'
 import { useHeaderTheme } from '../hooks/useHeaderTheme'
 
 const NAV_LINKS = [

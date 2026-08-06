@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import badgeAppStore from '../assets/badges/app-store.png'
 import badgeGooglePlay from '../assets/badges/google-play.png'
-import phonesMockup from '../assets/footer/phones-mockup.png'
+import phonesMockup from '../assets/footer/phones-mockup.webp'
 import iconFacebook from '../assets/facebook.svg'
 import iconInstagram from '../assets/instagram.svg'
 import iconLinkedin from '../assets/linkedin.svg'
@@ -84,6 +84,8 @@ function GetTheAppBanner() {
         <img
           src={phonesMockup}
           alt="DATER app on mobile phones"
+          loading="lazy"
+          decoding="async"
           className="mt-8 h-auto w-full max-w-[400px] scale-105 self-center object-contain"
         />
       </section>
@@ -104,6 +106,8 @@ function GetTheAppBanner() {
               src={phonesMockup}
               alt=""
               aria-hidden="true"
+              loading="lazy"
+              decoding="async"
               className="h-[clamp(240px,26vw,320px)] w-auto max-w-[58%] object-contain"
             />
           </div>

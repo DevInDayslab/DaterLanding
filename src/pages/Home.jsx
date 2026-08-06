@@ -1,15 +1,16 @@
 import { useEffect, useState } from 'react'
 import { API } from '../constants/api'
 import DownloadButton from '../components/DownloadButton'
-import heroImage from '../assets/hero/hero.jpg'
+import heroMobile from '../assets/hero/mobile-hero.webp'
+import heroMobileFallback from '../assets/hero/mobile-hero.jpg'
 import heroDesktop from '../assets/hero/desktop-hero.webp'
-import imgPrivacyMode from '../assets/features/privacy-mode.png'
-import imgVerifiedProfiles from '../assets/features/verified-profiles.png'
-import imgAdvancedFilters from '../assets/features/advanced-filters.png'
-import imgSendComments from '../assets/features/send-comments.png'
-import imgPresetMessage from '../assets/features/preset-message.png'
-import imgStories from '../assets/features/stories.png'
-import imgSwitchCity from '../assets/features/switch-city.png'
+import imgPrivacyMode from '../assets/features/privacy-mode.webp'
+import imgVerifiedProfiles from '../assets/features/verified-profiles.webp'
+import imgAdvancedFilters from '../assets/features/advanced-filters.webp'
+import imgSendComments from '../assets/features/send-comments.webp'
+import imgPresetMessage from '../assets/features/preset-message.webp'
+import imgStories from '../assets/features/stories.webp'
+import imgSwitchCity from '../assets/features/switch-city.webp'
 
 const FEATURES = [
   {
@@ -98,8 +99,9 @@ function HeroSection() {
     >
       <picture className="absolute inset-0">
         <source media="(min-width: 768px)" srcSet={heroDesktop} type="image/webp" />
+        <source media="(max-width: 767px)" srcSet={heroMobile} type="image/webp" />
         <img
-          src={heroImage}
+          src={heroMobileFallback}
           alt=""
           className="h-full w-full object-cover object-center"
           fetchPriority="high"
@@ -145,6 +147,10 @@ function FeaturesSection() {
               <img
                 src={feature.image}
                 alt=""
+                width={444}
+                height={266}
+                loading="lazy"
+                decoding="async"
                 className="h-full max-w-full object-contain object-top"
               />
             </div>
@@ -245,6 +251,8 @@ function BuzzSection() {
               <img
                 src={blog.image || '/qr-placeholder.png'}
                 alt=""
+                loading="lazy"
+                decoding="async"
                 className="aspect-video w-full object-cover"
               />
               <div className="p-5">

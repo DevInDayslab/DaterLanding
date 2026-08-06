@@ -1,7 +1,9 @@
-import heroImage from '../assets/about/about_hero.jpg'
-import imgWhyWeBuilt from '../assets/about/why-we-built.png'
-import imgMission from '../assets/about/mission.png'
-import imgSafety from '../assets/about/safety.png'
+import heroImage from '../assets/about/about_hero.webp'
+import heroMobile from '../assets/about/about_hero_mobile.webp'
+import heroMobileFallback from '../assets/about/about_hero_mobile.jpg'
+import imgWhyWeBuilt from '../assets/about/why-we-built.webp'
+import imgMission from '../assets/about/mission.webp'
+import imgSafety from '../assets/about/safety.webp'
 
 const SECTION_COPY = {
   whyWeBuilt:
@@ -19,14 +21,19 @@ function AboutHero() {
   return (
     <section
       data-header-surface="overlay"
-      className="relative flex min-h-[75vh] w-full items-center justify-center overflow-hidden"
+      className="relative flex min-h-[100svh] w-full items-center justify-center overflow-hidden md:min-h-[75vh]"
     >
-      <img
-        src={heroImage}
-        alt=""
-        aria-hidden="true"
-        className="absolute inset-0 h-full w-full object-cover object-center"
-      />
+      <picture className="absolute inset-0">
+        <source media="(min-width: 768px)" srcSet={heroImage} type="image/webp" />
+        <source media="(max-width: 767px)" srcSet={heroMobile} type="image/webp" />
+        <img
+          src={heroMobileFallback}
+          alt=""
+          aria-hidden="true"
+          fetchPriority="high"
+          className="h-full w-full object-cover object-center"
+        />
+      </picture>
       <div className="relative z-10 px-8 py-20">
         <h1 className="mx-auto max-w-4xl text-center font-google-sans-flex text-[40px] font-semibold leading-tight text-white [text-shadow:0_2px_8px_rgba(0,0,0,0.35)]">
           Redefining The Way People Connect
@@ -53,6 +60,8 @@ function ContentSections() {
         <img
           src={imgWhyWeBuilt}
           alt="DATER app profile gallery on phone"
+          loading="lazy"
+          decoding="async"
           className="mx-auto h-auto w-full max-w-[300px] object-contain md:max-w-[340px]"
         />
       </section>
@@ -62,6 +71,8 @@ function ContentSections() {
         <img
           src={imgMission}
           alt="Couple sharing a joyful moment"
+          loading="lazy"
+          decoding="async"
           className="order-1 mx-auto h-auto w-full max-w-[480px] rounded-[32px] object-cover"
         />
         <div className="order-2 mx-auto mt-0 w-full max-w-md text-center">
@@ -83,6 +94,8 @@ function ContentSections() {
         <img
           src={imgSafety}
           alt="Verified profiles and discovery on DATER"
+          loading="lazy"
+          decoding="async"
           className="mx-auto h-auto w-full max-w-[420px] object-contain md:max-w-[480px]"
         />
       </section>

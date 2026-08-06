@@ -1,4 +1,4 @@
-import gradientBg from '../assets/hero_gradient.png'
+import gradientBg from '../assets/hero_gradient.webp'
 
 export default function PageHero({
   title,
