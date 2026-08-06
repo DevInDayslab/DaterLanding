@@ -97,9 +97,12 @@ function HeroDownloadPill({ platform }) {
       className={heroDownloadPillClass}
       aria-label={label}
     >
-      <span className="flex shrink-0 items-center justify-center leading-none">
-        <img src={icon} alt="" className={`block ${iconClass}`} aria-hidden="true" />
-      </span>
+      <img
+        src={icon}
+        alt=""
+        className={`block shrink-0 -translate-y-px ${iconClass}`}
+        aria-hidden="true"
+      />
       <span className="leading-none">Download now</span>
     </a>
   )

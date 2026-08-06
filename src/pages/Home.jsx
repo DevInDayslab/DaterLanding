@@ -112,7 +112,7 @@ function HeroSection() {
         <h1 className="font-google-sans-flex text-[22px] font-semibold italic text-white md:text-[34px]">
           Built for better dating
         </h1>
-        <p className="mt-0.5 font-google-sans-flex text-[14px] font-light text-white md:text-[16px]">
+        <p className="mt-0.5 font-google-sans-flex text-[15px] font-light text-white md:text-[16px]">
           Modern dating made simple.
         </p>
 
@@ -128,10 +128,10 @@ function FeaturesSection() {
   return (
     <section id="the-app" data-header-surface="solid" data-header-bg="#ffffff" className="scroll-mt-[72px] bg-white px-8 pb-24 pt-12 md:px-16">
       <div className="mx-auto flex w-full flex-col items-center">
-        <h2 className="mx-auto max-w-[23.75rem] text-center font-google-sans-flex text-[26px] font-semibold uppercase leading-tight text-text-primary md:text-[34px]">
+        <h2 className="mx-auto max-w-[23.75rem] text-center font-google-sans-flex text-[24px] font-semibold uppercase leading-tight text-text-primary md:text-[34px]">
           ENHANCE YOUR DATING EXPERIENCE
         </h2>
-        <p className="mx-auto mt-4 max-w-[35rem] text-center font-google-sans-flex text-[13px] font-light leading-normal text-text-muted md:text-[17px]">
+        <p className="mx-auto mt-4 max-w-[35rem] text-center font-google-sans-flex text-[14px] font-light leading-normal text-text-muted md:text-[17px]">
           From verified profiles to smart visibility tools, everything is crafted to help you connect
           with confidence and spark something real.
         </p>

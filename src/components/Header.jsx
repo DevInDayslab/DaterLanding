@@ -2,11 +2,11 @@ import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import badgeAppStore from '../assets/badges/app-store.png'
 import badgeGooglePlay from '../assets/badges/google-play.png'
-import iconFacebook from '../assets/footer/facebook.png'
-import iconInstagram from '../assets/footer/instagram.png'
-import iconLinkedin from '../assets/footer/linkedin.png'
-import iconX from '../assets/footer/x.png'
-import iconYoutube from '../assets/footer/youtube.png'
+import iconFacebook from '../assets/facebook.svg'
+import iconInstagram from '../assets/instagram.svg'
+import iconLinkedin from '../assets/linkedin.svg'
+import iconX from '../assets/twitter_x.svg'
+import iconYoutube from '../assets/youtube.svg'
 import headerLogo from '../assets/logo/header-logo.webp'
 import headerLogoWhite from '../assets/logoWhite.webp'
 import { useHeaderTheme } from '../hooks/useHeaderTheme'
@@ -245,7 +245,7 @@ export default function Header() {
                     aria-label={label}
                     className="transition-opacity hover:opacity-80"
                   >
-                    <img src={src} alt="" className="h-7 w-7 rounded-full object-cover" />
+                    <img src={src} alt="" className="h-7 w-7 object-contain" />
                   </a>
                 ))}
               </div>
