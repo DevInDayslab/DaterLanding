@@ -1,14 +1,20 @@
 import gradientBg from '../assets/hero_gradient.png'
 
-export default function PageHero({ title }) {
+export default function PageHero({
+  title,
+  containerClassName = 'bg-white px-20 py-2 shadow-sm',
+  titleClassName = 'font-google-sans-flex text-[28px] font-bold text-text-primary md:text-[36px]',
+  sectionClassName = 'min-h-[68vh] py-40 md:min-h-[72vh] md:py-48',
+}) {
   return (
     <section
-      data-header-surface="overlay"
-      className="flex w-full items-center justify-center bg-cover bg-center py-24 md:py-32"
+      data-header-surface="solid"
+      data-header-bg="#ffffff"
+      className={`flex w-full items-center justify-center bg-cover bg-center ${sectionClassName}`}
       style={{ backgroundImage: `url(${gradientBg})` }}
     >
-      <div className="bg-white px-12 py-4 shadow-sm">
-        <h1 className="font-google-sans-flex text-[32px] font-bold text-text-primary md:text-[40px]">
+      <div className={containerClassName}>
+        <h1 className={titleClassName}>
           {title}
         </h1>
       </div>

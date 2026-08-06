@@ -48,12 +48,30 @@ const EMPTY_FORM = {
   description: '',
 }
 
+const INPUT_BASE_CLASS =
+  'w-full rounded-md border px-3 py-3 font-google-sans-flex text-[15px] focus:outline-none disabled:opacity-60'
+
+function isFieldInvalid(name, value) {
+  const trimmed = value.trim()
+  if (!trimmed) return true
+  if (name === 'email' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(trimmed)) return true
+  return false
+}
+
+function fieldBorderClass(showErrors, name, value) {
+  if (!showErrors) return 'border-gray-300 focus:border-black'
+  return isFieldInvalid(name, value)
+    ? 'border-red-300 focus:border-red-400'
+    : 'border-gray-300 focus:border-black'
+}
+
 export default function Contact() {
   const fileInputRef = useRef(null)
   const [formData, setFormData] = useState(EMPTY_FORM)
   const [attachment, setAttachment] = useState(null)
   const [descLen, setDescLen] = useState(0)
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [showFieldErrors, setShowFieldErrors] = useState(false)
   const [successMessage, setSuccessMessage] = useState('')
   const [errorMessage, setErrorMessage] = useState('')
 
@@ -135,6 +153,13 @@ export default function Contact() {
 
   async function handleSubmit(event) {
     event.preventDefault()
+    setShowFieldErrors(true)
+
+    const hasInvalidField = Object.entries(formData).some(([name, value]) =>
+      isFieldInvalid(name, value)
+    )
+    if (hasInvalidField) return
+
     setIsSubmitting(true)
     setSuccessMessage('')
     setErrorMessage('')
@@ -171,6 +196,7 @@ export default function Contact() {
       setFormData(EMPTY_FORM)
       setAttachment(null)
       setDescLen(0)
+      setShowFieldErrors(false)
       if (fileInputRef.current) {
         fileInputRef.current.value = ''
       }
@@ -238,7 +264,7 @@ export default function Contact() {
             </p>
           )}
 
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit} noValidate>
             {/* Name */}
             <label className="mb-1 block font-google-sans-flex text-[15px] text-text-primary">
               Your name<span className="text-red-500">*</span>
@@ -248,9 +274,8 @@ export default function Contact() {
               name="name"
               value={formData.name}
               onChange={handleFieldChange}
-              required
               disabled={isSubmitting}
-              className="mb-6 w-full border border-gray-300 px-3 py-3 font-google-sans-flex text-[15px] focus:border-black focus:outline-none disabled:opacity-60"
+              className={`mb-6 ${INPUT_BASE_CLASS} ${fieldBorderClass(showFieldErrors, 'name', formData.name)}`}
             />
 
             {/* Email */}
@@ -262,9 +287,8 @@ export default function Contact() {
               name="email"
               value={formData.email}
               onChange={handleFieldChange}
-              required
               disabled={isSubmitting}
-              className="mb-6 w-full border border-gray-300 px-3 py-3 font-google-sans-flex text-[15px] focus:border-black focus:outline-none disabled:opacity-60"
+              className={`mb-6 ${INPUT_BASE_CLASS} ${fieldBorderClass(showFieldErrors, 'email', formData.email)}`}
             />
 
             {/* Mobile */}
@@ -276,9 +300,8 @@ export default function Contact() {
               name="mobile"
               value={formData.mobile}
               onChange={handleFieldChange}
-              required
               disabled={isSubmitting}
-              className="mb-6 w-full border border-gray-300 px-3 py-3 font-google-sans-flex text-[15px] focus:border-black focus:outline-none disabled:opacity-60"
+              className={`mb-6 ${INPUT_BASE_CLASS} ${fieldBorderClass(showFieldErrors, 'mobile', formData.mobile)}`}
             />
 
             {/* Description */}
@@ -289,11 +312,14 @@ export default function Contact() {
               name="description"
               value={formData.description}
               onChange={handleFieldChange}
-              required
               maxLength={2000}
               rows={6}
               disabled={isSubmitting}
-              className="mb-1 w-full resize-y border border-gray-300 p-4 font-google-sans-flex text-[15px] focus:border-black focus:outline-none disabled:opacity-60"
+              className={`mb-1 resize-y p-4 ${INPUT_BASE_CLASS} ${fieldBorderClass(
+                showFieldErrors,
+                'description',
+                formData.description
+              )}`}
             />
             <p className="mb-6 text-right font-google-sans-flex text-[13px] text-text-muted">
               {descLen} / 2000
@@ -332,7 +358,7 @@ export default function Contact() {
             <button
               type="submit"
               disabled={isSubmitting}
-              className="w-full rounded-full bg-black py-4 font-google-sans-flex text-[18px] font-semibold text-white transition-opacity hover:opacity-80 disabled:cursor-not-allowed disabled:opacity-60"
+              className="w-full rounded-full bg-black py-3 font-google-sans-flex text-[17px] font-medium text-white transition-opacity hover:opacity-80 disabled:cursor-not-allowed disabled:opacity-60"
             >
               {isSubmitting ? 'Submitting...' : 'Submit'}
             </button>
