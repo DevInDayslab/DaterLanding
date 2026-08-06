@@ -49,7 +49,9 @@ export default function FAQs() {
               <button
                 type="button"
                 onClick={() => setOpen(open === i ? null : i)}
-                className="flex w-full items-center justify-between py-6 text-left"
+                className={`flex w-full items-center justify-between text-left ${
+                  open === i ? 'py-5' : 'py-4'
+                }`}
               >
                 <span className="font-google-sans-flex text-[16px] font-medium text-text-primary">
                   {item.q}
@@ -59,7 +61,7 @@ export default function FAQs() {
                 </span>
               </button>
               {open === i && (
-                <p className="pb-6 font-google-sans-flex text-[14px] text-text-muted">{item.a}</p>
+                <p className="pb-5 font-google-sans-flex text-[15px] text-text-muted">{item.a}</p>
               )}
             </div>
           ))}
