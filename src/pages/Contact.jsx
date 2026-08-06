@@ -215,39 +215,39 @@ export default function Contact() {
       <div data-header-surface="solid" data-header-bg="#ffffff" className="w-full">
       {/* Intro */}
       <div className="mt-16 px-8 text-center">
-        <h2 className="mx-auto font-google-sans-flex text-[32px] font-bold text-text-primary">
+        <h2 className="mx-auto font-google-sans-flex text-[28px] font-bold text-text-primary">
           Got something you want to talk about?
         </h2>
-        <p className="mx-auto mt-4 max-w-lg font-google-sans-flex text-[18px] text-text-muted">
+        <p className="mx-auto mt-2 max-w-lg font-google-sans-flex text-[14px] text-text-muted">
           Send enquiry or email us and we promise to get back to you as soon as we can
         </p>
       </div>
 
       {/* Two-column grid */}
-      <div className="mx-auto grid max-w-6xl grid-cols-1 gap-16 px-8 py-16 md:grid-cols-2">
+      <div className="mx-auto grid max-w-6xl grid-cols-1 gap-16 px-8 py-16 md:grid-cols-2 md:gap-x-32 md:px-12">
         {/* Left: contact methods */}
-        <div>
+        <div className="md:-ml-4">
           {CONTACT_ITEMS.map((item) => (
             <div key={item.heading} className="mb-8">
-              <h3 className="mb-2 font-google-sans-flex text-[20px] font-semibold text-text-primary">
+              <h3 className="mb-2 font-google-sans-flex text-[18px] font-semibold text-text-primary">
                 {item.heading}
               </h3>
-              <p className="font-google-sans-flex text-[16px] text-text-muted">{item.body}</p>
+              <p className="font-google-sans-flex text-[14px] text-text-muted">{item.body}</p>
               <a
                 href={`mailto:${item.email}`}
-                className="mt-1 block font-google-sans-flex text-[16px] font-semibold text-text-primary underline"
+                className="mt-1 block font-google-sans-flex text-[14px] font-semibold text-text-primary underline"
               >
                 {item.email}
               </a>
               {item.note && (
-                <p className="mt-2 font-google-sans-flex text-[14px] text-text-muted">{item.note}</p>
+                <p className="mt-2 font-google-sans-flex text-[12px] text-text-muted">{item.note}</p>
               )}
             </div>
           ))}
         </div>
 
         {/* Right: form */}
-        <div>
+        <div className="md:ml-4">
           <h3 className="mb-8 font-google-sans-flex text-[24px] font-bold text-text-primary">
             Submit a request
           </h3>
