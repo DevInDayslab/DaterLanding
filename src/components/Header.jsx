@@ -146,13 +146,13 @@ export default function Header() {
         WebkitBackdropFilter: isSolidGlass ? 'blur(24px) saturate(150%)' : 'none',
       }}
     >
-      <div className="flex items-center justify-between py-2.5 pl-6 pr-6 md:pl-8 md:pr-12">
+      <div className="flex items-center justify-between py-2.5 pl-4 pr-6 md:pl-8 md:pr-12">
         <Link
           to="/"
           className="inline-flex items-center"
           onClick={() => handleNavClick('/')}
         >
-          <img src={logoSrc} alt="DATER" className="h-11 w-auto md:h-12" />
+          <img src={logoSrc} alt="DATER" className="h-10 w-auto md:h-12" />
         </Link>
 
         <nav className="hidden items-center gap-8 md:flex">
