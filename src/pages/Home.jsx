@@ -15,43 +15,43 @@ import imgSwitchCity from '../assets/features/switch-city.webp'
 const FEATURES = [
   {
     title: 'Privacy mode',
-    desc: 'You have complete control over your visibility. No one can see you unless you want them to.',
+    desc: 'Stay private while you explore. Your profile is only visible to people you send a friend request to, so you can browse with confidence and privacy.',
     color: 'bg-accent-lime',
     image: imgPrivacyMode,
   },
   {
     title: 'Verified profiles',
-    desc: "Say goodbye to fake profiles. Apply the 'Verified Profiles Only' filter to view only authentic and verified profiles.",
+    desc: 'Connect only with verified people. Turn on the "Verified Profiles Only" filter to see only verified profiles, making your dating experience safer and more authentic.',
     color: 'bg-accent-blue',
     image: imgVerifiedProfiles,
   },
   {
     title: 'Advanced filters',
-    desc: 'Want to find something specific? You can narrow your results by applying advanced filters.',
+    desc: 'Want to find something specific? Use advanced filters to narrow your search and discover people who match your preferences with ease.',
     color: 'bg-accent-orange',
     image: imgAdvancedFilters,
   },
   {
     title: 'Send comments',
-    desc: 'Grab their attention by sending a comment. Comments are always noticed first and can double your chances.',
+    desc: 'Say more than just hello. Add a personal comment to your friend request and make your introduction stand out.',
     color: 'bg-accent-periwinkle',
     image: imgSendComments,
   },
   {
     title: 'Preset message',
-    desc: 'Choose or write a preset message to auto-send to your matches.',
+    desc: 'Your perfect introduction, every time. Set a preset message once, and it will be automatically sent whenever you become friends with someone.',
     color: 'bg-accent-yellow',
     image: imgPresetMessage,
   },
   {
     title: 'Stories',
-    desc: 'Share your daily moments and connect with people through authentic daily updates.',
+    desc: 'A new way to express yourself. Share moments from your daily life and let people discover the real you beyond your profile.',
     color: 'bg-accent-lime',
     image: imgStories,
   },
   {
     title: 'Switch city',
-    desc: 'Planning a trip? Change your location to meet people in other cities before you even arrive.',
+    desc: 'Planning to travel or move? Switch your city anytime to discover and connect with people in your destination before you get there.',
     color: 'bg-accent-pink',
     image: imgSwitchCity,
   },
@@ -110,7 +110,7 @@ function HeroSection() {
 
       <div className="relative z-10 flex flex-col items-center px-8 text-center">
         <h1 className="font-google-sans-flex text-[22px] font-semibold italic text-white md:text-[34px]">
-          Built for better dating
+          Built for Better Dating
         </h1>
         <p className="mt-0.5 font-google-sans-flex text-[15px] font-light text-white md:text-[16px]">
           Modern dating made simple.
@@ -126,12 +126,17 @@ function HeroSection() {
 
 function FeaturesSection() {
   return (
-    <section id="the-app" data-header-surface="solid" data-header-bg="#ffffff" className="scroll-mt-[72px] bg-white px-8 pb-24 pt-12 md:px-16">
+    <section id="the-app" data-header-surface="solid" data-header-bg="#ffffff" className="scroll-mt-[72px] bg-white px-8 pb-24 pt-8 md:px-16 md:pt-12">
       <div className="mx-auto flex w-full flex-col items-center">
         <h2 className="mx-auto max-w-[23.75rem] text-center font-google-sans-flex text-[23px] font-bold uppercase leading-tight text-text-primary md:text-[34px] md:font-semibold">
-          ENHANCE YOUR DATING EXPERIENCE
+          <span className="md:hidden">
+            ENHANCE YOUR
+            <br />
+            DATING EXPERIENCE
+          </span>
+          <span className="hidden md:inline">ENHANCE YOUR DATING EXPERIENCE</span>
         </h2>
-        <p className="mx-auto mt-4 max-w-[35rem] text-center font-google-sans-flex text-[14px] font-normal leading-normal text-text-muted md:text-[17px] md:font-light">
+        <p className="mx-auto mt-2 max-w-[35rem] text-center font-google-sans-flex text-[14px] font-normal leading-normal text-text-muted md:mt-4 md:text-[17px] md:font-light">
           From verified profiles to smart visibility tools, everything is crafted to help you connect
           with confidence and spark something real.
         </p>
@@ -276,7 +281,7 @@ function BuzzSection() {
           rel="noopener noreferrer"
           className="font-google-sans-flex text-[16px] font-normal text-text-primary underline hover:opacity-80"
         >
-          Read More...
+          Read more...
         </a>
       </div>
     </section>
