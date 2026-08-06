@@ -218,13 +218,15 @@ export default function Contact() {
         <h2 className="mx-auto font-google-sans-flex text-[28px] font-bold text-text-primary">
           Got something you want to talk about?
         </h2>
-        <p className="mx-auto mt-2 max-w-lg font-google-sans-flex text-[14px] text-text-muted">
-          Send enquiry or email us and we promise to get back to you as soon as we can
+        <p className="mx-auto mt-2 max-w-lg font-google-sans-flex text-[15px] text-text-muted">
+          Send enquiry or email us and we promise to get
+          <br />
+          back to you as soon as we can
         </p>
       </div>
 
       {/* Two-column grid */}
-      <div className="mx-auto grid max-w-6xl grid-cols-1 gap-16 px-8 py-16 md:grid-cols-2 md:gap-x-32 md:px-12">
+      <div className="mx-auto grid max-w-6xl grid-cols-1 gap-16 px-8 py-16 md:grid-cols-2 md:gap-x-56 md:px-12">
         {/* Left: contact methods */}
         <div className="md:-ml-4">
           {CONTACT_ITEMS.map((item) => (
@@ -266,7 +268,7 @@ export default function Contact() {
 
           <form onSubmit={handleSubmit} noValidate>
             {/* Name */}
-            <label className="mb-1 block font-google-sans-flex text-[15px] text-text-primary">
+            <label className="mb-1 block font-google-sans-flex text-[14px] text-text-primary">
               Your name<span className="text-red-500">*</span>
             </label>
             <input
@@ -279,7 +281,7 @@ export default function Contact() {
             />
 
             {/* Email */}
-            <label className="mb-1 block font-google-sans-flex text-[15px] text-text-primary">
+            <label className="mb-1 block font-google-sans-flex text-[14px] text-text-primary">
               Your email address<span className="text-red-500">*</span>
             </label>
             <input
@@ -292,7 +294,7 @@ export default function Contact() {
             />
 
             {/* Mobile */}
-            <label className="mb-1 block font-google-sans-flex text-[15px] text-text-primary">
+            <label className="mb-1 block font-google-sans-flex text-[14px] text-text-primary">
               Your mobile number<span className="text-red-500">*</span>
             </label>
             <input
@@ -305,7 +307,7 @@ export default function Contact() {
             />
 
             {/* Description */}
-            <label className="mb-1 block font-google-sans-flex text-[15px] text-text-primary">
+            <label className="mb-1 block font-google-sans-flex text-[14px] text-text-primary">
               Description<span className="text-red-500">*</span>
             </label>
             <textarea
@@ -326,7 +328,7 @@ export default function Contact() {
             </p>
 
             {/* Attachment */}
-            <label className="mb-1 block font-google-sans-flex text-[15px] text-text-muted">
+            <label className="mb-1 block font-google-sans-flex text-[14px] text-text-muted">
               Attachment{' '}
               <span className="text-text-muted">(optional)</span>
             </label>
