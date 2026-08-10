@@ -41,7 +41,7 @@ const FOOTER_SHELL = 'mx-auto w-full max-w-[1440px] px-6 md:px-8'
 function FooterColumn({ title, links }) {
   return (
     <div className="mb-6 min-w-[140px] md:mb-0">
-      <p className="mb-4 font-google-sans-flex text-[14px] font-normal text-[#929292]">{title}</p>
+      <p className="mb-2 font-google-sans-flex text-[14px] font-normal text-[#929292] md:mb-4">{title}</p>
       {links.map((item) =>
         item.external ? (
           <a
@@ -74,12 +74,12 @@ function GetTheAppBanner() {
       <section
         data-header-surface="solid"
         data-header-bg="#DAEF68"
-        className="flex w-full flex-col items-start overflow-hidden bg-accent-lime px-6 pb-10 pt-10 md:hidden"
+        className="flex w-full flex-col items-start overflow-hidden bg-accent-lime px-6 pb-6 pt-8 md:hidden"
       >
-        <h2 className="text-left font-google-sans-flex text-[32px] font-semibold leading-tight text-[#000000]">
+        <h2 className="text-left font-google-sans-flex text-[30px] font-semibold leading-tight text-[#000000]">
           Get the app
         </h2>
-        <p className="mt-1 text-left font-google-sans-flex text-[18px] font-normal text-[#000000]">
+        <p className="mt-1 text-left font-google-sans-flex text-[16px] font-normal text-[#000000]">
           Find your next date
         </p>
         <DownloadButton variant="footer" className="mt-6" />
@@ -143,8 +143,8 @@ export default function Footer() {
         data-header-bg="#ffffff"
         className="border-t border-gray-200"
       >
-        <div className={`${FOOTER_SHELL} pb-10 pt-14`}>
-          <div className="flex flex-col justify-between gap-12 md:flex-row md:gap-0">
+        <div className={`${FOOTER_SHELL} pb-10 pt-8 md:pt-14`}>
+          <div className="flex flex-col justify-between gap-6 md:flex-row md:gap-0">
             <div className="flex flex-col gap-0 md:gap-0">
               <div className="flex flex-col md:flex-row md:gap-8">
                 <FooterColumn title="Company" links={COMPANY_LINKS} />
@@ -175,9 +175,9 @@ export default function Footer() {
               </div>
             </div>
 
-            <div className="shrink-0 md:ml-auto">
+            <div className="flex w-full shrink-0 justify-center md:ml-auto md:w-auto md:justify-end">
               <div className="inline-flex flex-col items-center">
-                <p className="mb-4 w-full text-center font-google-sans-flex text-[14px] font-normal text-[#929292]">
+                <p className="mb-2 w-full text-center font-google-sans-flex text-[14px] font-normal text-[#929292] md:mb-4">
                   Follow us
                 </p>
                 <div className="flex items-center gap-2.5">
