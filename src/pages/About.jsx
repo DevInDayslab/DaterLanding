@@ -38,10 +38,10 @@ function AboutHero() {
         />
       </picture>
       <div className="relative z-10 flex flex-col items-center px-8 text-center">
-        <h1 className="font-google-sans-flex text-[22px] font-semibold italic text-white md:text-[34px]">
+        <h1 className="font-google-sans-flex text-[22px] font-semibold italic leading-[1.15] text-white md:text-[34px]">
           Redefining The Way People Connect
         </h1>
-        <p className="mt-0.5 font-google-sans-flex text-[15px] font-light text-white md:text-[16px]">
+        <p className="mt-0.5 font-google-sans-flex text-[15px] font-normal leading-[1.25] text-white md:text-[16px]">
           We&apos;re building a safe and meaningful way to meet genuine people.
         </p>
       </div>
@@ -54,7 +54,7 @@ function ContentSections() {
     <div data-header-surface="solid" data-header-bg="#ffffff" className="mx-auto max-w-7xl space-y-32 px-8 pb-24 pt-12 md:px-16 md:py-24">
       {/* Section A — Why We Built This */}
       <section className="grid grid-cols-1 items-center gap-12 md:grid-cols-2 md:gap-x-28">
-        <div className="mx-auto w-full max-w-md text-center">
+        <div className="mx-auto w-full max-w-md text-left md:text-center">
           <h2 className={SECTION_HEADING_CLASS}>
             Why We Built This
           </h2>
@@ -76,9 +76,9 @@ function ContentSections() {
           alt="Couple sharing a joyful moment"
           loading="lazy"
           decoding="async"
-          className="order-2 mx-auto h-auto w-full max-w-[480px] rounded-[32px] object-cover md:order-1"
+          className="order-2 mx-auto h-auto w-full max-w-[480px] rounded-[24px] object-cover md:order-1"
         />
-        <div className="order-1 mx-auto mt-0 w-full max-w-md text-center md:order-2">
+        <div className="order-1 mx-auto mt-0 w-full max-w-md text-left md:order-2 md:text-center">
           <h2 className={SECTION_HEADING_CLASS}>
             Our Mission
           </h2>
@@ -88,7 +88,7 @@ function ContentSections() {
 
       {/* Section C — Your Safety Matters */}
       <section className="grid grid-cols-1 items-center gap-12 md:grid-cols-2 md:gap-x-28">
-        <div className="mx-auto w-full max-w-md text-center">
+        <div className="mx-auto w-full max-w-md text-left md:text-center">
           <h2 className={SECTION_HEADING_CLASS}>
             Your Safety Matters
           </h2>
