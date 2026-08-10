@@ -223,7 +223,7 @@ export default function Footer() {
                 alt="Download on the App Store"
                 width={377}
                 height={127}
-                className="h-14 w-auto shrink-0 object-contain"
+                className="h-[52px] w-auto shrink-0 object-contain"
               />
             </a>
             <a
@@ -238,7 +238,7 @@ export default function Footer() {
                 alt="Get it on Google Play"
                 width={422}
                 height={127}
-                className="h-14 w-auto shrink-0 object-contain"
+                className="h-[52px] w-auto shrink-0 object-contain"
               />
             </a>
           </div>
