@@ -15,16 +15,16 @@ const SECTION_COPY = {
 }
 
 const SECTION_HEADING_CLASS =
-  'mb-2.5 font-google-sans-flex text-[23px] font-bold leading-tight text-text-primary md:text-[32px] md:font-semibold'
+  'mb-1.5 font-google-sans-flex text-[23px] font-bold leading-tight text-text-primary md:mb-2.5 md:text-[32px] md:font-semibold'
 
 const SECTION_BODY_CLASS =
-  'font-google-sans-flex text-[14px] font-normal leading-normal text-text-muted md:text-[17px] md:leading-snug'
+  'font-google-sans-flex text-[15px] font-normal leading-normal text-text-muted md:text-[17px] md:leading-snug'
 
 function AboutHero() {
   return (
     <section
       data-header-surface="overlay"
-      className="relative flex min-h-[100svh] w-full items-center justify-center overflow-hidden md:min-h-[75vh]"
+      className="relative flex aspect-[5/6] w-full items-center justify-center overflow-hidden md:aspect-auto md:min-h-[75vh]"
     >
       <picture className="absolute inset-0">
         <source media="(min-width: 768px)" srcSet={heroImage} type="image/webp" />
@@ -51,10 +51,10 @@ function AboutHero() {
 
 function ContentSections() {
   return (
-    <div data-header-surface="solid" data-header-bg="#ffffff" className="mx-auto max-w-7xl space-y-32 px-8 pb-24 pt-12 md:px-16 md:py-24">
+    <div data-header-surface="solid" data-header-bg="#ffffff" className="mx-auto max-w-7xl space-y-16 px-4 pb-24 pt-8 md:space-y-32 md:px-16 md:py-24">
       {/* Section A — Why We Built This */}
-      <section className="grid grid-cols-1 items-center gap-12 md:grid-cols-2 md:gap-x-28">
-        <div className="mx-auto w-full max-w-md text-left md:text-center">
+      <section className="grid grid-cols-1 items-center gap-y-6 md:grid-cols-2 md:gap-x-28 md:gap-y-12">
+        <div className="mr-auto w-full max-w-md text-left md:mx-auto md:text-center">
           <h2 className={SECTION_HEADING_CLASS}>
             Why We Built This
           </h2>
@@ -70,7 +70,7 @@ function ContentSections() {
       </section>
 
       {/* Section B — Our Mission */}
-      <section className="grid grid-cols-1 items-center gap-12 md:grid-cols-2 md:gap-x-28">
+      <section className="grid grid-cols-1 items-center gap-y-6 md:grid-cols-2 md:gap-x-28 md:gap-y-12">
         <img
           src={imgMission}
           alt="Couple sharing a joyful moment"
@@ -87,7 +87,7 @@ function ContentSections() {
       </section>
 
       {/* Section C — Your Safety Matters */}
-      <section className="grid grid-cols-1 items-center gap-12 md:grid-cols-2 md:gap-x-28">
+      <section className="grid grid-cols-1 items-center gap-y-6 md:grid-cols-2 md:gap-x-28 md:gap-y-12">
         <div className="mx-auto w-full max-w-md text-left md:text-center">
           <h2 className={SECTION_HEADING_CLASS}>
             Your Safety Matters
