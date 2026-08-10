@@ -126,8 +126,8 @@ function HeroSection() {
 
 function FeaturesSection() {
   return (
-    <section id="the-app" data-header-surface="solid" data-header-bg="#ffffff" className="scroll-mt-[72px] bg-white px-8 pb-24 pt-8 md:px-16 md:pt-12">
-      <div className="mx-auto flex w-full flex-col items-center">
+    <section id="the-app" data-header-surface="solid" data-header-bg="#ffffff" className="scroll-mt-[72px] bg-white px-4 pb-24 pt-8 md:px-16 md:pt-12">
+      <div className="mx-auto flex w-full flex-col items-center px-4 md:px-0">
         <h2 className="mx-auto max-w-[23.75rem] text-center font-google-sans-flex text-[23px] font-bold uppercase leading-tight text-text-primary md:text-[34px] md:font-semibold">
           <span className="md:hidden">
             ENHANCE YOUR
@@ -146,7 +146,7 @@ function FeaturesSection() {
         {FEATURES.map((feature) => (
           <article
             key={feature.title}
-            className={`${feature.color} flex h-[380px] flex-col overflow-hidden rounded-[32px] p-6`}
+            className={`${feature.color} flex h-[360px] flex-col overflow-hidden rounded-[24px] p-6 md:h-[380px] md:rounded-[32px]`}
           >
             <div className="mb-2 flex h-48 w-full shrink-0 items-start justify-center overflow-hidden">
               <img

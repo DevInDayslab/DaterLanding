@@ -18,12 +18,12 @@ const COMPANY_LINKS = [
 const USERS_LINKS = [
   { label: 'FAQs', to: '/faqs' },
   { label: 'The Buzz', href: 'https://dater-buzz.com', external: true },
+  { label: 'Community guidelines', to: '/community-guidelines' },
 ]
 
 const LEGAL_LINKS = [
   { label: 'Privacy policy', to: '/privacy' },
   { label: 'Terms & conditions', to: '/terms' },
-  { label: 'Community guidelines', to: '/community-guidelines' },
   { label: 'Cookie policy', to: '/cookies' },
 ]
 
