@@ -45,7 +45,7 @@ export default function FAQs() {
           </p>
         </div>
 
-        <div className="mx-auto max-w-4xl px-8 pb-24 pt-5 md:pt-12">
+        <div className="mx-auto max-w-4xl px-8 pb-12 pt-5 md:pb-24 md:pt-12">
         <div>
           {FAQS.map((item, i) => (
             <div key={i} className="border-b border-gray-200">
@@ -72,7 +72,7 @@ export default function FAQs() {
 
         <p className="mt-6 font-google-sans-flex text-[16px] text-text-muted md:mt-12">
           Need more help?{' '}
-          <a href="/contact" className="font-semibold text-text-primary underline">
+          <a href="/contact" className="text-[15px] font-semibold text-accent-blue underline md:text-[16px]">
             Contact us
           </a>
         </p>
