@@ -14,8 +14,11 @@ const SECTION_COPY = {
     "Your safety is at the heart of everything we do. From verified profiles and privacy controls to thoughtful safety features, we're committed to helping you connect with confidence.",
 }
 
+const SECTION_HEADING_CLASS =
+  'mb-2.5 font-google-sans-flex text-[23px] font-bold leading-tight text-text-primary md:text-[32px] md:font-semibold'
+
 const SECTION_BODY_CLASS =
-  'font-google-sans-flex text-[17px] font-normal leading-snug text-text-muted'
+  'font-google-sans-flex text-[14px] font-normal leading-normal text-text-muted md:text-[17px] md:leading-snug'
 
 function AboutHero() {
   return (
@@ -34,11 +37,11 @@ function AboutHero() {
           className="h-full w-full object-cover object-center"
         />
       </picture>
-      <div className="relative z-10 px-8 py-20">
-        <h1 className="mx-auto max-w-4xl text-center font-google-sans-flex text-[40px] font-semibold leading-tight text-white [text-shadow:0_2px_8px_rgba(0,0,0,0.35)]">
+      <div className="relative z-10 flex flex-col items-center px-8 text-center">
+        <h1 className="font-google-sans-flex text-[22px] font-semibold italic text-white md:text-[34px]">
           Redefining The Way People Connect
         </h1>
-        <p className="mx-auto mt-2 max-w-[27.5rem] text-center font-google-sans-flex text-[22px] font-light leading-snug text-white [text-shadow:0_2px_8px_rgba(0,0,0,0.35)]">
+        <p className="mt-0.5 font-google-sans-flex text-[15px] font-light text-white md:text-[16px]">
           We&apos;re building a safe and meaningful way to meet genuine people.
         </p>
       </div>
@@ -48,11 +51,11 @@ function AboutHero() {
 
 function ContentSections() {
   return (
-    <div data-header-surface="solid" data-header-bg="#ffffff" className="mx-auto max-w-7xl space-y-32 px-8 py-24 md:px-16">
+    <div data-header-surface="solid" data-header-bg="#ffffff" className="mx-auto max-w-7xl space-y-32 px-8 pb-24 pt-12 md:px-16 md:py-24">
       {/* Section A — Why We Built This */}
       <section className="grid grid-cols-1 items-center gap-12 md:grid-cols-2 md:gap-x-28">
         <div className="mx-auto w-full max-w-md text-center">
-          <h2 className="mb-2.5 font-google-sans-flex text-[32px] font-semibold text-text-primary">
+          <h2 className={SECTION_HEADING_CLASS}>
             Why We Built This
           </h2>
           <p className={SECTION_BODY_CLASS}>{SECTION_COPY.whyWeBuilt}</p>
@@ -73,10 +76,10 @@ function ContentSections() {
           alt="Couple sharing a joyful moment"
           loading="lazy"
           decoding="async"
-          className="order-1 mx-auto h-auto w-full max-w-[480px] rounded-[32px] object-cover"
+          className="order-2 mx-auto h-auto w-full max-w-[480px] rounded-[32px] object-cover md:order-1"
         />
-        <div className="order-2 mx-auto mt-0 w-full max-w-md text-center">
-          <h2 className="mb-2.5 font-google-sans-flex text-[32px] font-semibold text-text-primary">
+        <div className="order-1 mx-auto mt-0 w-full max-w-md text-center md:order-2">
+          <h2 className={SECTION_HEADING_CLASS}>
             Our Mission
           </h2>
           <p className={SECTION_BODY_CLASS}>{SECTION_COPY.mission}</p>
@@ -86,7 +89,7 @@ function ContentSections() {
       {/* Section C — Your Safety Matters */}
       <section className="grid grid-cols-1 items-center gap-12 md:grid-cols-2 md:gap-x-28">
         <div className="mx-auto w-full max-w-md text-center">
-          <h2 className="mb-2.5 font-google-sans-flex text-[32px] font-semibold text-text-primary">
+          <h2 className={SECTION_HEADING_CLASS}>
             Your Safety Matters
           </h2>
           <p className={SECTION_BODY_CLASS}>{SECTION_COPY.safety}</p>
