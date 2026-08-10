@@ -217,11 +217,13 @@ export default function Footer() {
           </p>
 
           <div className="mt-4 flex flex-row items-center justify-center gap-4 border-t border-gray-200 pt-4 md:hidden">
-            <a href="#" aria-label="Download on the App Store">
+            <a href="#" aria-label="Download on the App Store" className="inline-flex shrink-0">
               <img
                 src={badgeAppStore}
                 alt="Download on the App Store"
-                className="h-16 w-auto"
+                width={377}
+                height={127}
+                className="h-14 w-auto shrink-0 object-contain"
               />
             </a>
             <a
@@ -229,11 +231,14 @@ export default function Footer() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Get it on Google Play"
+              className="inline-flex shrink-0"
             >
               <img
                 src={badgeGooglePlay}
                 alt="Get it on Google Play"
-                className="h-16 w-auto"
+                width={422}
+                height={127}
+                className="h-14 w-auto shrink-0 object-contain"
               />
             </a>
           </div>
