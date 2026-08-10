@@ -41,7 +41,7 @@ function AboutHero() {
         <h1 className="font-google-sans-flex text-[22px] font-semibold italic leading-[1.15] text-white md:text-[34px]">
           Redefining The Way People Connect
         </h1>
-        <p className="mt-0.5 font-google-sans-flex text-[15px] font-normal leading-[1.25] text-white md:text-[16px]">
+        <p className="mt-1.5 font-google-sans-flex text-[15px] font-normal leading-[1.25] text-white md:mt-0.5 md:text-[16px]">
           We&apos;re building a safe and meaningful way to meet genuine people.
         </p>
       </div>
@@ -51,7 +51,7 @@ function AboutHero() {
 
 function ContentSections() {
   return (
-    <div data-header-surface="solid" data-header-bg="#ffffff" className="mx-auto max-w-7xl space-y-16 px-4 pb-24 pt-8 md:space-y-32 md:px-16 md:py-24">
+    <div data-header-surface="solid" data-header-bg="#ffffff" className="mx-auto max-w-7xl space-y-12 px-4 pb-12 pt-8 md:space-y-32 md:px-16 md:py-24">
       {/* Section A — Why We Built This */}
       <section className="grid grid-cols-1 items-center gap-y-6 md:grid-cols-2 md:gap-x-28 md:gap-y-12">
         <div className="mr-auto w-full max-w-md text-left md:mx-auto md:text-center">
