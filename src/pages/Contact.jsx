@@ -28,11 +28,9 @@ const CONTACT_ITEMS = [
     heading: 'Law Enforcement',
     body: (
       <>
-        Datify Network Pvt. Ltd.
+        H. No. 1404, VPO Wazirabad, Atta Mohalla, Near Sant Shop,
         <br />
-        G-26, NEAR SAINI SHOP, VILL. WAZIARABAD,
-        <br />
-        Gurgaon, Basai Road, Gurgaon- 122001, Haryana
+        Sector-52, Gurgaon, Haryana, India - 122003
       </>
     ),
     email: 'law-enforcement@dater.social',
