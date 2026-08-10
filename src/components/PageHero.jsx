@@ -3,8 +3,8 @@ import gradientBg from '../assets/hero_gradient.webp'
 export default function PageHero({
   title,
   containerClassName = 'bg-white px-20 py-2 shadow-sm',
-  titleClassName = 'font-google-sans-flex text-[28px] font-bold text-text-primary md:text-[36px]',
-  sectionClassName = 'min-h-[68vh] py-40 md:min-h-[72vh] md:py-48',
+  titleClassName = 'font-google-sans-flex text-[24px] font-bold text-text-primary md:text-[32px]',
+  sectionClassName = 'min-h-[34vh] py-20 md:min-h-[36vh] md:py-24',
 }) {
   return (
     <section
