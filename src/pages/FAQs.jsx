@@ -35,15 +35,18 @@ export default function FAQs() {
     <main className="w-full">
       <PageHero title="FAQs" />
 
-      <div data-header-surface="solid" data-header-bg="#ffffff" className="mx-auto max-w-4xl px-8 pb-24">
-        <h2 className="mt-16 font-google-sans-flex text-[28px] font-bold text-text-primary">
-          Have questions about Dater?
-        </h2>
-        <p className="mt-2 font-google-sans-flex text-[14px] text-text-muted">
-          You can find all the answers you need right here!
-        </p>
+      <div data-header-surface="solid" data-header-bg="#ffffff" className="w-full">
+        <div className="mt-8 px-8 text-left md:mt-16 md:text-center">
+          <h2 className="font-google-sans-flex text-[23px] font-bold leading-[1.15] text-text-primary md:mx-auto md:text-[28px] md:leading-normal">
+            Have questions about Dater?
+          </h2>
+          <p className="mt-1 max-w-lg font-google-sans-flex text-[15px] text-text-muted md:mx-auto md:mt-2">
+            You can find all the answers you need right here!
+          </p>
+        </div>
 
-        <div className="mt-12">
+        <div className="mx-auto max-w-4xl px-8 pb-24 pt-8 md:pt-12">
+        <div>
           {FAQS.map((item, i) => (
             <div key={i} className="border-b border-gray-200">
               <button
@@ -73,6 +76,7 @@ export default function FAQs() {
             Contact us
           </a>
         </p>
+        </div>
       </div>
     </main>
   )

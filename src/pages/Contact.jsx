@@ -248,11 +248,11 @@ export default function Contact() {
       </div>
 
       {/* Two-column grid */}
-      <div className="mx-auto grid max-w-6xl grid-cols-1 gap-8 px-8 py-8 md:grid-cols-2 md:gap-x-56 md:gap-y-16 md:px-12 md:py-16">
+      <div className="mx-auto grid max-w-6xl grid-cols-1 gap-5 px-8 py-8 md:grid-cols-2 md:gap-x-56 md:gap-y-16 md:px-12 md:py-16">
         {/* Left: contact methods */}
         <div className="md:-ml-4">
           {CONTACT_ITEMS.map((item) => (
-            <div key={item.heading} className="mb-8">
+            <div key={item.heading} className="mb-6 last:mb-2 md:mb-8 md:last:mb-8">
               <h3 className="mb-2 font-google-sans-flex text-[18px] font-semibold text-text-primary">
                 {item.heading}
               </h3>
