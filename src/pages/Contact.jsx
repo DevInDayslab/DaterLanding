@@ -245,7 +245,7 @@ export default function Contact() {
       <div data-header-surface="solid" data-header-bg="#ffffff" className="w-full">
       {/* Intro */}
       <div className="mt-8 px-8 text-left md:mt-16 md:text-center">
-        <h2 className="font-google-sans-flex text-[26px] font-bold leading-[1.15] text-text-primary md:mx-auto md:text-[28px] md:leading-normal">
+        <h2 className="font-google-sans-flex text-[24px] font-bold leading-[1.15] text-text-primary md:mx-auto md:text-[28px] md:leading-normal">
           Got something you want to talk about?
         </h2>
         <p className="mt-1 max-w-lg font-google-sans-flex text-[15px] text-text-muted md:mx-auto md:mt-2">
@@ -256,7 +256,7 @@ export default function Contact() {
       </div>
 
       {/* Two-column grid */}
-      <div className="mx-auto grid max-w-6xl grid-cols-1 gap-16 px-8 py-8 md:grid-cols-2 md:gap-x-56 md:px-12 md:py-16">
+      <div className="mx-auto grid max-w-6xl grid-cols-1 gap-8 px-8 py-8 md:grid-cols-2 md:gap-x-56 md:gap-y-16 md:px-12 md:py-16">
         {/* Left: contact methods */}
         <div className="md:-ml-4">
           {CONTACT_ITEMS.map((item) => (
@@ -272,7 +272,7 @@ export default function Contact() {
                 {item.email}
               </a>
               {item.note && (
-                <p className="mt-2 font-google-sans-flex text-[12px] text-text-muted">{item.note}</p>
+                <p className="mt-2 font-google-sans-flex text-[13px] text-text-muted">{item.note}</p>
               )}
             </div>
           ))}
@@ -280,7 +280,7 @@ export default function Contact() {
 
         {/* Right: form */}
         <div className="md:ml-4">
-          <h3 className="mb-8 font-google-sans-flex text-[22px] font-bold text-text-primary">
+          <h3 className="mb-8 font-google-sans-flex text-[21px] font-bold text-text-primary md:text-[22px]">
             Submit a request
           </h3>
 
