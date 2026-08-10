@@ -126,7 +126,7 @@ function HeroSection() {
 
 function FeaturesSection() {
   return (
-    <section id="the-app" data-header-surface="solid" data-header-bg="#ffffff" className="scroll-mt-[72px] bg-white px-4 pb-24 pt-8 md:px-16 md:pt-12">
+    <section id="the-app" data-header-surface="solid" data-header-bg="#ffffff" className="scroll-mt-[72px] bg-white px-4 pb-12 pt-8 md:px-16 md:pb-24 md:pt-12">
       <div className="mx-auto flex w-full flex-col items-center px-4 md:px-0">
         <h2 className="mx-auto max-w-[23.75rem] text-center font-google-sans-flex text-[23px] font-bold uppercase leading-tight text-text-primary md:text-[34px] md:font-semibold">
           <span className="md:hidden">
@@ -230,7 +230,7 @@ function BuzzSection() {
   }, [])
 
   return (
-    <section id="the-buzz" data-header-surface="solid" data-header-bg="#EDE8FF" className="bg-accent-lavender px-4 pb-14 pt-8 md:px-16 md:pt-12">
+    <section id="the-buzz" data-header-surface="solid" data-header-bg="#EDE8FF" className="bg-accent-lavender px-4 pb-8 pt-8 md:px-16 md:pb-14 md:pt-12">
       <div className="mx-auto mb-8 flex w-full flex-col items-center px-4 md:mb-16 md:px-0">
         <h2 className="mx-auto max-w-[23.75rem] text-center font-google-sans-flex text-[23px] font-bold uppercase leading-tight text-text-primary md:max-w-lg md:text-[34px] md:font-semibold">
           <span className="md:hidden">
@@ -265,12 +265,12 @@ function BuzzSection() {
                 decoding="async"
                 className="aspect-video w-full object-cover"
               />
-              <div className="p-5">
+              <div className="px-3 pb-4 pt-3 md:p-5">
                 <h3
                   className="line-clamp-2 font-google-sans-flex text-[17px] font-normal text-text-primary"
                   dangerouslySetInnerHTML={{ __html: blog.title }}
                 />
-                <time className="mt-6 block font-google-sans-flex text-[12px] font-normal text-text-muted">
+                <time className="mt-3 block font-google-sans-flex text-[12px] font-normal text-text-muted md:mt-6">
                   {blog.date}
                 </time>
               </div>
@@ -284,7 +284,7 @@ function BuzzSection() {
           href="https://dater-buzz.com"
           target="_blank"
           rel="noopener noreferrer"
-          className="font-google-sans-flex text-[16px] font-normal text-text-primary underline hover:opacity-80"
+          className="font-google-sans-flex text-[14px] font-normal text-text-primary underline hover:opacity-80 md:text-[16px]"
         >
           Read more...
         </a>
