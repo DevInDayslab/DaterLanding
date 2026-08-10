@@ -23,6 +23,8 @@ const USERS_LINKS = [
 const LEGAL_LINKS = [
   { label: 'Privacy policy', to: '/privacy' },
   { label: 'Terms & conditions', to: '/terms' },
+  { label: 'Community guidelines', to: '/community-guidelines' },
+  { label: 'Cookie policy', to: '/cookies' },
 ]
 
 const SOCIAL_LINKS = [

@@ -11,3 +11,57 @@
     @apply min-h-svh w-full;
   }
 }
+
+@layer components {
+  .legal-document .legal-meta {
+    @apply mb-2 block font-google-sans-flex text-[15px] text-text-muted;
+  }
+
+  .legal-document .legal-meta:last-of-type {
+    @apply mb-8;
+  }
+
+  .legal-document .legal-h2 {
+    @apply mb-4 mt-8 font-google-sans-flex text-[20px] font-bold text-text-primary;
+  }
+
+  .legal-document .legal-h2 strong {
+    @apply font-bold;
+  }
+
+  .legal-document .legal-h3 {
+    @apply mb-3 mt-6 font-google-sans-flex text-[17px] font-bold text-text-primary;
+  }
+
+  .legal-document .legal-h3 strong {
+    @apply font-bold;
+  }
+
+  .legal-document .legal-h4 {
+    @apply mb-2 mt-4 font-google-sans-flex text-[16px] font-semibold text-text-primary;
+  }
+
+  .legal-document .legal-h4 strong {
+    @apply font-semibold;
+  }
+
+  .legal-document .legal-p {
+    @apply mb-4 font-google-sans-flex text-[15px] leading-relaxed text-text-muted;
+  }
+
+  .legal-document .legal-list {
+    @apply mb-4 list-disc space-y-2 pl-6 font-google-sans-flex text-[15px] leading-relaxed text-text-muted;
+  }
+
+  .legal-document .legal-link {
+    @apply underline hover:opacity-80;
+  }
+
+  .legal-document strong {
+    @apply font-semibold text-text-primary;
+  }
+
+  .legal-document .legal-spacer {
+    @apply mb-2;
+  }
+}

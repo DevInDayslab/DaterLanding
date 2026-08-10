@@ -77,18 +77,47 @@ function resolveHeaderBackground(theme, { isTransparent, menuMounted }) {
   return theme.bg
 }
 
+function NavLinkItems({ className, onNavigate }) {
+  return NAV_LINKS.map((item) =>
+    item.external ? (
+      <a
+        key={item.label}
+        href={item.href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={className}
+        onClick={() => onNavigate()}
+      >
+        {item.label}
+      </a>
+    ) : (
+      <Link key={item.label} to={item.to} className={className} onClick={() => onNavigate(item.to)}>
+        {item.label}
+      </Link>
+    ),
+  )
+}
+
 export default function Header() {
   const headerRef = useRef(null)
+  const inlineMenuRef = useRef(null)
   const [headerHeight, setHeaderHeight] = useState(56)
+  const [inlineMenuHeight, setInlineMenuHeight] = useState(0)
   const [menuMounted, setMenuMounted] = useState(false)
   const [menuActive, setMenuActive] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
   const theme = useHeaderTheme(headerRef)
 
-  const isCompact = isScrolled && !menuMounted
+  const useCompactShell = isScrolled
+  const useInlineMenu = menuMounted && isScrolled
+  const useFullWidthMenu = menuMounted && !isScrolled
+  const isCompactBar = isScrolled && !menuMounted
+
   const isTransparentHeader =
-    (theme.mode === 'overlay' || theme.mode === 'overlay-dark') && !menuMounted && !isCompact
-  const isLightOnTransparent = theme.mode === 'overlay' && !menuMounted && !isCompact
+    (theme.mode === 'overlay' || theme.mode === 'overlay-dark') &&
+    !useCompactShell &&
+    !menuMounted
+  const isLightOnTransparent = theme.mode === 'overlay' && !useCompactShell && !menuMounted
   const logoSrc = isLightOnTransparent ? headerLogoWhite : headerLogo
   const navClass = isLightOnTransparent
     ? 'font-google-sans-flex text-[16px] font-medium text-white transition-opacity hover:opacity-80'
@@ -97,6 +126,9 @@ export default function Header() {
   const openMenu = () => {
     setMenuMounted(true)
     requestAnimationFrame(() => {
+      if (isScrolled && inlineMenuRef.current) {
+        setInlineMenuHeight(inlineMenuRef.current.scrollHeight)
+      }
       requestAnimationFrame(() => setMenuActive(true))
     })
   }
@@ -133,7 +165,21 @@ export default function Header() {
     updateHeaderHeight()
     window.addEventListener('resize', updateHeaderHeight)
     return () => window.removeEventListener('resize', updateHeaderHeight)
-  }, [isCompact, menuMounted])
+  }, [useCompactShell, menuMounted, menuActive])
+
+  useEffect(() => {
+    if (!menuMounted || !isScrolled) return undefined
+
+    const measureInlineMenu = () => {
+      if (inlineMenuRef.current) {
+        setInlineMenuHeight(inlineMenuRef.current.scrollHeight)
+      }
+    }
+
+    measureInlineMenu()
+    window.addEventListener('resize', measureInlineMenu)
+    return () => window.removeEventListener('resize', measureInlineMenu)
+  }, [menuMounted, isScrolled, menuActive])
 
   useEffect(() => {
     if (!menuMounted) return undefined
@@ -146,14 +192,14 @@ export default function Header() {
     }
   }, [menuMounted])
 
-  const isSolidGlass = !isTransparentHeader && !menuMounted && !isCompact
-  const headerPositionClass = menuMounted
+  const isSolidGlass = !isTransparentHeader && !menuMounted && !useCompactShell
+  const headerPositionClass = useFullWidthMenu
     ? 'top-0 px-0'
-    : isCompact
+    : useCompactShell
       ? 'top-3 px-4 md:top-4 md:px-8'
       : 'top-0 px-0'
 
-  const expandedNavBackground = menuMounted
+  const expandedNavBackground = useFullWidthMenu
     ? '#ffffff'
     : isTransparentHeader
       ? 'transparent'
@@ -167,82 +213,129 @@ export default function Header() {
       <nav
         aria-label="Main navigation"
         className={`relative w-full ${
-          menuMounted || isSolidGlass
+          useFullWidthMenu || isSolidGlass
             ? 'border-b border-gray-200/80 backdrop-blur-xl backdrop-saturate-150'
             : ''
         }`}
         style={{
-          backgroundColor: isCompact ? 'transparent' : expandedNavBackground,
+          backgroundColor: useCompactShell ? 'transparent' : expandedNavBackground,
           boxShadow: 'none',
           WebkitBackdropFilter:
-            menuMounted || isSolidGlass ? 'blur(24px) saturate(150%)' : 'none',
+            useFullWidthMenu || isSolidGlass ? 'blur(24px) saturate(150%)' : 'none',
         }}
       >
         <div
-          className={
-            isCompact
-              ? 'mx-auto max-w-5xl rounded-2xl border border-gray-200/80 bg-white/55 shadow-[0_8px_30px_rgb(0,0,0,0.08)] backdrop-blur-md backdrop-saturate-150'
+          className={`transition-[background-color,box-shadow,backdrop-filter] duration-300 ease-in-out ${
+            useCompactShell
+              ? useInlineMenu
+                ? 'mx-auto max-w-5xl rounded-2xl border border-gray-200/80 bg-white shadow-[0_8px_30px_rgb(0,0,0,0.12)]'
+                : 'mx-auto max-w-5xl rounded-2xl border border-gray-200/80 bg-white/55 shadow-[0_8px_30px_rgb(0,0,0,0.08)] backdrop-blur-md backdrop-saturate-150'
               : 'w-full'
-          }
+          }`}
         >
           <div
             className={`mx-auto flex max-w-7xl items-center justify-between pl-3 pr-6 md:pl-8 md:pr-12 ${
-              isCompact ? 'h-14' : 'h-16'
+              isCompactBar || useInlineMenu ? 'h-14' : 'h-16'
             }`}
           >
-          <Link
-            to="/"
-            className="inline-flex items-center"
-            onClick={() => handleNavClick('/')}
-          >
-            <img
-              src={logoSrc}
-              alt="DATER"
-              className={`w-auto transition-all duration-300 ease-in-out ${
-                isCompact ? 'h-8 md:h-9' : 'h-9 md:h-12'
-              }`}
-            />
-          </Link>
+            <Link
+              to="/"
+              className="inline-flex items-center"
+              onClick={() => handleNavClick('/')}
+            >
+              <img
+                src={logoSrc}
+                alt="DATER"
+                className={`w-auto transition-all duration-300 ease-in-out ${
+                  isScrolled ? 'h-8 md:h-9' : 'h-9 md:h-12'
+                }`}
+              />
+            </Link>
 
-          <div className="hidden items-center gap-8 md:flex">
-            {NAV_LINKS.map((item) =>
-              item.external ? (
-                <a
-                  key={item.label}
-                  href={item.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={navClass}
-                >
-                  {item.label}
-                </a>
-              ) : (
-                <Link
-                  key={item.label}
-                  to={item.to}
-                  className={navClass}
-                  onClick={() => handleNavClick(item.to)}
-                >
-                  {item.label}
-                </Link>
-              ),
-            )}
+            <div className="hidden items-center gap-8 md:flex">
+              <NavLinkItems className={navClass} onNavigate={handleNavClick} />
+            </div>
+
+            <button
+              type="button"
+              className={`block md:hidden ${isLightOnTransparent ? 'text-white' : 'text-text-primary'}`}
+              aria-label={menuMounted ? 'Close menu' : 'Open menu'}
+              aria-expanded={menuMounted}
+              aria-controls="mobile-menu"
+              onClick={menuMounted ? closeMenu : openMenu}
+            >
+              {menuMounted ? <CloseIcon /> : <MenuIcon />}
+            </button>
           </div>
 
-          <button
-            type="button"
-            className={`block md:hidden ${isLightOnTransparent ? 'text-white' : 'text-text-primary'}`}
-            aria-label={menuMounted ? 'Close menu' : 'Open menu'}
-            aria-expanded={menuMounted}
-            onClick={menuMounted ? closeMenu : openMenu}
-          >
-            {menuMounted ? <CloseIcon /> : <MenuIcon />}
-          </button>
-        </div>
+          {useInlineMenu && (
+            <div
+              id="mobile-menu"
+              className="overflow-hidden transition-[max-height] duration-300 ease-out md:hidden"
+              style={{
+                maxHeight: menuActive ? `${inlineMenuHeight}px` : '0px',
+              }}
+              role="dialog"
+              aria-modal="true"
+              aria-label="Mobile navigation"
+            >
+              <div ref={inlineMenuRef} className="border-t border-gray-100 px-6 py-4">
+                <nav className="flex flex-col space-y-1">
+                  <NavLinkItems
+                    className="block min-h-11 py-2 font-google-sans-flex text-[15px] font-medium text-[#322745] transition-opacity hover:opacity-80"
+                    onNavigate={handleNavClick}
+                  />
+                </nav>
+
+                <div className="mt-4 border-t border-gray-100 pt-4">
+                  <p className="mb-3 font-google-sans-flex text-[14px] font-normal text-[#929292]">
+                    Follow us
+                  </p>
+                  <div className="flex items-center gap-2.5">
+                    {SOCIAL_LINKS.map(({ label, href, src }) => (
+                      <a
+                        key={label}
+                        href={href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={label}
+                        className="transition-opacity hover:opacity-80"
+                      >
+                        <img src={src} alt="" className="h-7 w-7 object-contain" />
+                      </a>
+                    ))}
+                  </div>
+
+                  <div className="mt-4 flex flex-row items-center gap-3 border-t border-gray-100 pt-4">
+                    <a href="#" aria-label="Download on the App Store">
+                      <img
+                        src={badgeAppStore}
+                        alt="Download on the App Store"
+                        className="h-9 w-auto"
+                      />
+                    </a>
+                    <a
+                      href="https://play.google.com/store/apps/details?id=com.daterplat.app"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label="Get it on Google Play"
+                    >
+                      <img
+                        src={badgeGooglePlay}
+                        alt="Get it on Google Play"
+                        className="h-9 w-auto"
+                      />
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
 
-        {menuMounted && (
+        {useFullWidthMenu && (
           <div
+            id="mobile-menu"
             className="absolute left-0 right-0 top-full overflow-hidden bg-white transition-[max-height] duration-300 ease-out md:hidden"
             style={{
               maxHeight: menuActive ? `calc(100dvh - ${headerHeight}px)` : '0px',
@@ -256,29 +349,10 @@ export default function Header() {
               style={{ minHeight: `calc(100dvh - ${headerHeight}px)` }}
             >
               <nav className="flex flex-col items-center gap-8 px-6 pt-8">
-                {NAV_LINKS.map((item) =>
-                  item.external ? (
-                    <a
-                      key={item.label}
-                      href={item.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="font-google-sans-flex text-[20px] font-semibold text-[#322745] transition-opacity hover:opacity-80"
-                      onClick={closeMenu}
-                    >
-                      {item.label}
-                    </a>
-                  ) : (
-                    <Link
-                      key={item.label}
-                      to={item.to}
-                      className="font-google-sans-flex text-[20px] font-semibold text-[#322745] transition-opacity hover:opacity-80"
-                      onClick={() => handleNavClick(item.to)}
-                    >
-                      {item.label}
-                    </Link>
-                  ),
-                )}
+                <NavLinkItems
+                  className="font-google-sans-flex text-[20px] font-semibold text-[#322745] transition-opacity hover:opacity-80"
+                  onNavigate={handleNavClick}
+                />
               </nav>
 
               <div className="mt-28 px-6 pb-6">

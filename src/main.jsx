@@ -9,6 +9,8 @@ import Contact from './pages/Contact.jsx'
 import FAQs from './pages/FAQs.jsx'
 import PrivacyPolicy from './pages/PrivacyPolicy.jsx'
 import Terms from './pages/Terms.jsx'
+import CommunityGuidelines from './pages/CommunityGuidelines.jsx'
+import CookiePolicy from './pages/CookiePolicy.jsx'
 import DownloadRedirect from './pages/DownloadRedirect.jsx'
 
 createRoot(document.getElementById('root')).render(
@@ -23,6 +25,8 @@ createRoot(document.getElementById('root')).render(
           <Route path="faqs" element={<FAQs />} />
           <Route path="privacy" element={<PrivacyPolicy />} />
           <Route path="terms" element={<Terms />} />
+          <Route path="community-guidelines" element={<CommunityGuidelines />} />
+          <Route path="cookies" element={<CookiePolicy />} />
         </Route>
       </Routes>
     </BrowserRouter>

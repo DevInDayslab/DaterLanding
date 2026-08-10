@@ -4,6 +4,8 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "convert-legal": "python3 scripts/convert-legal-docx.py",
+    "prebuild": "python3 scripts/convert-legal-docx.py",
     "dev": "vite",
     "build": "vite build",
     "lint": "oxlint",
