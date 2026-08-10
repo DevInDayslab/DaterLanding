@@ -142,7 +142,7 @@ function FeaturesSection() {
         </p>
       </div>
 
-      <div className="mx-auto mt-16 grid max-w-[1114px] grid-cols-1 gap-x-8 gap-y-6 md:grid-cols-3">
+      <div className="mx-auto mt-8 grid max-w-[1114px] grid-cols-1 gap-x-8 gap-y-6 md:mt-16 md:grid-cols-3">
         {FEATURES.map((feature) => (
           <article
             key={feature.title}
@@ -174,7 +174,7 @@ function FeaturesSection() {
 
 function BlogSkeleton() {
   return (
-    <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+    <div className="mx-auto grid max-w-[1114px] grid-cols-1 gap-6 md:grid-cols-3">
       {[0, 1, 2].map((i) => (
         <div key={i} className="overflow-hidden rounded-[24px] bg-white shadow-sm">
           <div className="aspect-video w-full animate-pulse bg-black/10" />
@@ -230,10 +230,15 @@ function BuzzSection() {
   }, [])
 
   return (
-    <section id="the-buzz" data-header-surface="solid" data-header-bg="#EDE8FF" className="bg-accent-lavender py-14 px-8 md:px-16">
-      <div className="mx-auto mb-16 flex w-full flex-col items-center">
-        <h2 className="mx-auto max-w-lg text-center font-google-sans-flex text-[34px] font-semibold uppercase leading-tight text-text-primary">
-          READ TRENDING BLOGS ABOUT DATING
+    <section id="the-buzz" data-header-surface="solid" data-header-bg="#EDE8FF" className="bg-accent-lavender px-4 pb-14 pt-8 md:px-16 md:pt-12">
+      <div className="mx-auto mb-8 flex w-full flex-col items-center px-4 md:mb-16 md:px-0">
+        <h2 className="mx-auto max-w-[23.75rem] text-center font-google-sans-flex text-[23px] font-bold uppercase leading-tight text-text-primary md:max-w-lg md:text-[34px] md:font-semibold">
+          <span className="md:hidden">
+            READ TRENDING BLOGS
+            <br />
+            ABOUT DATING
+          </span>
+          <span className="hidden md:inline">READ TRENDING BLOGS ABOUT DATING</span>
         </h2>
       </div>
 
@@ -244,7 +249,7 @@ function BuzzSection() {
       )}
 
       {!loading && !error && (
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+        <div className="mx-auto grid max-w-[1114px] grid-cols-1 gap-6 md:grid-cols-3">
           {blogs.map((blog) => (
             <a
               key={blog.id}
@@ -262,10 +267,10 @@ function BuzzSection() {
               />
               <div className="p-5">
                 <h3
-                  className="line-clamp-2 font-google-sans-flex text-[19px] font-normal text-text-primary"
+                  className="line-clamp-2 font-google-sans-flex text-[17px] font-normal text-text-primary"
                   dangerouslySetInnerHTML={{ __html: blog.title }}
                 />
-                <time className="mt-6 block font-google-sans-flex text-[14px] font-normal text-text-muted">
+                <time className="mt-6 block font-google-sans-flex text-[12px] font-normal text-text-muted">
                   {blog.date}
                 </time>
               </div>
@@ -274,7 +279,7 @@ function BuzzSection() {
         </div>
       )}
 
-      <div className="mt-4 flex justify-end">
+      <div className="mx-auto mt-4 flex max-w-[1114px] justify-end">
         <a
           href="https://dater-buzz.com"
           target="_blank"
