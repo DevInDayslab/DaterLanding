@@ -7,6 +7,7 @@ export default function CommunityGuidelines() {
       heroTitle="Community guidelines"
       pageTitle="Community guidelines"
       html={communityHtml}
+      narrowHero
     />
   )
 }

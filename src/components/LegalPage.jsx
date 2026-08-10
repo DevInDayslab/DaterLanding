@@ -1,10 +1,16 @@
 import PageHero from './PageHero'
 import LegalDocContent from './LegalDocContent'
 
-export default function LegalPage({ heroTitle, pageTitle, html }) {
+const NARROW_HERO_CONTAINER_CLASS =
+  'bg-white px-12 py-2 shadow-sm md:px-20'
+
+export default function LegalPage({ heroTitle, pageTitle, html, narrowHero = false }) {
   return (
     <main className="w-full">
-      <PageHero title={heroTitle} />
+      <PageHero
+        title={heroTitle}
+        containerClassName={narrowHero ? NARROW_HERO_CONTAINER_CLASS : undefined}
+      />
 
       <div
         data-header-surface="solid"

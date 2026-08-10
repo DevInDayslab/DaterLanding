@@ -7,6 +7,7 @@ export default function PrivacyPolicy() {
       heroTitle="Privacy policy"
       pageTitle="Privacy policy"
       html={privacyHtml}
+      narrowHero
     />
   )
 }
