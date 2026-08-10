@@ -67,5 +67,5 @@ export function useHeaderTheme(headerRef) {
     }
   }, [location.pathname, updateTheme])
 
-  return theme
+  return { theme, refreshTheme: updateTheme }
 }

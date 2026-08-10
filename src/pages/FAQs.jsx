@@ -45,7 +45,7 @@ export default function FAQs() {
           </p>
         </div>
 
-        <div className="mx-auto max-w-4xl px-8 pb-24 pt-8 md:pt-12">
+        <div className="mx-auto max-w-4xl px-8 pb-24 pt-5 md:pt-12">
         <div>
           {FAQS.map((item, i) => (
             <div key={i} className="border-b border-gray-200">
@@ -53,7 +53,7 @@ export default function FAQs() {
                 type="button"
                 onClick={() => setOpen(open === i ? null : i)}
                 className={`flex w-full items-center justify-between text-left ${
-                  open === i ? 'py-5' : 'py-4'
+                  open === i ? 'py-3 pb-2 md:py-5' : 'py-3 md:py-4'
                 }`}
               >
                 <span className="font-google-sans-flex text-[16px] font-medium text-text-primary">
@@ -64,13 +64,13 @@ export default function FAQs() {
                 </span>
               </button>
               {open === i && (
-                <p className="pb-5 font-google-sans-flex text-[15px] text-text-muted">{item.a}</p>
+                <p className="pb-3 font-google-sans-flex text-[15px] text-text-muted md:pb-5">{item.a}</p>
               )}
             </div>
           ))}
         </div>
 
-        <p className="mt-12 font-google-sans-flex text-[16px] text-text-muted">
+        <p className="mt-6 font-google-sans-flex text-[16px] text-text-muted md:mt-12">
           Need more help?{' '}
           <a href="/contact" className="font-semibold text-text-primary underline">
             Contact us

@@ -106,7 +106,7 @@ export default function Header() {
   const [menuMounted, setMenuMounted] = useState(false)
   const [menuActive, setMenuActive] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
-  const theme = useHeaderTheme(headerRef)
+  const { theme, refreshTheme } = useHeaderTheme(headerRef)
 
   const useCompactShell = isScrolled
   const useInlineMenu = menuMounted && isScrolled
@@ -191,6 +191,19 @@ export default function Header() {
       document.body.style.overflow = previousOverflow
     }
   }, [menuMounted])
+
+  useEffect(() => {
+    refreshTheme()
+    if (!menuMounted) return undefined
+
+    const frame = requestAnimationFrame(() => refreshTheme())
+    const timer = window.setTimeout(() => refreshTheme(), 320)
+
+    return () => {
+      cancelAnimationFrame(frame)
+      window.clearTimeout(timer)
+    }
+  }, [menuMounted, menuActive, isScrolled, refreshTheme])
 
   const isSolidGlass = !isTransparentHeader && !menuMounted && !useCompactShell
   const headerPositionClass = useFullWidthMenu
