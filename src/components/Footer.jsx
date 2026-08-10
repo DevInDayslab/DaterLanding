@@ -79,7 +79,7 @@ function GetTheAppBanner() {
         <h2 className="text-left font-google-sans-flex text-[28px] font-semibold leading-tight text-[#000000]">
           Get the app
         </h2>
-        <p className="mt-1 text-left font-google-sans-flex text-[14px] font-normal text-[#000000]">
+        <p className="mt-1 text-left font-google-sans-flex text-[15px] font-normal text-[#000000]">
           Find your next date
         </p>
         <DownloadButton variant="footer" className="mt-4" />
@@ -202,10 +202,10 @@ export default function Footer() {
             </div>
           </div>
 
-          <p className="mt-12 text-center font-google-sans-flex text-[14px] text-[#484848] md:mt-16">
+          <p className="mt-6 text-center font-google-sans-flex text-[14px] text-[#484848] md:mt-16">
             © 2026 Dater | All rights reserved
           </p>
-          <p className="mt-2 text-center font-google-sans-flex text-[14px] text-[#929292]">
+          <p className="mt-1 text-center font-google-sans-flex text-[14px] text-[#929292] md:mt-2">
             <a
               href="https://www.devindays.com"
               target="_blank"
@@ -216,12 +216,12 @@ export default function Footer() {
             </a>
           </p>
 
-          <div className="mt-8 flex flex-row items-center justify-center gap-4 border-t border-gray-200 pt-8 md:hidden">
+          <div className="mt-4 flex flex-row items-center justify-center gap-4 border-t border-gray-200 pt-4 md:hidden">
             <a href="#" aria-label="Download on the App Store">
               <img
                 src={badgeAppStore}
                 alt="Download on the App Store"
-                className="h-10 w-auto"
+                className="h-16 w-auto"
               />
             </a>
             <a
@@ -233,7 +233,7 @@ export default function Footer() {
               <img
                 src={badgeGooglePlay}
                 alt="Get it on Google Play"
-                className="h-10 w-auto"
+                className="h-16 w-auto"
               />
             </a>
           </div>
