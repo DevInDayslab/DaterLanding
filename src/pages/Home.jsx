@@ -146,7 +146,7 @@ function FeaturesSection() {
         {FEATURES.map((feature) => (
           <article
             key={feature.title}
-            className={`${feature.color} flex h-[350px] flex-col overflow-hidden rounded-[32px] p-6`}
+            className={`${feature.color} flex h-[400px] flex-col overflow-hidden rounded-[32px] p-6`}
           >
             <div className="mb-2 flex h-48 w-full shrink-0 items-start justify-center overflow-hidden">
               <img
