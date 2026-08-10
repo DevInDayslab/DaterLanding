@@ -221,15 +221,16 @@ export default function Header() {
       <nav
         aria-label="Main navigation"
         className={`relative w-full ${
-          useFullWidthMenu || isSolidGlass
-            ? 'border-b border-gray-200/80 backdrop-blur-xl backdrop-saturate-150'
-            : ''
+          useFullWidthMenu
+            ? 'bg-white'
+            : isSolidGlass
+              ? 'border-b border-gray-200/80 backdrop-blur-xl backdrop-saturate-150'
+              : ''
         }`}
         style={{
           backgroundColor: useCompactShell ? 'transparent' : expandedNavBackground,
           boxShadow: 'none',
-          WebkitBackdropFilter:
-            useFullWidthMenu || isSolidGlass ? 'blur(24px) saturate(150%)' : 'none',
+          WebkitBackdropFilter: isSolidGlass ? 'blur(24px) saturate(150%)' : 'none',
         }}
       >
         <div
@@ -240,7 +241,9 @@ export default function Header() {
                     ? 'shadow-[0_12px_40px_rgb(0,0,0,0.12)]'
                     : 'shadow-[0_8px_30px_rgb(0,0,0,0.08)]'
                 }`
-              : 'w-full'
+              : useFullWidthMenu
+                ? 'w-full bg-white'
+                : 'w-full'
           }`}
           style={
             useCompactShell
@@ -344,74 +347,74 @@ export default function Header() {
               </div>
             </div>
           )}
-        </div>
 
-        {useFullWidthMenu && (
-          <div
-            id="mobile-menu"
-            className="absolute left-0 right-0 top-full overflow-hidden bg-white transition-[max-height] duration-300 ease-out md:hidden"
-            style={{
-              maxHeight: menuActive ? `calc(100dvh - ${headerHeight}px)` : '0px',
-            }}
-            role="dialog"
-            aria-modal="true"
-            aria-label="Mobile navigation"
-          >
+          {useFullWidthMenu && (
             <div
-              className="flex flex-col"
-              style={{ minHeight: `calc(100dvh - ${headerHeight}px)` }}
+              id="mobile-menu"
+              className="overflow-hidden bg-white transition-[max-height] duration-300 ease-out md:hidden"
+              style={{
+                maxHeight: menuActive ? `calc(100dvh - ${headerHeight}px)` : '0px',
+              }}
+              role="dialog"
+              aria-modal="true"
+              aria-label="Mobile navigation"
             >
-              <nav className="flex flex-col items-center gap-8 px-6 pt-8">
-                <NavLinkItems
-                  className="font-google-sans-flex text-[20px] font-semibold text-[#322745] transition-opacity hover:opacity-80"
-                  onNavigate={handleNavClick}
-                />
-              </nav>
+              <div
+                className="flex flex-col bg-white"
+                style={{ minHeight: `calc(100dvh - ${headerHeight}px)` }}
+              >
+                <nav className="flex flex-col items-center gap-8 px-6 pt-8">
+                  <NavLinkItems
+                    className="font-google-sans-flex text-[20px] font-semibold text-[#322745] transition-opacity hover:opacity-80"
+                    onNavigate={handleNavClick}
+                  />
+                </nav>
 
-              <div className="mt-28 px-6 pb-6">
-                <p className="mb-4 text-center font-google-sans-flex text-[16px] font-normal text-[#929292]">
-                  Follow us
-                </p>
-                <div className="flex items-center justify-center gap-2.5">
-                  {SOCIAL_LINKS.map(({ label, href, src }) => (
+                <div className="mt-28 px-6 pb-6">
+                  <p className="mb-4 text-center font-google-sans-flex text-[16px] font-normal text-[#929292]">
+                    Follow us
+                  </p>
+                  <div className="flex items-center justify-center gap-2.5">
+                    {SOCIAL_LINKS.map(({ label, href, src }) => (
+                      <a
+                        key={label}
+                        href={href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={label}
+                        className="transition-opacity hover:opacity-80"
+                      >
+                        <img src={src} alt="" className="h-7 w-7 object-contain" />
+                      </a>
+                    ))}
+                  </div>
+
+                  <div className="mt-6 flex flex-row items-center justify-center gap-4 pt-6">
+                    <a href="#" aria-label="Download on the App Store">
+                      <img
+                        src={badgeAppStore}
+                        alt="Download on the App Store"
+                        className="h-10 w-auto"
+                      />
+                    </a>
                     <a
-                      key={label}
-                      href={href}
+                      href="https://play.google.com/store/apps/details?id=com.daterplat.app"
                       target="_blank"
                       rel="noopener noreferrer"
-                      aria-label={label}
-                      className="transition-opacity hover:opacity-80"
+                      aria-label="Get it on Google Play"
                     >
-                      <img src={src} alt="" className="h-7 w-7 object-contain" />
+                      <img
+                        src={badgeGooglePlay}
+                        alt="Get it on Google Play"
+                        className="h-10 w-auto"
+                      />
                     </a>
-                  ))}
-                </div>
-
-                <div className="mt-6 flex flex-row items-center justify-center gap-4 border-t border-gray-200 pt-6">
-                  <a href="#" aria-label="Download on the App Store">
-                    <img
-                      src={badgeAppStore}
-                      alt="Download on the App Store"
-                      className="h-10 w-auto"
-                    />
-                  </a>
-                  <a
-                    href="https://play.google.com/store/apps/details?id=com.daterplat.app"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="Get it on Google Play"
-                  >
-                    <img
-                      src={badgeGooglePlay}
-                      alt="Get it on Google Play"
-                      className="h-10 w-auto"
-                    />
-                  </a>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        )}
+          )}
+        </div>
       </nav>
     </header>
   )
