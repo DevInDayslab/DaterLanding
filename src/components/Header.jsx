@@ -227,11 +227,20 @@ export default function Header() {
         <div
           className={`transition-[background-color,box-shadow,backdrop-filter] duration-300 ease-in-out ${
             useCompactShell
-              ? useInlineMenu
-                ? 'mx-auto max-w-5xl rounded-2xl border border-gray-200/80 bg-white shadow-[0_8px_30px_rgb(0,0,0,0.12)]'
-                : 'mx-auto max-w-5xl rounded-2xl border border-gray-200/80 bg-white/55 shadow-[0_8px_30px_rgb(0,0,0,0.08)] backdrop-blur-md backdrop-saturate-150'
+              ? `mx-auto max-w-5xl rounded-2xl border border-gray-200/80 bg-white/70 backdrop-blur-md backdrop-saturate-150 ${
+                  useInlineMenu
+                    ? 'shadow-[0_12px_40px_rgb(0,0,0,0.12)]'
+                    : 'shadow-[0_8px_30px_rgb(0,0,0,0.08)]'
+                }`
               : 'w-full'
           }`}
+          style={
+            useCompactShell
+              ? {
+                  WebkitBackdropFilter: 'blur(12px) saturate(150%)',
+                }
+              : undefined
+          }
         >
           <div
             className={`mx-auto flex max-w-7xl items-center justify-between pl-3 pr-6 md:pl-8 md:pr-12 ${
