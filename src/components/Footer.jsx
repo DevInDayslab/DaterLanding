@@ -76,19 +76,19 @@ function GetTheAppBanner() {
         data-header-bg="#DAEF68"
         className="flex w-full flex-col items-start overflow-hidden bg-accent-lime px-6 pb-6 pt-8 md:hidden"
       >
-        <h2 className="text-left font-google-sans-flex text-[28px] font-semibold leading-tight text-[#000000]">
+        <h2 className="text-left font-google-sans-flex text-[26px] font-semibold leading-[1.1] text-[#000000]">
           Get the app
         </h2>
         <p className="mt-1 text-left font-google-sans-flex text-[15px] font-normal text-[#000000]">
           Find your next date
         </p>
-        <DownloadButton variant="footer" className="mt-4" />
+        <DownloadButton variant="footer" className="mt-4 self-start" />
         <img
           src={phonesMockup}
           alt="DATER app on mobile phones"
           loading="lazy"
           decoding="async"
-          className="mt-8 h-auto w-full max-w-[400px] scale-105 self-center object-contain"
+          className="mt-8 h-auto w-[90%] max-w-[360px] self-start object-contain"
         />
       </section>
 
