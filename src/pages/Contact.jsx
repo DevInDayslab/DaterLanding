@@ -26,13 +26,7 @@ const CONTACT_ITEMS = [
   },
   {
     heading: 'Law Enforcement',
-    body: (
-      <>
-        H. No. 1404, VPO Wazirabad, Atta Mohalla, Near Sant Shop,
-        <br />
-        Sector-52, Gurgaon, Haryana, India - 122003
-      </>
-    ),
+    body: 'H. No. 1404, VPO Wazirabad, Atta Mohalla, Near Sant Shop, Sector-52, Gurgaon, Haryana, India - 122003',
     email: 'law-enforcement@dater.social',
     note: 'NOTE:- We will not respond to emails sent to this address by non-law enforcement officials.',
   },
@@ -243,7 +237,7 @@ export default function Contact() {
       <div data-header-surface="solid" data-header-bg="#ffffff" className="w-full">
       {/* Intro */}
       <div className="mt-8 px-8 text-left md:mt-16 md:text-center">
-        <h2 className="font-google-sans-flex text-[24px] font-bold leading-[1.15] text-text-primary md:mx-auto md:text-[28px] md:leading-normal">
+        <h2 className="font-google-sans-flex text-[23px] font-bold leading-[1.15] text-text-primary md:mx-auto md:text-[28px] md:leading-normal">
           Got something you want to talk about?
         </h2>
         <p className="mt-1 max-w-lg font-google-sans-flex text-[15px] text-text-muted md:mx-auto md:mt-2">
