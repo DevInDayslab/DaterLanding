@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+  xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+    http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd"
+>
+  <url>
+    <loc>https://dater.social/</loc>
+    <lastmod>2026-08-12</lastmod>
+    <priority>1.00</priority>
+  </url>
+  <url>
+    <loc>https://dater.social/about</loc>
+    <lastmod>2026-08-12</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://dater.social/contact-us</loc>
+    <lastmod>2026-08-12</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://dater.social/faq</loc>
+    <lastmod>2026-08-12</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://dater.social/terms</loc>
+    <lastmod>2026-08-12</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://dater.social/privacy-policy</loc>
+    <lastmod>2026-08-12</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://dater.social/cookie-policy</loc>
+    <lastmod>2026-08-12</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://dater.social/community-guidelines</loc>
+    <lastmod>2026-08-12</lastmod>
+    <priority>0.80</priority>
+  </url>
+</urlset>

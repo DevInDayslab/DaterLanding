@@ -12,19 +12,19 @@ import DownloadQr from './DownloadQr'
 
 const COMPANY_LINKS = [
   { label: 'About us', to: '/about' },
-  { label: 'Contact us', to: '/contact' },
+  { label: 'Contact us', to: '/contact-us' },
 ]
 
 const USERS_LINKS = [
-  { label: 'FAQs', to: '/faqs' },
+  { label: 'FAQs', to: '/faq' },
   { label: 'The Buzz', href: 'https://dater-buzz.com', external: true },
   { label: 'Community guidelines', to: '/community-guidelines' },
 ]
 
 const LEGAL_LINKS = [
-  { label: 'Privacy policy', to: '/privacy' },
+  { label: 'Privacy policy', to: '/privacy-policy' },
   { label: 'Terms & conditions', to: '/terms' },
-  { label: 'Cookie policy', to: '/cookies' },
+  { label: 'Cookie policy', to: '/cookie-policy' },
 ]
 
 const SOCIAL_LINKS = [

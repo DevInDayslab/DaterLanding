@@ -1,4 +1,10 @@
 {
+  "redirects": [
+    { "source": "/contact", "destination": "/contact-us", "permanent": true },
+    { "source": "/faqs", "destination": "/faq", "permanent": true },
+    { "source": "/privacy", "destination": "/privacy-policy", "permanent": true },
+    { "source": "/cookies", "destination": "/cookie-policy", "permanent": true }
+  ],
   "rewrites": [
     {
       "source": "/api/:path*",

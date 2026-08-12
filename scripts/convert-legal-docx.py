@@ -52,13 +52,13 @@ def read_relationships(zf: zipfile.ZipFile) -> dict[str, str]:
 
 def normalize_href(target: str) -> str:
     if "privacy-policy" in target or target.endswith("/privacy-policy"):
-        return "/privacy"
+        return "/privacy-policy"
     if "dater.social/terms" in target or target.endswith("/terms"):
         return "/terms"
     if "community-guidelines" in target:
         return "/community-guidelines"
     if "cookie" in target.lower():
-        return "/cookies"
+        return "/cookie-policy"
     if target.startswith("mailto:"):
         return target
     if target.startswith("http"):

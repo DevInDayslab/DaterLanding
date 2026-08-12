@@ -1,7 +1,7 @@
 const CROSS_LINK_REPLACEMENTS = [
   { pattern: /Terms &amp; Conditions/g, href: '/terms' },
-  { pattern: /Privacy Policy/g, href: '/privacy' },
-  { pattern: /Cookie Policy/g, href: '/cookies' },
+  { pattern: /Privacy Policy/g, href: '/privacy-policy' },
+  { pattern: /Cookie Policy/g, href: '/cookie-policy' },
   { pattern: /Community Guidelines/g, href: '/community-guidelines' },
 ]
 

@@ -15,8 +15,8 @@ const NAV_LINKS = [
   { label: 'The App', to: '/' },
   { label: 'The Buzz', href: 'https://dater-buzz.com', external: true },
   { label: 'About', to: '/about' },
-  { label: 'Contact', to: '/contact' },
-  { label: "FAQ's", to: '/faqs' },
+  { label: 'Contact', to: '/contact-us' },
+  { label: "FAQ's", to: '/faq' },
 ]
 
 const SOCIAL_LINKS = [
