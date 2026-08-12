@@ -1,7 +1,13 @@
 import { useRef, useState } from 'react'
+import { Link } from 'react-router-dom'
 import PageHero from '../components/PageHero'
 import { API } from '../constants/api'
 import { inferAttachmentContentType, readJsonResponse } from '../lib/contactApi'
+import {
+  CONTACT_RATE_LIMIT_MESSAGE,
+  getContactRateLimitError,
+  recordContactSubmission,
+} from '../lib/contactRateLimit'
 
 const CONTACT_ITEMS = [
   {
@@ -33,6 +39,9 @@ const CONTACT_ITEMS = [
 ]
 
 const MAX_ATTACHMENT_BYTES = 10 * 1024 * 1024
+const MAX_ATTACHMENTS = 10
+const SUCCESS_MESSAGE =
+  "Thanks for contacting us. We've received your message and our team will get back to you shortly."
 const MAX_NAME_LENGTH = 30
 const MAX_EMAIL_LENGTH = 254
 const MOBILE_DIGITS = 10
@@ -47,6 +56,61 @@ const EMPTY_FORM = {
 
 const INPUT_BASE_CLASS =
   'w-full rounded-md border px-3 py-3 font-google-sans-flex text-[15px] focus:outline-none disabled:opacity-60'
+
+function getAttachmentValidationError(files) {
+  if (files.length > MAX_ATTACHMENTS) {
+    return `You can attach up to ${MAX_ATTACHMENTS} files.`
+  }
+
+  for (const file of files) {
+    if (!file.size) {
+      return `"${file.name}" is empty and cannot be uploaded.`
+    }
+
+    if (file.size > MAX_ATTACHMENT_BYTES) {
+      return `"${file.name}" exceeds the 10 MB limit.`
+    }
+
+    if (!inferAttachmentContentType(file)) {
+      return `"${file.name}" is not supported. Please upload an image or PDF.`
+    }
+  }
+
+  return ''
+}
+
+function mergeAttachments(existing, incoming) {
+  const merged = [...existing]
+
+  for (const file of incoming) {
+    if (merged.length >= MAX_ATTACHMENTS) {
+      return {
+        files: merged,
+        error: `You can attach up to ${MAX_ATTACHMENTS} files.`,
+      }
+    }
+
+    const isDuplicate = merged.some(
+      (existingFile) =>
+        existingFile.name === file.name &&
+        existingFile.size === file.size &&
+        existingFile.lastModified === file.lastModified
+    )
+    if (isDuplicate) {
+      continue
+    }
+
+    const nextFiles = [...merged, file]
+    const error = getAttachmentValidationError(nextFiles)
+    if (error) {
+      return { files: merged, error }
+    }
+
+    merged.push(file)
+  }
+
+  return { files: merged, error: '' }
+}
 
 function isFieldInvalid(name, value) {
   const trimmed = value.trim()
@@ -81,7 +145,8 @@ function fieldBorderClass(showErrors, name, value) {
 export default function Contact() {
   const fileInputRef = useRef(null)
   const [formData, setFormData] = useState(EMPTY_FORM)
-  const [attachment, setAttachment] = useState(null)
+  const [attachments, setAttachments] = useState([])
+  const [honeypot, setHoneypot] = useState('')
   const [descLen, setDescLen] = useState(0)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [showFieldErrors, setShowFieldErrors] = useState(false)
@@ -106,22 +171,15 @@ export default function Contact() {
   }
 
   function handleAttachmentChange(event) {
-    const file = event.target.files?.[0] ?? null
-    setErrorMessage('')
+    const pickedFiles = Array.from(event.target.files ?? [])
+    event.target.value = ''
 
-    if (!file) {
-      setAttachment(null)
-      return
-    }
+    if (!pickedFiles.length) return
 
-    if (file.size > MAX_ATTACHMENT_BYTES) {
-      setAttachment(null)
-      event.target.value = ''
-      setErrorMessage('Attachment must be 10 MB or smaller.')
-      return
-    }
-
-    setAttachment(file)
+    setSuccessMessage('')
+    const { files, error } = mergeAttachments(attachments, pickedFiles)
+    setAttachments(files)
+    setErrorMessage(error)
   }
 
   async function uploadAttachment(file) {
@@ -140,7 +198,12 @@ export default function Contact() {
     })
 
     if (presignRes.status === 429) {
-      throw new Error('Too many requests. Please try again tomorrow.')
+      const presignRateLimitBody = await readJsonResponse(presignRes).catch(() => ({}))
+      throw new Error(
+        presignRateLimitBody.message ||
+          presignRateLimitBody.error ||
+          CONTACT_RATE_LIMIT_MESSAGE
+      )
     }
 
     if ([502, 503, 504].includes(presignRes.status)) {
@@ -182,15 +245,50 @@ export default function Contact() {
     )
     if (hasInvalidField) return
 
+    const attachmentError = getAttachmentValidationError(attachments)
+    if (attachmentError) {
+      setErrorMessage(attachmentError)
+      return
+    }
+
+    const clientRateLimitError = getContactRateLimitError()
+    if (clientRateLimitError) {
+      setErrorMessage(clientRateLimitError)
+      return
+    }
+
     setIsSubmitting(true)
     setSuccessMessage('')
     setErrorMessage('')
 
     try {
       let attachmentPayload = {}
+      let description = formData.description.trim()
 
-      if (attachment) {
-        attachmentPayload = await uploadAttachment(attachment)
+      if (attachments.length > 0) {
+        attachmentPayload = await uploadAttachment(attachments[0])
+
+        if (attachments.length > 1) {
+          const extraUrls = []
+
+          for (let index = 1; index < attachments.length; index += 1) {
+            const uploaded = await uploadAttachment(attachments[index])
+            if (uploaded.attachmentUrl) {
+              extraUrls.push(uploaded.attachmentUrl)
+            }
+          }
+
+          if (extraUrls.length > 0) {
+            description += `\n\nAdditional attachments:\n${extraUrls.map((url) => `- ${url}`).join('\n')}`
+          }
+        }
+      }
+
+      if (description.length > 2000) {
+        setErrorMessage(
+          'Your message is too long with the selected attachments. Please shorten your description or remove some files.'
+        )
+        return
       }
 
       const res = await fetch(API.landingContactUrl(), {
@@ -201,12 +299,17 @@ export default function Contact() {
         },
         body: JSON.stringify({
           ...formData,
+          description,
+          website: honeypot,
           ...attachmentPayload,
         }),
       })
 
       if (res.status === 429) {
-        throw new Error('Too many requests. Please try again tomorrow.')
+        const rateLimitBody = await readJsonResponse(res).catch(() => ({}))
+        throw new Error(
+          rateLimitBody.message || rateLimitBody.error || CONTACT_RATE_LIMIT_MESSAGE
+        )
       }
 
       const body = await readJsonResponse(res)
@@ -216,13 +319,15 @@ export default function Contact() {
       }
 
       setFormData(EMPTY_FORM)
-      setAttachment(null)
+      setAttachments([])
+      setHoneypot('')
       setDescLen(0)
       setShowFieldErrors(false)
       if (fileInputRef.current) {
         fileInputRef.current.value = ''
       }
-      setSuccessMessage(body.message || 'Your request has been submitted.')
+      recordContactSubmission()
+      setSuccessMessage(SUCCESS_MESSAGE)
     } catch (err) {
       setErrorMessage(err.message || 'Unable to submit request.')
     } finally {
@@ -276,19 +381,18 @@ export default function Contact() {
             Submit a request
           </h3>
 
-          {successMessage && (
-            <p className="mb-6 rounded-lg border border-green-200 bg-green-50 px-4 py-3 font-google-sans-flex text-[15px] text-green-800">
-              {successMessage}
-            </p>
-          )}
+          <form onSubmit={handleSubmit} noValidate className="pb-2">
+            <input
+              type="text"
+              name="website"
+              value={honeypot}
+              onChange={(event) => setHoneypot(event.target.value)}
+              tabIndex={-1}
+              autoComplete="off"
+              aria-hidden="true"
+              className="pointer-events-none absolute left-[-9999px] h-0 w-0 opacity-0"
+            />
 
-          {errorMessage && (
-            <p className="mb-6 rounded-lg border border-red-200 bg-red-50 px-4 py-3 font-google-sans-flex text-[15px] text-red-800">
-              {errorMessage}
-            </p>
-          )}
-
-          <form onSubmit={handleSubmit} noValidate>
             {/* Name */}
             <label className="mb-1 block font-google-sans-flex text-[14px] text-text-primary">
               Your name<span className="text-red-500">*</span>
@@ -354,14 +458,11 @@ export default function Contact() {
             </p>
 
             {/* Attachment */}
-            <label className="mb-1 block font-google-sans-flex text-[14px] text-text-muted">
-              Attachment{' '}
-              <span className="text-text-muted">(optional)</span>
-            </label>
             <input
               ref={fileInputRef}
               type="file"
               accept="image/*,.pdf"
+              multiple
               onChange={handleAttachmentChange}
               disabled={isSubmitting}
               className="hidden"
@@ -370,17 +471,27 @@ export default function Contact() {
             <button
               type="button"
               onClick={() => fileInputRef.current?.click()}
-              disabled={isSubmitting}
-              className="mb-2 w-full rounded-lg border border-gray-300 py-3 font-google-sans-flex text-[13px] text-[#5E9CFE] hover:bg-gray-50 disabled:opacity-60"
+              disabled={isSubmitting || attachments.length >= MAX_ATTACHMENTS}
+              className="w-full rounded-lg bg-[#F5F5F5] py-3.5 font-google-sans-flex text-[15px] font-medium text-text-primary transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60"
             >
-              {attachment ? attachment.name : 'Add file or screenshot (Max. 10mb)'}
+              + Add file or screenshot
             </button>
-            {attachment && (
-              <p className="mb-6 font-google-sans-flex text-[13px] text-text-muted">
-                Selected: {attachment.name}
-              </p>
+            <p className="mt-2 text-center font-google-sans-flex text-[13px] text-text-muted">
+              Max {MAX_ATTACHMENTS} files/10mb each
+            </p>
+            {attachments.length > 0 && (
+              <ul className="mt-3 space-y-1">
+                {attachments.map((file) => (
+                  <li
+                    key={`${file.name}-${file.size}-${file.lastModified}`}
+                    className="truncate text-center font-google-sans-flex text-[13px] text-text-primary"
+                  >
+                    {file.name}
+                  </li>
+                ))}
+              </ul>
             )}
-            {!attachment && <div className="mb-6" />}
+            <div className="mb-6" />
 
             {/* Submit */}
             <button
@@ -390,6 +501,30 @@ export default function Contact() {
             >
               {isSubmitting ? 'Submitting...' : 'Submit'}
             </button>
+
+            {successMessage && (
+              <p className="mt-6 text-center font-google-sans-flex text-[15px] italic leading-snug text-[#087600] md:text-[16px]">
+                {successMessage}
+              </p>
+            )}
+
+            {errorMessage && (
+              <p className="mt-6 text-center font-google-sans-flex text-[15px] leading-snug text-red-700">
+                {errorMessage}
+              </p>
+            )}
+
+            <p className="mt-6 text-center font-google-sans-flex text-[13px] leading-snug text-text-muted md:text-[14px]">
+              By tapping &apos;Submit&apos; you Agree to Dater&apos;s{' '}
+              <Link to="/terms" className="text-text-muted underline hover:opacity-80">
+                Terms &amp; Conditions
+              </Link>{' '}
+              and{' '}
+              <Link to="/privacy-policy" className="text-text-muted underline hover:opacity-80">
+                Privacy Policy
+              </Link>
+              .
+            </p>
           </form>
         </div>
       </div>
