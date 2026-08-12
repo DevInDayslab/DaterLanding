@@ -148,9 +148,9 @@ function FeaturesSection() {
         {FEATURES.map((feature) => (
           <article
             key={feature.title}
-            className={`${feature.color} flex h-[360px] flex-col overflow-hidden rounded-[24px] p-6 md:h-[380px] md:rounded-[32px]`}
+            className={`${feature.color} flex flex-col gap-y-[clamp(0.5rem,2vw,0.625rem)] overflow-hidden rounded-[24px] p-6 md:h-[380px] md:rounded-[32px]`}
           >
-            <div className="mb-2 flex h-48 w-full shrink-0 items-start justify-center overflow-hidden">
+            <div className="w-full shrink-0 md:flex md:h-48 md:items-start md:justify-center md:overflow-hidden">
               <img
                 src={feature.image}
                 alt=""
@@ -158,13 +158,13 @@ function FeaturesSection() {
                 height={266}
                 loading="lazy"
                 decoding="async"
-                className="h-full max-w-full object-contain object-top"
+                className="w-full object-contain object-top md:h-full md:w-auto md:max-w-full"
               />
             </div>
-            <h3 className="mb-1 shrink-0 font-google-sans-flex text-[19px] font-medium text-text-primary">
+            <h3 className="shrink-0 font-google-sans-flex text-[clamp(17px,4.85vw,21px)] font-medium text-text-primary md:text-[19px]">
               {feature.title}
             </h3>
-            <p className="shrink-0 font-google-sans-flex text-[14px] font-normal text-text-primary">
+            <p className="shrink-0 font-google-sans-flex text-[clamp(13px,3.6vw,15px)] font-normal text-text-primary md:text-[14px]">
               {feature.desc}
             </p>
           </article>
