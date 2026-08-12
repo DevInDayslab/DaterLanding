@@ -4,11 +4,16 @@ Vite + React marketing site for [dater.social](https://dater.social).
 
 ## Production SEO / hosting
 
-In production, the Express backend serves this app’s `dist/` and injects Open Graph / meta tags from PostgreSQL. See [`../backend/docs/LANDING_SEO.md`](../backend/docs/LANDING_SEO.md).
+- **Vercel** serves the site (JS/CSS/images).
+- **Express** only gets Vite’s **`index.html`** and injects SEO from Postgres.
+- [`middleware.js`](middleware.js) proxies `/`, `/about`, etc. to `api.dater.social`.
+
+Details: [`../backend/docs/LANDING_SEO.md`](../backend/docs/LANDING_SEO.md).
 
 ```bash
 npm run build
-rm -rf ../backend/public/landing && mkdir -p ../backend/public/landing && cp -R dist/. ../backend/public/landing/
+npm run sync:seo-html   # copies ONLY dist/index.html → backend/public/landing/
+# redeploy backend, then redeploy this Vercel project
 ```
 
 Local `vite` still uses the static placeholders in `index.html`.

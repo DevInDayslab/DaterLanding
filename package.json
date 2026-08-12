@@ -8,6 +8,7 @@
     "prebuild": "python3 scripts/convert-legal-docx.py",
     "dev": "vite",
     "build": "vite build",
+    "sync:seo-html": "bash scripts/sync-seo-html.sh",
     "lint": "oxlint",
     "preview": "vite preview"
   },
