@@ -1,4 +1,19 @@
-# React + Vite
+# Dater Landing
+
+Vite + React marketing site for [dater.social](https://dater.social).
+
+## Production SEO / hosting
+
+In production, the Express backend serves this app’s `dist/` and injects Open Graph / meta tags from PostgreSQL. See [`../backend/docs/LANDING_SEO.md`](../backend/docs/LANDING_SEO.md).
+
+```bash
+npm run build
+rm -rf ../backend/public/landing && mkdir -p ../backend/public/landing && cp -R dist/. ../backend/public/landing/
+```
+
+Local `vite` still uses the static placeholders in `index.html`.
+
+## React + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
 
