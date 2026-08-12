@@ -15,7 +15,7 @@ const SECTION_COPY = {
 }
 
 const SECTION_HEADING_CLASS =
-  'mb-1.5 font-google-sans-flex text-[23px] font-bold leading-tight text-text-primary md:mb-2.5 md:text-[32px] md:font-semibold'
+  'mb-1.5 font-google-sans-flex text-[23px] font-semibold leading-tight text-text-primary md:mb-2.5 md:text-[32px] md:font-medium'
 
 const SECTION_BODY_CLASS =
   'font-google-sans-flex text-[15px] font-normal leading-normal text-text-muted md:text-[17px] md:leading-snug'
