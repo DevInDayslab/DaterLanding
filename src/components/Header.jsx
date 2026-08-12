@@ -119,9 +119,10 @@ export default function Header() {
     !menuMounted
   const isLightOnTransparent = theme.mode === 'overlay' && !useCompactShell && !menuMounted
   const logoSrc = isLightOnTransparent ? headerLogoWhite : headerLogo
+  const desktopNavFontSize = useCompactShell ? 'text-[17px]' : 'text-[16px]'
   const navClass = isLightOnTransparent
-    ? 'font-google-sans-flex text-[16px] font-medium text-white transition-opacity hover:opacity-80'
-    : 'font-google-sans-flex text-[16px] font-medium text-[#322745] transition-opacity hover:opacity-80'
+    ? `font-google-sans-flex ${desktopNavFontSize} font-medium text-white transition-opacity hover:opacity-80`
+    : `font-google-sans-flex ${desktopNavFontSize} font-medium text-[#322745] transition-opacity hover:opacity-80`
 
   const openMenu = () => {
     setMenuMounted(true)
