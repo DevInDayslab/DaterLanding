@@ -472,7 +472,7 @@ export default function Contact() {
               type="button"
               onClick={() => fileInputRef.current?.click()}
               disabled={isSubmitting || attachments.length >= MAX_ATTACHMENTS}
-              className="w-full rounded-lg bg-[#F5F5F5] py-3.5 font-google-sans-flex text-[15px] font-medium text-text-primary transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60"
+              className="w-full rounded-lg bg-[#F5F5F5] py-3.5 font-google-sans-flex text-[14px] font-medium text-text-primary transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60"
             >
               + Add file or screenshot
             </button>
