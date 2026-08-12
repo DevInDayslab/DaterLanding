@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
 import PageHero from '../components/PageHero'
 
 const FAQS = [
@@ -17,20 +16,7 @@ const FAQS = [
   },
   {
     q: 'Who can use Dater?',
-    a: (
-      <>
-        Dater is intended for adults who are looking to meet people for dating, relationships, or other forms of romantic
-        connection. Users must meet Dater’s minimum age requirement and agree to follow the platform’s{' '}
-        <Link to="/terms" className="text-accent-blue underline hover:opacity-80">
-          Terms &amp; Conditions
-        </Link>
-        ,{' '}
-        <Link to="/community-guidelines" className="text-accent-blue underline hover:opacity-80">
-          Community Guidelines
-        </Link>
-        , and other applicable policies.
-      </>
-    ),
+    a: 'Dater is intended for adults who are looking to meet people for dating, relationships, or other forms of romantic connection. Users must meet Dater’s minimum age requirement and agree to follow the platform’s Terms & Conditions, Community Guidelines, and other applicable policies.',
   },
   {
     q: 'How do I create a Dater account?',
@@ -154,32 +140,11 @@ const FAQS = [
   },
   {
     q: 'What happens to my information when I delete my account?',
-    a: (
-      <>
-        Your information is handled according to Dater’s{' '}
-        <Link to="/privacy-policy" className="text-accent-blue underline hover:opacity-80">
-          Privacy Policy
-        </Link>{' '}
-        and applicable laws. Account deletion does not necessarily mean that every piece of information is immediately
-        removed in every circumstance, as certain information may need to be retained for legal, security,
-        fraud-prevention, dispute-resolution, or other legitimate purposes.
-      </>
-    ),
+    a: 'Your information is handled according to Dater’s Privacy Policy and applicable laws. Account deletion does not necessarily mean that every piece of information is immediately removed in every circumstance, as certain information may need to be retained for legal, security, fraud-prevention, dispute-resolution, or other legitimate purposes.',
   },
   {
     q: 'Is my personal information shared with other users?',
-    a: (
-      <>
-        Dater only displays information that is intended to be part of your dating profile or otherwise visible through
-        the app. Private account information, such as your phone number, is not intended to be publicly displayed to
-        other users. The information you choose to add to your profile may be visible to other users as part of the dating
-        experience. For complete details about how personal information is handled, please refer to Dater’s{' '}
-        <Link to="/privacy-policy" className="text-accent-blue underline hover:opacity-80">
-          Privacy Policy
-        </Link>
-        .
-      </>
-    ),
+    a: 'Dater only displays information that is intended to be part of your dating profile or otherwise visible through the app. Private account information, such as your phone number, is not intended to be publicly displayed to other users. The information you choose to add to your profile may be visible to other users as part of the dating experience. For complete details about how personal information is handled, please refer to Dater’s Privacy Policy.',
   },
   {
     q: 'Should I share my personal or financial information with someone I meet on Dater?',

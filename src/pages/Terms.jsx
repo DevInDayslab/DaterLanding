@@ -7,6 +7,7 @@ export default function Terms() {
       heroTitle="Terms & conditions"
       pageTitle="Terms & conditions"
       html={termsHtml}
+      currentPath="/terms"
       narrowHero
     />
   )

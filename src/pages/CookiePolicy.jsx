@@ -7,6 +7,7 @@ export default function CookiePolicy() {
       heroTitle="Cookie policy"
       pageTitle="Cookie policy"
       html={cookiesHtml}
+      currentPath="/cookie-policy"
     />
   )
 }

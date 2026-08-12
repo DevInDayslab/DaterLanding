@@ -12,7 +12,7 @@ function addSectionIds(html) {
   )
 }
 
-function linkifyTextSegment(text) {
+function linkifyTextSegment(text, currentPath) {
   let result = text
 
   result = result.replace(
@@ -26,22 +26,24 @@ function linkifyTextSegment(text) {
   )
 
   for (const { pattern, href } of CROSS_LINK_REPLACEMENTS) {
+    if (href === currentPath) continue
+
     result = result.replace(pattern, (match) => `<a href="${href}" class="legal-link">${match}</a>`)
   }
 
   return result
 }
 
-function linkifyOutsideTags(html) {
+function linkifyOutsideTags(html, currentPath) {
   return html
     .split(/(<[^>]+>)/g)
-    .map((segment) => (segment.startsWith('<') ? segment : linkifyTextSegment(segment)))
+    .map((segment) => (segment.startsWith('<') ? segment : linkifyTextSegment(segment, currentPath)))
     .join('')
 }
 
-export function prepareLegalHtml(html) {
+export function prepareLegalHtml(html, { currentPath } = {}) {
   if (!html) return ''
 
   const withSectionIds = addSectionIds(html)
-  return linkifyOutsideTags(withSectionIds)
+  return linkifyOutsideTags(withSectionIds, currentPath)
 }
