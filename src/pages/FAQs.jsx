@@ -29,7 +29,19 @@ const FAQS = [
 ]
 
 export default function FAQs() {
-  const [open, setOpen] = useState(0)
+  const [openItems, setOpenItems] = useState(() => new Set([0]))
+
+  const toggleItem = (index) => {
+    setOpenItems((current) => {
+      const next = new Set(current)
+      if (next.has(index)) {
+        next.delete(index)
+      } else {
+        next.add(index)
+      }
+      return next
+    })
+  }
 
   return (
     <main className="w-full">
@@ -51,19 +63,19 @@ export default function FAQs() {
             <div key={i} className="border-b border-gray-200">
               <button
                 type="button"
-                onClick={() => setOpen(open === i ? null : i)}
+                onClick={() => toggleItem(i)}
                 className={`flex w-full items-center justify-between text-left ${
-                  open === i ? 'py-3 pb-2 md:py-5' : 'py-3 md:py-4'
+                  openItems.has(i) ? 'py-3 pb-2 md:py-5' : 'py-3 md:py-4'
                 }`}
               >
                 <span className="font-google-sans-flex text-[16px] font-medium text-text-primary">
                   {item.q}
                 </span>
                 <span className="ml-4 shrink-0 font-google-sans-flex text-[32px] font-light leading-none text-text-muted">
-                  {open === i ? '−' : '+'}
+                  {openItems.has(i) ? '−' : '+'}
                 </span>
               </button>
-              {open === i && (
+              {openItems.has(i) && (
                 <p className="pb-3 font-google-sans-flex text-[15px] text-text-muted md:pb-5">{item.a}</p>
               )}
             </div>

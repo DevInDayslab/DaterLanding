@@ -311,7 +311,7 @@ export default function Header() {
               <div ref={inlineMenuRef} className="border-t border-gray-100 px-6 py-4">
                 <nav className="flex flex-col space-y-1">
                   <NavLinkItems
-                    className="block min-h-11 py-2 font-google-sans-flex text-[15px] font-medium text-[#322745] transition-opacity hover:opacity-80"
+                    className="block min-h-11 py-2 font-google-sans-flex text-[16px] font-medium text-[#322745] transition-opacity hover:opacity-80"
                     onNavigate={handleNavClick}
                   />
                 </nav>

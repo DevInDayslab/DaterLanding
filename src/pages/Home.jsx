@@ -57,6 +57,8 @@ const FEATURES = [
   },
 ]
 
+const BLOG_IMAGE_CLASS = 'aspect-[1280/853] w-full object-contain bg-white'
+
 function formatPostDate(isoDate) {
   try {
     return new Date(isoDate).toLocaleDateString('en-US', {
@@ -177,7 +179,7 @@ function BlogSkeleton() {
     <div className="mx-auto grid max-w-[1114px] grid-cols-1 gap-6 md:grid-cols-3">
       {[0, 1, 2].map((i) => (
         <div key={i} className="overflow-hidden rounded-[24px] bg-white shadow-sm">
-          <div className="aspect-video w-full animate-pulse bg-black/10" />
+          <div className={`${BLOG_IMAGE_CLASS} animate-pulse bg-black/10`} />
           <div className="space-y-3 p-6">
             <div className="h-6 w-full animate-pulse rounded bg-black/10" />
             <div className="h-6 w-2/3 animate-pulse rounded bg-black/10" />
@@ -263,7 +265,7 @@ function BuzzSection() {
                 alt=""
                 loading="lazy"
                 decoding="async"
-                className="aspect-video w-full object-cover"
+                className={BLOG_IMAGE_CLASS}
               />
               <div className="px-3 pb-4 pt-3 md:p-5">
                 <h3

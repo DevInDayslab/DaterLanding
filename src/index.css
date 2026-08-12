@@ -54,7 +54,7 @@
   }
 
   .legal-document .legal-link {
-    @apply underline hover:opacity-80;
+    @apply text-accent-blue underline hover:opacity-80;
   }
 
   .legal-document strong {
