@@ -220,11 +220,16 @@ export default function Header() {
       : resolveHeaderBackground(theme, { isTransparent: false, menuMounted: false })
 
   const headerBarClass = [
-    'mx-auto flex items-center justify-between',
+    'relative mx-auto flex items-center justify-between',
     useCompactShell
       ? 'max-w-7xl pl-3 pr-6 md:pl-4 md:pr-12'
-      : 'w-full max-w-[100rem] pl-3 pr-6 md:pl-8 md:pr-40',
+      : 'w-full max-w-[100rem] pl-3 pr-6 md:pl-8 md:pr-12',
     isCompactBar || useInlineMenu ? 'h-14' : 'h-16',
+  ].join(' ')
+
+  const desktopNavClass = [
+    'hidden items-center gap-8 md:flex',
+    useCompactShell ? '' : 'md:absolute md:right-4 md:top-1/2 md:-translate-y-1/2 lg:right-8 xl:right-12',
   ].join(' ')
 
   return (
@@ -282,7 +287,7 @@ export default function Header() {
               />
             </Link>
 
-            <div className="hidden items-center gap-8 md:flex">
+            <div className={desktopNavClass}>
               <NavLinkItems className={navClass} onNavigate={handleNavClick} />
             </div>
 
