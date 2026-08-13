@@ -128,29 +128,40 @@ function HeroSection() {
 
 function FeaturesSection() {
   return (
-    <section id="the-app" data-header-surface="solid" data-header-bg="#ffffff" className="scroll-mt-[72px] bg-white px-4 pb-12 pt-8 md:px-16 md:pb-24 md:pt-12">
+    <section
+      id="the-app"
+      data-header-surface="solid"
+      data-header-bg="#ffffff"
+      className="features-section scroll-mt-[72px] bg-white px-4 pb-12 pt-8 md:px-16 md:pb-24 md:pt-12"
+    >
       <div className="mx-auto flex w-full flex-col items-center px-4 md:px-0">
-        <h2 className="mx-auto max-w-[23.75rem] text-center font-google-sans-flex text-[23px] font-bold uppercase leading-tight text-text-primary md:text-[34px] md:font-semibold">
-          <span className="md:hidden">
+        <h2 className="features-section__title mx-auto max-w-[23.75rem] text-center font-google-sans-flex text-[23px] font-bold uppercase leading-tight text-text-primary md:max-w-none md:text-[34px] md:font-semibold">
+          <span className="lg:hidden">
             ENHANCE YOUR
             <br />
             DATING EXPERIENCE
           </span>
-          <span className="hidden md:inline">ENHANCE YOUR DATING EXPERIENCE</span>
+          <span className="hidden lg:inline">ENHANCE YOUR DATING EXPERIENCE</span>
         </h2>
-        <p className="mx-auto mt-2 max-w-[35rem] text-center font-google-sans-flex text-[14px] font-normal leading-normal text-text-muted md:mt-4 md:text-[17px] md:font-light">
+        <p className="features-section__lead mx-auto mt-2 max-w-[35rem] text-center font-google-sans-flex text-[14px] font-normal leading-normal text-text-muted md:mt-4 md:text-[17px] md:font-light">
           From verified profiles to smart visibility tools, everything is crafted to help you connect
           with confidence and spark something real.
         </p>
       </div>
 
-      <div className="mx-auto mt-8 grid max-w-[1114px] grid-cols-1 gap-x-8 gap-y-6 md:mt-16 md:grid-cols-3">
+      {/*
+        Portrait phones: 1 col, fluid height.
+        Wider phones / small tablets: 2 cols, fluid height.
+        lg+: desktop 3-col cards with fixed height.
+        Phone landscape spacing is tightened via .features-section in index.css.
+      */}
+      <div className="features-section__grid mx-auto mt-8 grid max-w-[1114px] grid-cols-1 gap-x-5 gap-y-5 sm:grid-cols-2 sm:gap-x-6 sm:gap-y-6 md:mt-16 lg:grid-cols-3 lg:gap-x-8 lg:gap-y-6">
         {FEATURES.map((feature) => (
           <article
             key={feature.title}
-            className={`${feature.color} flex flex-col overflow-hidden rounded-[24px] p-6 md:h-[380px] md:rounded-[32px]`}
+            className={`features-section__card ${feature.color} flex h-auto flex-col overflow-hidden rounded-[24px] p-5 sm:p-6 lg:h-[380px] lg:rounded-[32px] lg:p-6`}
           >
-            <div className="mb-[clamp(0.625rem,2.5vw,0.875rem)] w-full shrink-0 md:mb-3 md:flex md:h-48 md:items-start md:justify-center md:overflow-hidden">
+            <div className="features-section__media mb-[clamp(0.625rem,2.5vw,0.875rem)] w-full shrink-0 lg:mb-3 lg:flex lg:h-48 lg:items-start lg:justify-center lg:overflow-hidden">
               <img
                 src={feature.image}
                 alt=""
@@ -158,13 +169,13 @@ function FeaturesSection() {
                 height={266}
                 loading="lazy"
                 decoding="async"
-                className="w-full object-contain object-top md:h-full md:w-auto md:max-w-full"
+                className="features-section__img w-full object-contain object-top lg:h-full lg:w-auto lg:max-w-full"
               />
             </div>
-            <h3 className="mb-1 shrink-0 font-google-sans-flex text-[clamp(17px,4.85vw,21px)] font-medium text-text-primary md:text-[19px]">
+            <h3 className="features-section__card-title mb-1 shrink-0 font-google-sans-flex text-[clamp(17px,4.85vw,21px)] font-medium text-text-primary lg:text-[19px]">
               {feature.title}
             </h3>
-            <p className="shrink-0 font-google-sans-flex text-[clamp(13px,3.6vw,15px)] font-normal text-text-primary md:text-[14px]">
+            <p className="features-section__card-body shrink-0 font-google-sans-flex text-[clamp(13px,3.6vw,15px)] font-normal leading-snug text-text-primary lg:text-[14px]">
               {feature.desc}
             </p>
           </article>
