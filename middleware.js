@@ -1,6 +1,10 @@
 /**
- * Proxy document HTML from Express so crawlers on the Vercel domain get
- * DB-driven SEO tags. Static assets (/assets/*, images, fonts) stay on Vercel.
+ * Proxy document HTML from Express for crawlers only, so social/search bots
+ * on the Vercel domain get DB-driven SEO tags.
+ *
+ * Real browsers always get Vercel’s own index.html + matching /assets hashes.
+ * Proxying every request caused blank screens after deploy whenever API’s
+ * synced index.html lagged behind the Vercel build.
  *
  * Env (optional): SEO_ORIGIN=https://api.dater.social
  */
@@ -8,6 +12,10 @@ const SEO_ORIGIN = (process.env.SEO_ORIGIN || "https://api.dater.social").replac
 
 const STATIC_FILE =
   /\.(js|css|map|ico|png|jpe?g|gif|svg|webp|woff2?|ttf|eot|txt|xml|json|webmanifest)$/i;
+
+/** Crawlers / link-preview bots that need server-injected meta (not the SPA shell alone). */
+const CRAWLER_UA =
+  /facebookexternalhit|Facebot|Twitterbot|LinkedInBot|Slackbot|Discordbot|WhatsApp|TelegramBot|SkypeUriPreview|Applebot|Googlebot|bingbot|Baiduspider|YandexBot|DuckDuckBot|Slurp|Embedly|Quora Link Preview|Showyoubot|outbrain|pinterest|redditbot|vkShare|W3C_Validator|google-inspectiontool|Storebot-Google|Google-Extended/i;
 
 export const config = {
   matcher: ["/((?!api/).*)"],
@@ -28,13 +36,19 @@ export default async function middleware(request) {
     return;
   }
 
+  const ua = request.headers.get("user-agent") || "";
+  if (!CRAWLER_UA.test(ua)) {
+    // Browser / app: serve Vercel static SPA (correct hashed assets).
+    return;
+  }
+
   const target = `${SEO_ORIGIN}${pathname}${url.search}`;
 
   try {
     const upstream = await fetch(target, {
       method: request.method,
       headers: {
-        "user-agent": request.headers.get("user-agent") || "vercel-seo-proxy",
+        "user-agent": ua || "vercel-seo-proxy",
         accept: "text/html",
       },
       redirect: "manual",

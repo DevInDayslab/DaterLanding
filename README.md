@@ -6,7 +6,7 @@ Vite + React marketing site for [dater.social](https://dater.social).
 
 - **Vercel** serves the site (JS/CSS/images).
 - **Express** only gets Vite’s **`index.html`** and injects SEO from Postgres.
-- [`middleware.js`](middleware.js) proxies `/`, `/about`, etc. to `api.dater.social`.
+- [`middleware.js`](middleware.js) proxies **crawler** requests (`/`, `/about`, …) to `api.dater.social` for OG/meta. Browsers always get Vercel’s `index.html` so asset hashes stay in sync.
 
 Details: [`../backend/docs/LANDING_SEO.md`](../backend/docs/LANDING_SEO.md).
 
