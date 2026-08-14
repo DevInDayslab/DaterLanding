@@ -187,14 +187,14 @@ function FeaturesSection() {
 
 function BlogSkeleton() {
   return (
-    <div className="mx-auto grid max-w-[1114px] grid-cols-1 gap-6 md:grid-cols-3">
+    <div className="mx-auto grid max-w-[1114px] grid-cols-3 gap-2 sm:gap-4 md:gap-6">
       {[0, 1, 2].map((i) => (
-        <div key={i} className="overflow-hidden rounded-[24px] bg-white shadow-sm">
+        <div key={i} className="min-w-0 overflow-hidden rounded-[14px] bg-white shadow-sm md:rounded-[24px]">
           <div className={`${BLOG_IMAGE_CLASS} animate-pulse bg-black/10`} />
-          <div className="space-y-3 p-6">
-            <div className="h-6 w-full animate-pulse rounded bg-black/10" />
-            <div className="h-6 w-2/3 animate-pulse rounded bg-black/10" />
-            <div className="mt-4 h-4 w-1/3 animate-pulse rounded bg-black/10" />
+          <div className="space-y-2 p-2 md:space-y-3 md:p-6">
+            <div className="h-3 w-full animate-pulse rounded bg-black/10 md:h-6" />
+            <div className="h-3 w-2/3 animate-pulse rounded bg-black/10 md:h-6" />
+            <div className="mt-2 h-2 w-1/3 animate-pulse rounded bg-black/10 md:mt-4 md:h-4" />
           </div>
         </div>
       ))}
@@ -262,14 +262,14 @@ function BuzzSection() {
       )}
 
       {!loading && !error && (
-        <div className="mx-auto grid max-w-[1114px] grid-cols-1 gap-6 md:grid-cols-3">
+        <div className="mx-auto grid max-w-[1114px] grid-cols-3 gap-2 sm:gap-4 md:gap-6">
           {blogs.map((blog) => (
             <a
               key={blog.id}
               href={blog.link}
               target="_blank"
               rel="noopener noreferrer"
-              className="overflow-hidden rounded-[24px] bg-white shadow-sm transition-opacity hover:opacity-95"
+              className="min-w-0 overflow-hidden rounded-[14px] bg-white shadow-sm transition-opacity hover:opacity-95 md:rounded-[24px]"
             >
               <img
                 src={blog.image || '/qr-placeholder.png'}
@@ -278,12 +278,12 @@ function BuzzSection() {
                 decoding="async"
                 className={BLOG_IMAGE_CLASS}
               />
-              <div className="px-3 pb-4 pt-3 md:p-5">
+              <div className="px-2 pb-2 pt-2 md:px-3 md:pb-4 md:pt-3">
                 <h3
-                  className="line-clamp-2 font-google-sans-flex text-[17px] font-normal text-text-primary"
+                  className="line-clamp-2 font-google-sans-flex text-[11px] font-normal leading-tight text-text-primary md:text-[17px] md:leading-normal"
                   dangerouslySetInnerHTML={{ __html: blog.title }}
                 />
-                <time className="mt-3 block font-google-sans-flex text-[12px] font-normal text-text-muted md:mt-6">
+                <time className="mt-1 block font-google-sans-flex text-[10px] font-normal text-text-muted md:mt-6 md:text-[12px]">
                   {blog.date}
                 </time>
               </div>
