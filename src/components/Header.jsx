@@ -7,8 +7,9 @@ import iconInstagram from '../assets/instagram.svg'
 import iconLinkedin from '../assets/linkedin.svg'
 import iconX from '../assets/twitter_x.svg'
 import iconYoutube from '../assets/youtube.svg'
-import headerLogo from '../assets/logo/header-logo.webp'
-import headerLogoWhite from '../assets/logoWhite.webp'
+// Temporary logo swap — revert to header-logo.webp / logoWhite.webp when done
+import headerLogo from '../assets/logo/Logo Bold 2 Black with icon.png'
+import headerLogoWhite from '../assets/logo/Logo Bold 2 White with icon.png'
 import { useHeaderTheme } from '../hooks/useHeaderTheme'
 
 const NAV_LINKS = [
