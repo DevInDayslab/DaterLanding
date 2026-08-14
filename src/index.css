@@ -66,6 +66,13 @@
   }
 }
 
+/* About hero — desktop subtext: wrap after “to”, line 2 “meet genuine people.” */
+@media (min-width: 768px) {
+  .about-hero__subtext {
+    max-width: 21.5rem;
+  }
+}
+
 /*
   Phone landscape often exceeds the md width breakpoint. Keep the lime mobile
   banner (download button, phones beside copy — not below) on short/wide viewports.

@@ -46,7 +46,7 @@ function AboutHero() {
         <h1 className="font-google-sans-flex text-[22px] font-semibold italic leading-[1.15] text-white md:text-[34px]">
           Redefining The Way People Connect
         </h1>
-        <p className="mt-1.5 font-google-sans-flex text-[15px] font-normal leading-[1.25] text-white md:mt-0.5 md:text-[16px]">
+        <p className="about-hero__subtext mt-1.5 max-w-[23.75rem] font-google-sans-flex text-[15px] font-normal leading-[1.25] text-white md:mx-auto md:mt-0.5 md:text-[16px]">
           We&apos;re building a safe and meaningful way to meet genuine people.
         </p>
       </div>
