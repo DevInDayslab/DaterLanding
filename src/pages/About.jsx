@@ -24,10 +24,15 @@ function AboutHero() {
   return (
     <section
       data-header-surface="overlay"
-      className="relative flex aspect-[5/6] w-full items-center justify-center overflow-hidden md:aspect-auto md:min-h-[75vh]"
+      className="about-hero relative flex aspect-[5/6] w-full items-center justify-center overflow-hidden md:aspect-auto md:min-h-[75vh]"
     >
       <picture className="absolute inset-0">
         <source media="(min-width: 768px)" srcSet={heroImage} type="image/webp" />
+        <source
+          media="(orientation: landscape) and (min-width: 640px)"
+          srcSet={heroImage}
+          type="image/webp"
+        />
         <source media="(max-width: 767px)" srcSet={heroMobile} type="image/webp" />
         <img
           src={heroMobileFallback}
@@ -51,10 +56,14 @@ function AboutHero() {
 
 function ContentSections() {
   return (
-    <div data-header-surface="solid" data-header-bg="#ffffff" className="mx-auto max-w-7xl space-y-12 px-4 pb-12 pt-8 md:space-y-32 md:px-16 md:py-24">
+    <div
+      data-header-surface="solid"
+      data-header-bg="#ffffff"
+      className="about-content mx-auto max-w-7xl space-y-12 px-4 pb-12 pt-8 md:space-y-32 md:px-16 md:py-24"
+    >
       {/* Section A — Why We Built This */}
-      <section className="grid grid-cols-1 items-center gap-y-6 md:grid-cols-2 md:gap-x-28 md:gap-y-12">
-        <div className="mr-auto w-full max-w-md text-left md:mx-auto md:text-center">
+      <section className="about-section grid grid-cols-1 items-center gap-y-6 md:grid-cols-2 md:gap-x-28 md:gap-y-12">
+        <div className="about-section__copy mr-auto w-full max-w-md text-left md:mx-auto md:text-center">
           <h2 className={SECTION_HEADING_CLASS}>
             Why We Built This
           </h2>
@@ -65,20 +74,20 @@ function ContentSections() {
           alt="DATER app profile gallery on phone"
           loading="lazy"
           decoding="async"
-          className="mx-auto h-auto w-full max-w-[300px] object-contain md:max-w-[340px]"
+          className="about-section__media mx-auto h-auto w-full max-w-[300px] object-contain md:max-w-[340px]"
         />
       </section>
 
       {/* Section B — Our Mission */}
-      <section className="grid grid-cols-1 items-center gap-y-6 md:grid-cols-2 md:gap-x-28 md:gap-y-12">
+      <section className="about-section about-section--mission grid grid-cols-1 items-center gap-y-6 md:grid-cols-2 md:gap-x-28 md:gap-y-12">
         <img
           src={imgMission}
           alt="Couple sharing a joyful moment"
           loading="lazy"
           decoding="async"
-          className="order-2 mx-auto h-auto w-full max-w-[480px] rounded-[24px] object-cover md:order-1"
+          className="about-section__media order-2 mx-auto h-auto w-full max-w-[480px] rounded-[24px] object-cover md:order-1"
         />
-        <div className="order-1 mx-auto mt-0 w-full max-w-md text-left md:order-2 md:text-center">
+        <div className="about-section__copy order-1 mx-auto mt-0 w-full max-w-md text-left md:order-2 md:text-center">
           <h2 className={SECTION_HEADING_CLASS}>
             Our Mission
           </h2>
@@ -87,8 +96,8 @@ function ContentSections() {
       </section>
 
       {/* Section C — Your Safety Matters */}
-      <section className="grid grid-cols-1 items-center gap-y-6 md:grid-cols-2 md:gap-x-28 md:gap-y-12">
-        <div className="mx-auto w-full max-w-md text-left md:text-center">
+      <section className="about-section grid grid-cols-1 items-center gap-y-6 md:grid-cols-2 md:gap-x-28 md:gap-y-12">
+        <div className="about-section__copy mx-auto w-full max-w-md text-left md:text-center">
           <h2 className={SECTION_HEADING_CLASS}>
             Your Safety Matters
           </h2>
@@ -99,7 +108,7 @@ function ContentSections() {
           alt="Verified profiles and discovery on DATER"
           loading="lazy"
           decoding="async"
-          className="mx-auto h-auto w-full max-w-[420px] object-contain md:max-w-[480px]"
+          className="about-section__media mx-auto h-auto w-full max-w-[420px] object-contain md:max-w-[480px]"
         />
       </section>
     </div>

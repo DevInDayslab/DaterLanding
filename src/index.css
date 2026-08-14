@@ -151,6 +151,58 @@
     margin-top: 0.5rem !important;
     font-size: 11px !important;
   }
+
+  /* About — wide phone landscape: same hero height as md+ phones, two-column content */
+  .about-hero {
+    aspect-ratio: auto !important;
+    min-height: 75vh !important;
+  }
+
+  .about-content {
+    padding-top: 1.5rem !important;
+    padding-bottom: 2rem !important;
+  }
+
+  .about-content > * + * {
+    margin-top: 2rem !important;
+  }
+
+  .about-section {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    column-gap: 1.5rem !important;
+    row-gap: 1rem !important;
+    align-items: center !important;
+  }
+
+  .about-section__copy {
+    max-width: none !important;
+    margin-inline: 0 !important;
+    text-align: left !important;
+  }
+
+  .about-section__copy h2 {
+    font-size: 18px !important;
+    margin-bottom: 0.35rem !important;
+  }
+
+  .about-section__copy p {
+    font-size: 13px !important;
+    line-height: 1.35 !important;
+  }
+
+  .about-section__media {
+    max-width: min(100%, 220px) !important;
+    margin-inline: auto !important;
+  }
+
+  .about-section--mission .about-section__media {
+    order: 1 !important;
+  }
+
+  .about-section--mission .about-section__copy {
+    order: 2 !important;
+  }
 }
 
 /*
