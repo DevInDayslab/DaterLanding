@@ -74,7 +74,7 @@ function GetTheAppBanner() {
       <section
         data-header-surface="solid"
         data-header-bg="#DAEF68"
-        className="flex w-full flex-col items-start overflow-hidden bg-accent-lime px-6 pb-6 pt-8 md:hidden"
+        className="get-app-banner--mobile flex w-full flex-col items-start overflow-hidden bg-accent-lime px-6 pb-6 pt-8 md:hidden"
       >
         <h2 className="text-left font-google-sans-flex text-[26px] font-semibold leading-[1.1] text-[#000000]">
           Get the app
@@ -88,7 +88,7 @@ function GetTheAppBanner() {
           alt="DATER app on mobile phones"
           loading="lazy"
           decoding="async"
-          className="mt-8 h-auto w-[90%] max-w-[360px] self-start object-contain"
+          className="get-app-banner__phones-mobile mt-8 h-auto w-[90%] max-w-[360px] self-start object-contain"
         />
       </section>
 
@@ -96,7 +96,7 @@ function GetTheAppBanner() {
       <div
         data-header-surface="solid"
         data-header-bg="#ffffff"
-        className={`${FOOTER_SHELL} hidden pb-14 pt-6 md:block`}
+        className={`get-app-banner--desktop ${FOOTER_SHELL} hidden pb-14 pt-6 md:block`}
       >
         <section
           data-header-surface="solid"
@@ -114,14 +114,14 @@ function GetTheAppBanner() {
             />
           </div>
 
-          <div className="relative z-10 w-[min(100%,280px)] shrink-0">
+          <div className="get-app-banner__copy relative z-10 w-[min(100%,280px)] shrink-0">
             <h2 className="font-google-sans-flex text-[clamp(28px,2.8vw,36px)] font-semibold leading-tight text-[#000000]">
               Get the app
             </h2>
             <p className="mt-0.5 font-google-sans-flex text-[clamp(14px,1.4vw,18px)] font-normal leading-snug text-[#000000]">
               Scan the QR code to get started
             </p>
-            <div className="mt-[clamp(12px,1.6vw,20px)] inline-block rounded-xl bg-white p-2.5 shadow-sm">
+            <div className="get-app-banner__qr mt-[clamp(12px,1.6vw,20px)] inline-block rounded-xl bg-white p-2.5 shadow-sm">
               <DownloadQr size={144} showLabel={false} />
             </div>
           </div>

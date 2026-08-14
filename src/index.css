@@ -67,11 +67,57 @@
 }
 
 /*
-  Phone landscape often exceeds the md width breakpoint, which used to force
-  desktop 3-col + fixed 380px cards into a short viewport. Keep a fluid 2-col
-  layout with tighter spacing below lg. Unlayered so these beat md: utilities.
+  Phone landscape often exceeds the md width breakpoint. Keep the lime mobile
+  banner (download button + phones below, no QR) on short/wide phone viewports.
 */
-@media (orientation: landscape) and (max-width: 1023px) {
+@media (orientation: landscape) and (max-height: 600px) and (max-width: 1023px) {
+  .get-app-banner--mobile {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+  }
+
+  .get-app-banner--mobile .get-app-banner__phones-mobile {
+    display: block !important;
+    align-self: flex-start !important;
+    margin-top: 1.5rem;
+    width: min(90%, 360px);
+    max-width: 360px;
+  }
+
+  .get-app-banner--desktop {
+    display: none !important;
+  }
+}
+
+/*
+  iPad / tablet: centered phone mockup can overlap the QR copy. Tighten the
+  left column and use a matching pink fill so text stays readable — no white box.
+*/
+@media (min-width: 768px) and (max-width: 1279px) {
+  .get-app-banner__copy {
+    max-width: 11rem;
+    padding-right: 0.5rem;
+    background-color: #f3b6ec;
+  }
+
+  .get-app-banner__copy p {
+    font-size: clamp(13px, 1.25vw, 15px) !important;
+    line-height: 1.35;
+  }
+
+  .get-app-banner__qr {
+    transform: scale(0.82);
+    transform-origin: top left;
+  }
+}
+
+/*
+  Phone / tablet landscape often exceeds comfortable width for 3-col cards.
+  Keep a fluid 2-col layout with tighter spacing below xl. Unlayered so these
+  beat md: utilities.
+*/
+@media (orientation: landscape) and (max-width: 1279px) {
   .features-section {
     padding-top: 1.25rem !important;
     padding-bottom: 2rem !important;
