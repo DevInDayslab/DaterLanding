@@ -1,14 +1,11 @@
-# Hostinger / Apache — SPA routes + legacy URL redirects
-<IfModule mod_rewrite.c>
-  RewriteEngine On
-  RewriteBase /
+RewriteEngine On
+RewriteBase /
 
-  RewriteRule ^contact/?$ /contact-us [R=301,L]
-  RewriteRule ^faqs/?$ /faq [R=301,L]
-  RewriteRule ^privacy/?$ /privacy-policy [R=301,L]
-  RewriteRule ^cookies/?$ /cookie-policy [R=301,L]
+RewriteRule ^contact/?$ /contact-us [R=301,L]
+RewriteRule ^faqs/?$ /faq [R=301,L]
+RewriteRule ^privacy/?$ /privacy-policy [R=301,L]
+RewriteRule ^cookies/?$ /cookie-policy [R=301,L]
 
-  RewriteCond %{REQUEST_FILENAME} !-f
-  RewriteCond %{REQUEST_FILENAME} !-d
-  RewriteRule ^ index.html [L]
-</IfModule>
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^ index.html [L]
