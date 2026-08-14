@@ -283,7 +283,7 @@ export default function Header() {
                 src={logoSrc}
                 alt="DATER"
                 className={`w-auto transition-all duration-300 ease-in-out ${
-                  isScrolled ? 'h-7 md:h-8' : 'h-8 md:h-10'
+                  isScrolled ? 'h-6 md:h-8' : 'h-7 md:h-10'
                 }`}
               />
             </Link>
