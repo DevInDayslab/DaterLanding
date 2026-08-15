@@ -2,21 +2,22 @@
 
 Vite + React marketing site for [dater.social](https://dater.social).
 
-## Production SEO / hosting
+## Production SEO / hosting (Hostinger)
 
-- **Vercel** serves the site (JS/CSS/images).
-- **Express** only gets Vite’s **`index.html`** and injects SEO from Postgres.
-- [`middleware.js`](middleware.js) proxies **crawler** requests (`/`, `/about`, …) to `api.dater.social` for OG/meta. Browsers always get Vercel’s `index.html` so asset hashes stay in sync.
+- **Hostinger** serves the site (JS/CSS/images) from `dist/`.
+- **Express** gets a copy of the Vite SPA shell (`index-spa.html` → `backend/public/landing/index.html`) and injects SEO from Postgres for crawlers.
+- [`public/index.php`](public/index.php) + [`.htaccess`](public/.htaccess) route document requests: **bots** are proxied to `api.dater.social`; **browsers** get `index-spa.html`.
 
 Details: [`../backend/docs/LANDING_SEO.md`](../backend/docs/LANDING_SEO.md).
 
 ```bash
-npm run build
-npm run sync:seo-html   # copies ONLY dist/index.html → backend/public/landing/
-# redeploy backend, then redeploy this Vercel project
+npm run build:deploy   # build dist/ + sync SPA shell to backend/public/landing/
+# upload dist/ to Hostinger docroot, then redeploy backend
 ```
 
-Local `vite` still uses the static placeholders in `index.html`.
+`dist/` layout after build: `index.php`, `index-spa.html`, `.htaccess`, `assets/`, static files. No `index.html` in dist.
+
+Local `vite dev` still uses the static placeholders in `index.html`.
 
 ## React + Vite
 

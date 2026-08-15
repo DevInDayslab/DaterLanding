@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "vite build && bash scripts/postbuild-hostinger.sh",
+    "build:deploy": "npm run build && npm run sync:seo-html",
     "sync:seo-html": "bash scripts/sync-seo-html.sh",
     "lint": "oxlint",
     "preview": "vite preview"
