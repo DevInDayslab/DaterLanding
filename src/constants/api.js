@@ -1,15 +1,31 @@
 /** WordPress / CMS API */
 const WP_ORIGIN = 'https://dater-buzz.com'
 
-const DEFAULT_PROD_API_BASE = 'https://api.dater.social'
+const PROD_API_BASE = 'https://api.dater.social'
+
+function isProductionSafeApiUrl(url) {
+  if (!url || url.startsWith('/')) {
+    return false
+  }
+  try {
+    const parsed = new URL(url)
+    return parsed.protocol === 'https:' && !/^\d+\.\d+\.\d+\.\d+$/.test(parsed.hostname)
+  } catch {
+    return false
+  }
+}
 
 function resolveApiBase() {
   const configured = import.meta.env.VITE_API_BASE_URL?.trim()
   if (configured) {
-    return configured.replace(/\/$/, '')
+    const normalized = configured.replace(/\/$/, '')
+    if (import.meta.env.PROD && !isProductionSafeApiUrl(normalized)) {
+      return PROD_API_BASE
+    }
+    return normalized
   }
   if (import.meta.env.PROD) {
-    return DEFAULT_PROD_API_BASE
+    return PROD_API_BASE
   }
   return ''
 }
