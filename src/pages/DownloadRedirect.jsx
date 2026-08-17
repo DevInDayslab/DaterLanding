@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { getStoreRedirectUrl } from '../utils/getStoreRedirectUrl'
+import { usePageSeo } from '../hooks/usePageSeo'
 
 const REDIRECT_AT_KEY = 'dater:download-redirect-at'
 // Ignore pageshow/visibility events right after the initial store redirect starts.
@@ -36,6 +37,7 @@ function injectHomeMetaRefresh() {
 }
 
 export default function DownloadRedirect() {
+  usePageSeo()
   const [returningHome, setReturningHome] = useState(() => shouldReturnHome())
 
   useEffect(() => {

@@ -47,4 +47,5 @@ export const API = {
     `${import.meta.env.DEV ? '/wp-json/wp/v2' : `${WP_ORIGIN}/wp-json/wp/v2`}/media/${id}`,
   landingContactUrl: () => landingApiUrl('/contact'),
   landingContactPresignUrl: () => landingApiUrl('/contact/presign-attachment'),
+  landingSeoMetaUrl: (slug) => landingApiUrl(`/seo-meta/${encodeURIComponent(slug)}`),
 }
